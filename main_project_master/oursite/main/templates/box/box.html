@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <!-- Favicon icon -->
+        <!--  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png"> -->
+        <title>Box</title>
+        <!-- Custom CSS -->
+
+        <link href="/static/dist/css/style.min.css" rel="stylesheet">
+        <style type="text/css">
+
+          #upload{
+            position: absolute;
+            align:left;
+            width: 400px;
+            height: 120px;
+
+
+          }
+          #upload p{
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            line-height: 170px;
+            color: black;
+            font-family: Georgia, "맑은 고딕", bold;
+            font-size:15px;
+          }
+          #upload fieldset{
+            margin-top:-120px;
+            width:480px;
+            height:120px;
+            border: 2px dashed black;
+          }
+          #upload input{
+            position: absolute;
+             margin: 0;
+             padding: 0;
+             width: 100%;
+             height: 100%;
+             outline: none;
+             opacity: 0;
+          }
+          #upload button{
+            margin-left:430px;
+            margin-top:-100px;
+          }
+
+
+          </style>
+          <script>
+
+
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-41480445-1', 'purecss.io');
+          ga('send', 'pageview');
+
+
+           var files = e.target.files || e.dataTransfer.files;
+
+           var a = $('input#fileselect.addFile');
+          a[a.length-1].files = file;
+          // getElementById
+          function $id(id) {
+          	return document.getElementById(id);
+          }
+
+          // output information
+          function Output(msg) {
+          	var m = $id("list");
+          	m.innerHTML = msg + m.innerHTML;
+          }
+
+          // call initialization file
+          if (window.File && window.FileList && window.FileReader) {
+          	Init();
+          }
+
+          // initialize
+          function Init() {
+
+          	var fileselect = $id("fileselect"),
+          		filedrag = $id("filedrag"),
+          		submitbutton = $id("submitbutton");
+
+          	// file select
+          	fileselect.addEventListener("change", FileSelectHandler, false);
+
+          	// is XHR2 available?
+          	var xhr = new XMLHttpRequest();
+          	if (xhr.upload) {
+
+          		// file drop
+          		filedrag.addEventListener("dragover", FileDragHover, false);
+          		// filedrag.addEventListener("dragleave", FileDragHover, false);
+          		filedrag.addEventListener("drop", FileSelectHandler, false);
+          		filedrag.style.display = "block";
+
+          		// remove submit button
+          		submitbutton.style.display = "none";
+          	}
+          }
+
+          // file drag hover
+          function FileDragHover(e) {
+          	e.stopPropagation();
+          	e.preventDefault();
+          	e.target.className = (e.type == "dragover" ? "hover" : "");
+          }
+
+          // file selection
+          function FileSelectHandler(e) {
+
+          	// cancel event and hover styling
+              FileDragHover(e);
+
+          	// fetch FileList object
+          	var files = e.target.files || e.dataTransfer.files;
+
+              console.log('te');
+              addFileFromLastInput(files);
+
+              // process all File objects
+          	for (var i = 0, f; f = files[i]; i++) {
+          		ParseFile(f);
+          	}
+          }
+
+          function ParseFile(file) {
+
+              var fileName = file.name,
+                  fileType = file.type,
+                  fileSize = file.size + 'bytes';
+
+          	Output(
+          		"<tr><td>" + fileName +
+          		"</td><td>" + fileType +
+          		"</td><td>" + fileSize +
+          		"</td> </tr>"
+          	);
+          }
+
+          function addFileFromLastInput(file){
+
+              var a = $('input#fileselect.addFile');
+              a[a.length-1].files = file;
+
+              try{
+                  let new_input = '<input id="fileselect" type="file" name="fileselect" multiple="multiple" class="addFile" />';
+                  $('.files').append(new_input);
+              }catch(err){
+
+              }
+
+              return 0;
+          }
+
+
+
+
+          </script>
+    </head>
+    <body>
+
+        <div id="main-wrapper">
+            <header class="topbar" data-navbarbg="skin5">
+                <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                    <div class="navbar-header" data-logobg="skin5">
+                        <!-- This is for the sidebar toggle which is visible on mobile only -->
+                        <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+                        <a class="navbar-brand" href="/box/{{user}}">
+                            <!-- Logo icon -->
+                            <b class="logo-icon p-l-10">
+                                <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                                <!-- Dark Logo icon -->
+                              <!--  <img src="" alt="homepage" class="light-logo" />-->
+                              <h4>Sejong</h4>
+
+                            </b>
+                            <!--End Logo icon -->
+                            <!-- Logo text -->
+                            <span class="logo-text">
+                                <!-- dark Logo text -->
+                                <!--  <img src="/static/assets/images/logo-text.png" alt="homepage" class="light-logo" /> -->
+                                  <h4>Box</h4>
+                            </span>
+                            <!-- Logo icon -->
+                            <!-- <b class="logo-icon"> -->
+                                <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                                <!-- Dark Logo icon -->
+                                <!-- <img src="assets/images/logo-text.png" alt="homepage" class="light-logo" /> -->
+
+                            <!-- </b> -->
+                            <!--End Logo icon -->
+                        </a>
+                        <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="ti-more"></i></a>
+                    </div>
+                    <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+                        <ul class="navbar-nav float-left mr-auto">
+                            <li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
+                        </ul>
+                        <ul class="navbar-nav float-right">
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="font-24 mdi mdi-comment-processing"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown" aria-labelledby="2">
+                                    <ul class="list-style-none">
+
+                                        <li>
+                                            <div class="">
+                                              {% for notify_item in all_notification %}
+                                                <!-- Message -->
+                                                <a href="javascript:void(0)" class="link border-top">
+                                                    <div class="d-flex no-block align-items-center p-10">
+                                                       <i class="mdi mdi-bell font-24" style="margin-right:10px;margin-left:10px;"></i>
+                                                        <div class="m-l-10">
+                                                            <h5 class="m-b-0">Uploaded by {{ notify_item.uploaded_account }}</h5>
+                                                            <span class="mail-desc">{{ notify_item.uploaded_filename }} - {{ notify_item.uploaded_teamtitle }} 조<br>{{ notify_item.uploaded_datetime }}</span>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                <!-- Message -->
+                                                  {% endfor %}
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/static/assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
+                                <div class="dropdown-menu dropdown-menu-right user-dd animated">
+                                    <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
+                                    <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="login.html"><i class="fa fa-power-off m-r-5 m-l-5"></i> Login</a>
+                                    <div class="dropdown-divider"></div>
+                                    <div class="p-l-30 p-10"><a href="register.html" class="btn btn-sm btn-success btn-rounded">회원가입</a></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            <aside class="left-sidebar" data-sidebarbg="skin5">
+                <!-- Sidebar scroll-->
+                <div class="scroll-sidebar">
+                    <!-- Sidebar navigation-->
+                    <nav class="sidebar-nav">
+                        <ul id="sidebarnav" class="p-t-30">
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu"></span>대시보드</span></a></li>
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="charts.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">공지사항</span></a></li>
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="widgets.html" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">강의별 게시판</span></a></li>
+                                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/box" aria-expanded="false"><i class="mdi mdi-auto-upload"></i><span class="hide-menu">파일 공유</span></a></li>
+                        <!--<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="tables.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Tables</span></a></li>
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="grid.html" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span class="hide-menu">Full Width</span></a></li>-->
+
+                        </ul>
+                    </nav>
+                    <!-- End Sidebar navigation -->
+                </div>
+                <!-- End Sidebar scroll-->
+            </aside>
+            <div class="page-wrapper">
+                    <!-- 타이틀 시작 -->
+              <div class="page-breadcrumb">
+                         <div class="row">
+                                 <div class="col-12 d-flex no-block align-items-center">
+                                     <h4 class="page-title">안녕하세요 {{ user }}님, 같은 조의 멤버들과 파일을 공유하고 피드백을 주세요.</h4>
+                                     <div class="ml-auto text-right">
+                                         <nav aria-label="breadcrumb">
+                                             <ol class="breadcrumb">
+                                                 <li class="breadcrumb-item"><a href="/main">메인</a></li>
+                                                 <li class="breadcrumb-item active" aria-current="page">파일공유 시스템</li>
+                                             </ol>
+                                         </nav>
+                                     </div>
+                                 </div>
+                         </div>
+                </div>
+                  <!-- End 타이틀-->
+
+                  <div class="container-fluid">
+                      <!-- ============================================================== -->
+                      <!-- Start Page Content -->
+                      <!-- ============================================================== -->
+
+                      <div class="row">
+                        <!-- ============================================================== -->
+                        <!-- 업로드 부분 시작 -->
+                        <!-- ============================================================== -->
+                            {% if group %}
+                              <div class="col-md-6">
+                                 <div class="card">
+                                     <div class="card-body" style="height:200px;">
+                                         <h5 id="ctitle" class="card-title">파일을 끌어오세요</h5>
+
+                                           <form id="upload" action="/main/box/{{user}}/{{group}}/uploadto/" method="POST" enctype="multipart/form-data">
+                                                 {% csrf_token %}
+                                                    <p>파일을 끌어 오세요.</p>
+                                             <fieldset>
+                                               <div class="files">
+                                                 <input id="fileselect" type="file" name="myfile" multiple="multiple" class="addFile"/>
+                                               </div>
+                                               <div id="submitbutton">
+                                                 <button class="btn btn-primary btn-sm" type="submit">업로드</button>
+                                               </div>
+                                             </fieldset>
+                                           </form>
+
+                                         </p>
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="col-md-6">
+                                 <div class="card">
+                                     <div class="card-body">
+                                         <h5 class="card-title">파일을 선택하여 업로드합니다.</h5>
+                                         {% load static %}
+
+                                         <p>
+                                            <form method="post" action="/main/box/{{user}}/{{group}}/uploadto/" enctype="multipart/form-data">
+                                              {% csrf_token %}
+                                              <input type="file"  name="myfile">
+                                              <button class="btn btn-primary btn-sm" type="submit">업로드</button>
+                                            </form>
+                                            </p>
+                                 </div>
+                             </div>
+                             </div>
+                             <!-- ============================================================== -->
+                             <!-- 업로드 부분 끝 -->
+                             <!-- ============================================================== -->
+                          {% endif %}
+
+                             <div class="col-md-8">
+                               <div class="card">
+                                 <div class="card-body">
+                                  <h4 class="card-title m-b-0">공유된 파일{{querys1}}</h4>
+                                 </div>
+                            <div class="comment-widgets scrollable">
+
+
+                                    {% for file_item in all_file_items %}
+                               <div class="d-flex flex-row comment-row">
+                                   <div class="p-2"><img src="/static/assets/images/box/document-icon.jpg" alt="user" width="50" class="rounded-circle"></div>
+                                   <div class="comment-text w-100">
+                                       <h6 class="font-medium">{{ file_item.file_name }} · {{ file_item.file_size }} MB</h6>
+                                       <span class="m-b-15 d-block">#{{ file_item.user_name }} · {{ file_item.assignment_title }} 제출 · 서명 </span>
+
+                                       <div class="comment-footer">
+                                           <span class="text-muted float-right">{{ file_item.class_name }} · {{ file_item.uploaded_date }} · {{ file_item.team_title }}</span>
+                                           <br>
+                                           <a href="/box{{file_item.document}}" target="_blank" class="btn btn-cyan btn-sm">View</a>
+                                           <a href="/box{{file_item.document}}" download style="color:white;" class="btn btn-success btn-sm">Download</a>
+
+                                           <form method="post" action="/box/{{ user }}/delete/" >
+                                             {% csrf_token %}
+                                             <input type="hidden" name="del" value="{{ file_item.id }}" />
+                                             <button type="submit" class="btn btn-danger btn-sm" style="margin-left:130px;margin-top:-52px;">Delete</button>
+                                           </form>
+                                       </div>
+                                   </div>
+                               </div>
+                                 {% endfor %}
+
+
+
+                           </div>
+                       </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                                                <div class="card">
+                                                    <div class="card-body" style="font-size:13px;">
+                                                        <h5 class="card-title">현재 수강중인 과목</h5>
+
+                                                        <div class="card"><!-- table start -->
+                                                                 <div class="card-body">
+                                                                     <p class="card-title">과목 선택후 파일 업로드가 가능합니다.</p>
+                                                                 </div>
+                                                                 <table class="table">
+                                                                   <thead>
+                                                                     <tr>
+                                                                       <th scope="col">#</th>
+                                                                       <th scope="col">수강 과목</th>
+                                                                       <th scope="col">팀 이름</th>
+
+                                                                     </tr>
+                                                                   </thead>
+                                                                   <tbody>
+                                                                       {% for group_item in all_groups %}
+                                                                       <tr>
+                                                                         <th scope="row">{{ group_item.id }}</th>
+                                                                         <td>{{ group_item.Inthe_class }}</td>
+                                                                         <td>{{ group_item.numberof_group }}</td>
+
+                                                                       </tr>
+                                                                       {% endfor %}
+
+                                                                   </tbody>
+                                                                 </table>
+                                                             </div> <!-- table end -->
+                                                    </div>
+                                                </div>
+                        </div>
+                    </div>
+                <footer class="footer text-center">
+                    Copyright &copy 2019. Developed by <a href="http://www.sejong.ac.kr">Sejong University</a>.
+                </footer>
+            </div>
+        </div>
+        <script src="/static/assets/libs/jquery/dist/jquery.min.js"></script>
+        <script src="/static/dist/js/jquery.ui.touch-punch-improved.js"></script>
+        <script src="/static/dist/js/jquery-ui.min.js"></script>
+        <script src="/static/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+        <script src="/static/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="/static/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+        <script src="/static/assets/extra-libs/sparkline/sparkline.js"></script>
+        <script src="/static/dist/js/waves.js"></script>
+        <script src="/static/dist/js/sidebarmenu.js"></script>
+        <script src="/static/dist/js/custom.min.js"></script>
+        <script src="/static/assets/libs/moment/min/moment.min.js"></script>
+        <script src="/static/assets/libs/fullcalendar/dist/fullcalendar.min.js"></script>
+        <script src="/static/dist/js/pages/calendar/cal-init.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+        <script type="text/javascript">
+              $(document).ready(function(){
+              $('#upload input').change(function () {
+                $('#upload p').text(this.files.length + "개의 파일이 선택되었습니다.");
+              });
+            });
+        </script>
+    </body>
+</html>
