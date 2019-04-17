@@ -1,0 +1,27 @@
+{% extends "main/base.html" %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title">팀 게시판</h1>
+                      <p><div class="d-flex flex-row comment-row m-t-0"> <a href="{% url 'team_new' %}" class="btn btn-sm btn-success btn-rounded">새 그룹 만들기</a></div></p>
+                      <h3 class="font-medium">팀 목록</h3>
+                      <h6>------------------------------------------------------------</h6>
+                        {% for team in team_list %}
+                        <p> 팀 번호 : {{ team.pk }}</p>
+                        <p> 팀 이름 : {{ team.name }}</p>
+                        <p><a href="{% url 'team_detail' pk=team.pk %}"class="btn btn-sm btn-success btn-rounded"> 팀 게시판 입장</a></p> <!-- for문에서 하나씩 뽑는 튜플의 primary key를 뽑아서  'team_detail'을 이름으로 갖는 url에 넘겨줘서 team_detail 뷰와 연결되게함-->
+                        <p><a href="{% url 'team_join' pk=user.pk team=team.pk  %}" class="btn btn-sm btn-success btn-rounded"> 팀가입</a></p>
+                      <h6>------------------------------------------------------------</h6>
+                      {% endfor %}
+                </div>
+          </div>
+        </div>
+    </div>
+</div>
+<footer class="footer text-center">
+    All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+</footer>
+{% endblock %}
