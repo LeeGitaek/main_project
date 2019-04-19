@@ -174,8 +174,6 @@ def DocsOfUser(request,username,group,team):
 #def document_review(username,revusername,revfilename):
 #    if request.method == 'POST' and request.POST['rev_score']:
 
-
-
 ## Box 박스 앱 VIEWS CODE END ##
 ## DEVELOPER : 이기택
 ## BOX APP

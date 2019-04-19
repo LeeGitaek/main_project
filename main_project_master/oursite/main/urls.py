@@ -8,7 +8,6 @@ from django.conf.urls.static import static
 #box app file settings code end #
 from . import views
 
-
 urlpatterns = [
    #기본 사이트맵
   #  path('index/', views.index, name='index'), # main/index : 홈페이지(대쉬보드)
@@ -32,7 +31,7 @@ urlpatterns = [
     path('box/<username>/delete/',views.delete_file), # 파일 삭제
     path('box/<username>/',views.userfile),# 자신이 업로드한 파일 리스트
     path('box/<username>/<group>/<team>/',views.group_file), # 팀원들과 파일공유 가능한
-    #path('box/<username>/score/<revusername>/<revfilename>/',views.document_review), # 평가 스코어 
+    #path('box/<username>/score/<revusername>/<revfilename>/',views.document_review), # 평가 스코어
 
 # Box app URL CODE end#
 
