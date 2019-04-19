@@ -392,12 +392,13 @@
                                            <a href="/main{{file_item.document}}" target="_blank" class="btn btn-cyan btn-sm">View</a>
                                            <a href="/main{{file_item.document}}" download style="color:white;" class="btn btn-success btn-sm">Download</a>
 
-
+                                           {% if file_item.user_name == user %}
                                            <form method="post" action="/main/box/{{ user }}/delete/" >
                                              {% csrf_token %}
                                              <input type="hidden" name="del" value="{{ file_item.id }}" />
                                              <button type="submit" class="btn btn-danger btn-sm" style="margin-left:130px;margin-top:-52px;">Delete</button>
                                            </form>
+                                           {% endif %}
                                           <form method="post" action="/main/box/{{user}}/score/{{ file_item.user_name }}/{{ file_item.file_name }}/">
                                            <p id="result">같은 팀원의 문서를 평가해주세요.<span id="score" name="rev_score"></span></p>
                                                     {% csrf_token %}

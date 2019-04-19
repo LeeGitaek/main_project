@@ -104,7 +104,7 @@ def userfile(request,username):
 
 #box grouping. box/username/group/team/
 def group_file(request,username,group,team):
-    all_items = FileListBox.objects.filter(user_name=username).order_by('-uploaded_date').iterator() # 파일리스트 쿼리셋  메모리 쿼리 절약 캐싱
+    all_items = FileListBox.objects.filter(class_name=group,t_num=team).order_by('-uploaded_date').iterator() # 파일리스트 쿼리셋  메모리 쿼리 절약 캐싱
     all_notify = NotificationBox.objects.filter(uploaded_teamtitle=group).order_by('-uploaded_datetime').iterator() # 알림 쿼리셋 메모리 쿼리 절약 캐싱
     all_group = Subject.objects.filter(userid=username).order_by('-created_date').iterator() # 그룹 정보
 
@@ -168,7 +168,7 @@ def DocsOfUser(request,username,group,team):
         #user.save()
 
         return redirect('/main/box/'+user_name+'/'+group+'/'+team)
-        
+
 # 파일 평가 기능 구현 함수 작성중.
 # box/<username>/score/<revusername>/<revfilename>/
 #def document_review(username,revusername,revfilename):
