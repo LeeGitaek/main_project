@@ -3,9 +3,12 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Team
 #box model import code start #
+from django import template
 from django.core.files.storage import FileSystemStorage # file setting code
 from .models import FileListBox # model
 from .models import NotificationBox # model
+from .models import Subject # 공통코드 부분
+import datetime as datetime
 import numpy as np # math
 import os # os
 #box model import code end #
@@ -79,42 +82,49 @@ def team_join(request, user_pk, team_pk): #템플릿 ~ urls로부터 user의 pk�
 #box/username list
 def userfile(request,username):
     all_items = FileListBox.objects.filter(user_name=username).order_by('-uploaded_date').iterator() # 파일리스트 쿼리셋  메모리 쿼리 절약 캐싱
-    all_notify = NotificationBox.objects.order_by('-uploaded_datetime').iterator() # 알림 쿼리셋 메모리 쿼리 절약 캐싱
-    #all_group = Subject.objects.filter(usernum_Ingroup=username).order_by('-join_date').iterator() # 그룹 정보
+    querysub1 = Subject.objects.get(userid=username)
+    querysub2 = querysub1.subject_name
+    all_notify = NotificationBox.objects.filter(uploaded_teamtitle=querysub2).order_by('-uploaded_datetime').iterator() # 알림 쿼리셋 메모리 쿼리 절약 캐싱
+    all_group = Subject.objects.filter(userid=username).order_by('-created_date').iterator() # 그룹 정보
 
     if not all_items:
          return render(request, 'box/box.html',{
             #'all_file_items': all_items,
             'all_notification': all_notify,
             'user':username,
-            #'all_groups':all_group,
+            'all_groups':all_group,
          })
     else :
         return render(request, 'box/box.html',{
             'all_file_items': all_items,
             'all_notification': all_notify,
             'user':username,
-        #    'all_groups':all_group,
+            'all_groups':all_group,
         })
 
-#box grouping. box/username/group
-def group_file(request,username,group):
+#box grouping. box/username/group/team/
+def group_file(request,username,group,team):
     all_items = FileListBox.objects.filter(user_name=username).order_by('-uploaded_date').iterator() # 파일리스트 쿼리셋  메모리 쿼리 절약 캐싱
-    all_notify = NotificationBox.objects.order_by('-uploaded_datetime').iterator() # 알림 쿼리셋 메모리 쿼리 절약 캐싱
+    all_notify = NotificationBox.objects.filter(uploaded_teamtitle=group).order_by('-uploaded_datetime').iterator() # 알림 쿼리셋 메모리 쿼리 절약 캐싱
+    all_group = Subject.objects.filter(userid=username).order_by('-created_date').iterator() # 그룹 정보
 
     if not all_items:
          return render(request, 'box/box.html',{
             #'all_file_items': all_items,
             'all_notification': all_notify,
             'user':username,
+            'all_groups':all_group,
             'group':group,
+            'team':team,
          })
     else :
         return render(request, 'box/box.html',{
             'all_file_items': all_items,
             'all_notification': all_notify,
             'user':username,
+            'all_groups':all_group,
             'group':group,
+            'team':team,
         })
 
 
@@ -124,43 +134,46 @@ def delete_file(request,username):    # delete file action.
         file_name_del = request.POST['del']
         del_in = FileListBox.objects.filter(id=file_name_del).delete()
 
-        return redirect('http://127.0.0.1:3000/box/'+username)
+        return redirect('/main/box/'+username)
 
 #box upload function
-def DocsOfUser(request,username,group):
+def DocsOfUser(request,username,group,team):
     if request.method == 'POST' and request.FILES['myfile']:
         user_name = username
+        now = datetime.datetime.now()
         myfile = request.FILES['myfile']
         fs = FileSystemStorage()
+        formatted_date = now.strftime('%Y-%m-%d %H:%M:%S')
         filename = fs.save(myfile.name, myfile)
+        filesize = round( myfile.size/1000000 , 1) #file size
         uploaded_file_url = fs.url(filename) # file link
-        #group_info = #GroupInformation.objects.get(usernum_Ingroup = user_name)
         class_name = group # 과목 이름
-        team_title = "프로젝트"#group_info.numberof_group
+        groupinfo = Team.objects.get(subject_num=team) # 그룹 정보
+        team_title = groupinfo.team_name #group_info.numberof_group
         user = User.objects.filter(username=user_name) # get a group information
-        t_num = "142"#group_info.groupId # user's group id.
+        t_num = team #group_info.groupId # user's group id.
         #user_rate = 1200.00  # user's rating / basic 1200
         #weights_num = 0.84 # call change rate function
-        #team_info = Team.objects.get(num=t_num)
-        assignment_title = group
-        #file_size = os.path.getsize(uploaded_file_url)
+        assignment_title = groupinfo.project_name
         #document_similarity = 0.0
         #reward_score = 0.0
-        querys1 = FileListBox(file_name=filename,class_name=class_name,team_title=team_title,user_name=user_name,assignment_title=assignment_title,file_size=0,t_num=t_num,document=uploaded_file_url)
+        querys1 = FileListBox(file_name=filename,class_name=class_name,team_title=team_title,user_name=user_name,assignment_title=assignment_title,file_size=filesize,t_num=t_num,document=uploaded_file_url,uploaded_date=formatted_date)
         querys1.save()
 
-        querys2 = NotificationBox(uploaded_filename=filename,uploaded_account=user_name,uploaded_teamtitle=team_title,edited_orwhat='0',read_ox='0',uploaded_groupid=t_num)
+        querys2 = NotificationBox(uploaded_filename=filename,uploaded_account=user_name,uploaded_teamtitle=group,edited_orwhat='0',read_ox='0',uploaded_groupid=t_num,uploaded_datetime=formatted_date)
         querys2.save()
 
 
         #user.userteam.xn_rating = weights_num
         #user.save()
 
-        return redirect('http://127.0.0.1:4000/main/box/'+user_name)
+        return redirect('/main/box/'+user_name+'/'+group+'/'+team)
+        
+# 파일 평가 기능 구현 함수 작성중.
+# box/<username>/score/<revusername>/<revfilename>/
+#def document_review(username,revusername,revfilename):
+#    if request.method == 'POST' and request.POST['rev_score']:
 
-# document_similarity calculation
-def document_similarity_cal():
-    print('Hello!')
 
 
 ## Box 박스 앱 VIEWS CODE END ##

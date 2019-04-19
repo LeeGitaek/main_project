@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+
+ {% load box_extras %}
+
+
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,6 +17,17 @@
 
         <link href="/static/dist/css/style.min.css" rel="stylesheet">
         <style type="text/css">
+          .star_rating {font-size:0; letter-spacing:-4px;}
+          .star_rating a {
+              font-size:22px;
+              letter-spacing:0;
+              display:inline-block;
+              margin-left:5px;
+              color:#ccc;
+              text-decoration:none;
+          }
+          .star_rating a:first-child {margin-left:0;}
+          .star_rating a.on {color:#777;}
 
           #upload{
             position: absolute;
@@ -53,17 +68,7 @@
 
 
           </style>
-          <script>
-
-
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-          ga('create', 'UA-41480445-1', 'purecss.io');
-          ga('send', 'pageview');
-
+          <script type="text/javascript">
 
            var files = e.target.files || e.dataTransfer.files;
 
@@ -87,6 +92,8 @@
 
           // initialize
           function Init() {
+
+
 
           	var fileselect = $id("fileselect"),
           		filedrag = $id("filedrag"),
@@ -215,25 +222,41 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown" aria-labelledby="2">
                                     <ul class="list-style-none">
-
+                                        {% for notify_item in all_notification %}
                                         <li>
                                             <div class="">
-                                              {% for notify_item in all_notification %}
+
                                                 <!-- Message -->
-                                                <a href="javascript:void(0)" class="link border-top">
+                                                <a href="/main/box/{{user}}/{{ notify_item.uploaded_teamtitle }}/{{notify_item.uploaded_groupid}}/" class="link border-top">
                                                     <div class="d-flex no-block align-items-center p-10">
-                                                       <i class="mdi mdi-bell font-24" style="margin-right:10px;margin-left:10px;"></i>
+                                                       <i class="mdi mdi-bell font-20" style="margin-right:10px;margin-left:10px;margin-bottom:-20px;"></i>
                                                         <div class="m-l-10">
-                                                            <h5 class="m-b-0">Uploaded by {{ notify_item.uploaded_account }}</h5>
-                                                            <span class="mail-desc">{{ notify_item.uploaded_filename }} - {{ notify_item.uploaded_teamtitle }} 조<br>{{ notify_item.uploaded_datetime }}</span>
+                                                            <p class="m-b-0"> {{ notify_item.uploaded_account }} 님이 업로드하였습니다.</p>
+                                                            <span class="mail-desc">{{ notify_item.uploaded_filename }} - {{ notify_item.uploaded_teamtitle }} <br>{{ notify_item.uploaded_datetime }}</span>
                                                         </div>
                                                     </div>
                                                 </a>
                                                 <!-- Message -->
-                                                  {% endfor %}
+
                                             </div>
                                         </li>
+                                          {% endfor %}
+                                          <li style="height:30px;">
+                                              <div class="">
 
+                                                  <!-- Message -->
+                                                  <a href="javascript:void(0)" class="link border-top">
+                                                      <div class="d-flex no-block align-items-center p-10">
+                                                          <div class="m-l-10">
+                                                              <p class="m-b-0" style="margin-left:20px;">알림 더보기</p>
+
+                                                          </div>
+                                                      </div>
+                                                  </a>
+                                                  <!-- Message -->
+
+                                              </div>
+                                          </li>
                                     </ul>
                                 </div>
                             </li>
@@ -260,10 +283,12 @@
                     <!-- Sidebar navigation-->
                     <nav class="sidebar-nav">
                         <ul id="sidebarnav" class="p-t-30">
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu"></span>대시보드</span></a></li>
+                          {% if request.user.is_authenticated %}
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/main/mypage/" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu"></span>마이페이지</span></a></li>
+                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/main/box/{{user}}" aria-expanded="false"><i class="mdi mdi-auto-upload"></i><span class="hide-menu">파일 공유</span></a></li>
+                              {% endif %}
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="charts.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">공지사항</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="widgets.html" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">강의별 게시판</span></a></li>
-                                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/box" aria-expanded="false"><i class="mdi mdi-auto-upload"></i><span class="hide-menu">파일 공유</span></a></li>
+
                         <!--<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="tables.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Tables</span></a></li>
                             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="grid.html" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span class="hide-menu">Full Width</span></a></li>-->
 
@@ -278,11 +303,12 @@
               <div class="page-breadcrumb">
                          <div class="row">
                                  <div class="col-12 d-flex no-block align-items-center">
-                                     <h4 class="page-title">안녕하세요 {{ user }}님, 같은 조의 멤버들과 파일을 공유하고 피드백을 주세요.</h4>
+
+                                     <h4 class="page-title">안녕하세요 {{ user }}님, 같은 조의 멤버들과 파일을 공유하고 피드백을 주세요. </h4>
                                      <div class="ml-auto text-right">
                                          <nav aria-label="breadcrumb">
                                              <ol class="breadcrumb">
-                                                 <li class="breadcrumb-item"><a href="/main">메인</a></li>
+                                                 <li class="breadcrumb-item"><a href="/main/index/">메인으로 돌아가기</a></li>
                                                  <li class="breadcrumb-item active" aria-current="page">파일공유 시스템</li>
                                              </ol>
                                          </nav>
@@ -307,7 +333,7 @@
                                      <div class="card-body" style="height:200px;">
                                          <h5 id="ctitle" class="card-title">파일을 끌어오세요</h5>
 
-                                           <form id="upload" action="/main/box/{{user}}/{{group}}/uploadto/" method="POST" enctype="multipart/form-data">
+                                           <form id="upload" action="/main/box/{{user}}/{{group}}/{{team}}/uploadto/" method="POST" enctype="multipart/form-data">
                                                  {% csrf_token %}
                                                     <p>파일을 끌어 오세요.</p>
                                              <fieldset>
@@ -331,7 +357,7 @@
                                          {% load static %}
 
                                          <p>
-                                            <form method="post" action="/main/box/{{user}}/{{group}}/uploadto/" enctype="multipart/form-data">
+                                            <form method="post" action="/main/box/{{user}}/{{group}}/{{team}}/uploadto/" enctype="multipart/form-data">
                                               {% csrf_token %}
                                               <input type="file"  name="myfile">
                                               <button class="btn btn-primary btn-sm" type="submit">업로드</button>
@@ -355,22 +381,35 @@
 
                                     {% for file_item in all_file_items %}
                                <div class="d-flex flex-row comment-row">
-                                   <div class="p-2"><img src="/static/assets/images/box/document-icon.jpg" alt="user" width="50" class="rounded-circle"></div>
+                                   <div class="p-2"><img src="/static/assets/images/big/auth-bg.jpg" alt="user" width="50" class="rounded-circle"></div>
                                    <div class="comment-text w-100">
                                        <h6 class="font-medium">{{ file_item.file_name }} · {{ file_item.file_size }} MB</h6>
                                        <span class="m-b-15 d-block">#{{ file_item.user_name }} · {{ file_item.assignment_title }} 제출 · 서명 </span>
 
                                        <div class="comment-footer">
-                                           <span class="text-muted float-right">{{ file_item.class_name }} · {{ file_item.uploaded_date }} · {{ file_item.team_title }}</span>
+                                           <span class="text-muted float-right"> {{ file_item.team_title }} · {{file_item.uploaded_date}} · {{ file_item.class_name }}</span>
                                            <br>
-                                           <a href="/box{{file_item.document}}" target="_blank" class="btn btn-cyan btn-sm">View</a>
-                                           <a href="/box{{file_item.document}}" download style="color:white;" class="btn btn-success btn-sm">Download</a>
+                                           <a href="/main{{file_item.document}}" target="_blank" class="btn btn-cyan btn-sm">View</a>
+                                           <a href="/main{{file_item.document}}" download style="color:white;" class="btn btn-success btn-sm">Download</a>
 
-                                           <form method="post" action="/box/{{ user }}/delete/" >
+
+                                           <form method="post" action="/main/box/{{ user }}/delete/" >
                                              {% csrf_token %}
                                              <input type="hidden" name="del" value="{{ file_item.id }}" />
                                              <button type="submit" class="btn btn-danger btn-sm" style="margin-left:130px;margin-top:-52px;">Delete</button>
                                            </form>
+                                          <form method="post" action="/main/box/{{user}}/score/{{ file_item.user_name }}/{{ file_item.file_name }}/">
+                                           <p id="result">같은 팀원의 문서를 평가해주세요.<span id="score" name="rev_score"></span></p>
+                                                    {% csrf_token %}
+                                                 <p class="star_rating">
+                                                      <a href="#">★</a>
+                                                      <a href="#">★</a>
+                                                      <a href="#">★</a>
+                                                      <a href="#">★</a>
+                                                      <a href="#">★</a>
+                                                  </p>
+                                                 <button id="turnin" type="submit" style="display:inline;" class="btn btn-primary btn-sm">평점 제출</button>
+                                            </form>
                                        </div>
                                    </div>
                                </div>
@@ -403,10 +442,11 @@
                                                                    </thead>
                                                                    <tbody>
                                                                        {% for group_item in all_groups %}
-                                                                       <tr>
-                                                                         <th scope="row">{{ group_item.id }}</th>
-                                                                         <td>{{ group_item.Inthe_class }}</td>
-                                                                         <td>{{ group_item.numberof_group }}</td>
+
+                                                                       <tr style="color:white;">
+                                                                         <th scope="row"><a class="btn btn-dark btn-sm" href="/main/box/{{user}}/{{ group_item.subject_name }}/{{ group_item.team_num_id }}/">{{ group_item.num }}</a></th>
+                                                                         <td><a class="btn btn-primary btn-sm"  href="/main/box/{{user}}/{{ group_item.subject_name }}/{{ group_item.team_num_id }}/">{{ group_item.subject_name }}</a> </td>
+                                                                         <td><a class="btn btn-success btn-sm" href="/main/box/{{user}}/{{ group_item.subject_name }}/{{ group_item.team_num_id }}/">{{ group_item.team_num_id }}조</a></td>
 
                                                                        </tr>
                                                                        {% endfor %}
@@ -439,11 +479,21 @@
         <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
         <script type="text/javascript">
-              $(document).ready(function(){
+            $(document).ready(function(){
               $('#upload input').change(function () {
                 $('#upload p').text(this.files.length + "개의 파일이 선택되었습니다.");
               });
+              $( ".star_rating a" ).click(function() {
+                   $(this).parent().children("a").removeClass("on");
+                   $(this).addClass("on").prevAll("a").addClass("on");
+                   $('#score').text('( '+$('.on').length +".0 점 )")
+                   return false;
+              });
+
+
+
             });
         </script>
+
     </body>
 </html>

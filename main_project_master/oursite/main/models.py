@@ -23,6 +23,7 @@ class Subject(models.Model):
     created_date = models.DateTimeField(default=timezone.now)       # 과목 생성 날짜
     subject_name = models.CharField(max_length=100)                    # 과목 이름
     team_num = models.ForeignKey(Team, on_delete=models.CASCADE) #팀 테이블을 참조하는 외래키
+    userid = models.CharField(max_length=50,blank=False,default='DEFAULT VALUE')   #유저아이디 키
 
     def str(self):
         return self.num

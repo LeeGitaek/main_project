@@ -28,10 +28,11 @@ urlpatterns = [
     url(r'^team_join/(?P<user_pk>\d+)/(?P<team_pk>\d+)/$', views.team_join, name='team_join'), #path로 하면 오류남 정규식은 url로 해야하는듯
 # Box app URL CODE start #
 
-    path('box/<username>/<group>/uploadto/',views.DocsOfUser),
-    path('box/<username>/delete/',views.delete_file),
-    path('box/<username>/',views.userfile),
-    path('box/<username>/<group>/',views.group_file),
+    path('box/<username>/<group>/<team>/uploadto/',views.DocsOfUser), # 업로드
+    path('box/<username>/delete/',views.delete_file), # 파일 삭제
+    path('box/<username>/',views.userfile),# 자신이 업로드한 파일 리스트
+    path('box/<username>/<group>/<team>/',views.group_file), # 팀원들과 파일공유 가능한
+    #path('box/<username>/score/<revusername>/<revfilename>/',views.document_review), # 평가 스코어 
 
 # Box app URL CODE end#
 
