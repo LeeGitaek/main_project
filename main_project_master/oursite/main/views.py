@@ -90,9 +90,9 @@ def userfile(request,username):
     if not all_items:
          return render(request, 'box/box.html',{
             #'all_file_items': all_items,
-            'all_notification': all_notify,
+            #'all_notification': all_notify,
             'user':username,
-            'all_groups':all_group,
+            #'all_groups':all_group,
          })
     else :
         return render(request, 'box/box.html',{
