@@ -8,6 +8,12 @@ from django.core.files.storage import FileSystemStorage # file setting code
 from .models import FileListBox # model
 from .models import NotificationBox # model
 from .models import Subject # 공통코드 부분
+from .models import TaskBox # model
+from .models import RoleCredit # model
+from .models import DeadCredit # model
+from .models import ReviewBox # model
+from .models import ReviewCredit # model
+from .models import TeamHistoryCredit # model
 import datetime as datetime
 import numpy as np # math
 import os # os
@@ -107,6 +113,7 @@ def group_file(request,username,group,team):
     all_items = FileListBox.objects.filter(class_name=group,t_num=team).order_by('-uploaded_date').iterator() # 파일리스트 쿼리셋  메모리 쿼리 절약 캐싱
     all_notify = NotificationBox.objects.filter(uploaded_teamtitle=group).order_by('-uploaded_datetime').iterator() # 알림 쿼리셋 메모리 쿼리 절약 캐싱
     all_group = Subject.objects.filter(userid=username).order_by('-created_date').iterator() # 그룹 정보
+    all_task = TaskBox.objects.filter(task_subject=group,task_team=team).order_by('-task_dead').iterator() # task
 
     if not all_items:
          return render(request, 'box/box.html',{
@@ -118,6 +125,16 @@ def group_file(request,username,group,team):
             'team':team,
          })
     else :
+        if not all_task:
+                return render(request, 'box/box.html',{
+                    #'all_file_items': all_items,
+                    'all_notification': all_notify,
+                    'user':username,
+                    'all_groups':all_group,
+                    'group':group,
+                    'team':team,
+                    #'all_tasks':all_task,
+                 })
         return render(request, 'box/box.html',{
             'all_file_items': all_items,
             'all_notification': all_notify,
@@ -125,6 +142,7 @@ def group_file(request,username,group,team):
             'all_groups':all_group,
             'group':group,
             'team':team,
+            'all_tasks':all_task,
         })
 
 
@@ -168,6 +186,21 @@ def DocsOfUser(request,username,group,team):
         #user.save()
 
         return redirect('/main/box/'+user_name+'/'+group+'/'+team)
+
+# register task
+def registerTask(request,username,group,team):
+    if request.method == 'POST' and request.POST['taskuser']:
+        user_task = request.POST['taskuser']    #사용자
+        name_task = request.POST['taskname']     # taskname task
+        ch_task = request.POST['taskch']     # taskch 진행상황
+        status_task = request.POST['taskstatus'] # taskstatus 퍼센트
+        date_task = request.POST['taskdate'] # taskdate 데드라인
+
+        registertask_query = TaskBox(task_user=user_task , task_role=name_task, task_status = ch_task, task_percent = status_task,task_dead=date_task,task_subject=group,task_team=team)
+        registertask_query.save()
+        return redirect('/main/box/'+username+'/'+group+'/'+team)
+
+
 
 # 파일 평가 기능 구현 함수 작성중.
 # box/<username>/score/<revusername>/<revfilename>/

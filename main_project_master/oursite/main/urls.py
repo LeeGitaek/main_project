@@ -28,6 +28,7 @@ urlpatterns = [
 # Box app URL CODE start #
 
     path('box/<username>/<group>/<team>/uploadto/',views.DocsOfUser), # 업로드
+    path('box/<username>/<group>/<team>/registertask/',views.registerTask), # task 추가 
     path('box/<username>/delete/',views.delete_file), # 파일 삭제
     path('box/<username>/',views.userfile),# 자신이 업로드한 파일 리스트
     path('box/<username>/<group>/<team>/',views.group_file), # 팀원들과 파일공유 가능한
