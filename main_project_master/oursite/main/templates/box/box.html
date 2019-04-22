@@ -1,330 +1,29 @@
-<!DOCTYPE html>
-
+{% extends "main/base.html" %}
+{% block content %}
  {% load box_extras %}
 
-
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <!-- Tell the browser to be responsive to screen width -->
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <!-- Favicon icon -->
-        <!--  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png"> -->
-        <title>Box</title>
-        <!-- Custom CSS -->
-        <link rel="stylesheet" type="text/css" href="/static/assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-        <link href="/static/dist/css/style.min.css" rel="stylesheet">
-        <style type="text/css">
-          .star_rating {font-size:0; letter-spacing:-4px;}
-          .star_rating a {
-              font-size:22px;
-              letter-spacing:0;
-              display:inline-block;
-              margin-left:5px;
-              color:#ccc;
-              text-decoration:none;
-          }
-          .star_rating a:first-child {margin-left:0;}
-          .star_rating a.on {color:#777;}
-
-          #upload{
-            position: absolute;
-            align:left;
-            width: 400px;
-            height: 120px;
-
-
-          }
-          #upload p{
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            line-height: 170px;
-            color: black;
-            font-family: Georgia, "맑은 고딕", bold;
-            font-size:15px;
-          }
-          #upload fieldset{
-            margin-top:-120px;
-            width:480px;
-            height:120px;
-            border: 2px dashed black;
-          }
-          #upload input{
-            position: absolute;
-             margin: 0;
-             padding: 0;
-             width: 100%;
-             height: 100%;
-             outline: none;
-             opacity: 0;
-          }
-          #upload button{
-            margin-left:430px;
-            margin-top:-100px;
-          }
-
-
-          </style>
-          <script type="text/javascript">
-
-           var files = e.target.files || e.dataTransfer.files;
-
-           var a = $('input#fileselect.addFile');
-          a[a.length-1].files = file;
-          // getElementById
-          function $id(id) {
-          	return document.getElementById(id);
-          }
-
-          // output information
-          function Output(msg) {
-          	var m = $id("list");
-          	m.innerHTML = msg + m.innerHTML;
-          }
-
-          // call initialization file
-          if (window.File && window.FileList && window.FileReader) {
-          	Init();
-          }
-
-          // initialize
-          function Init() {
-
-
-
-          	var fileselect = $id("fileselect"),
-          		filedrag = $id("filedrag"),
-          		submitbutton = $id("submitbutton");
-
-          	// file select
-          	fileselect.addEventListener("change", FileSelectHandler, false);
-
-          	// is XHR2 available?
-          	var xhr = new XMLHttpRequest();
-          	if (xhr.upload) {
-
-          		// file drop
-          		filedrag.addEventListener("dragover", FileDragHover, false);
-          		// filedrag.addEventListener("dragleave", FileDragHover, false);
-          		filedrag.addEventListener("drop", FileSelectHandler, false);
-          		filedrag.style.display = "block";
-
-          		// remove submit button
-          		submitbutton.style.display = "none";
-          	}
-          }
-
-          // file drag hover
-          function FileDragHover(e) {
-          	e.stopPropagation();
-          	e.preventDefault();
-          	e.target.className = (e.type == "dragover" ? "hover" : "");
-          }
-
-          // file selection
-          function FileSelectHandler(e) {
-
-          	// cancel event and hover styling
-              FileDragHover(e);
-
-          	// fetch FileList object
-          	var files = e.target.files || e.dataTransfer.files;
-
-              console.log('te');
-              addFileFromLastInput(files);
-
-              // process all File objects
-          	for (var i = 0, f; f = files[i]; i++) {
-          		ParseFile(f);
-          	}
-          }
-
-          function ParseFile(file) {
-
-              var fileName = file.name,
-                  fileType = file.type,
-                  fileSize = file.size + 'bytes';
-
-          	Output(
-          		"<tr><td>" + fileName +
-          		"</td><td>" + fileType +
-          		"</td><td>" + fileSize +
-          		"</td> </tr>"
-          	);
-          }
-
-          function addFileFromLastInput(file){
-
-              var a = $('input#fileselect.addFile');
-              a[a.length-1].files = file;
-
-              try{
-                  let new_input = '<input id="fileselect" type="file" name="fileselect" multiple="multiple" class="addFile" />';
-                  $('.files').append(new_input);
-              }catch(err){
-
-              }
-
-              return 0;
-          }
-
-
-
-
-          </script>
-    </head>
-    <body>
-
-        <div id="main-wrapper">
-            <header class="topbar" data-navbarbg="skin5">
-                <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-                    <div class="navbar-header" data-logobg="skin5">
-                        <!-- This is for the sidebar toggle which is visible on mobile only -->
-                        <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
-                        <a class="navbar-brand" href="/main/box/{{user}}">
-                            <!-- Logo icon -->
-                            <b class="logo-icon p-l-10">
-                                <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                                <!-- Dark Logo icon -->
-                              <!--  <img src="" alt="homepage" class="light-logo" />-->
-                              <h4>Sejong</h4>
-
-                            </b>
-                            <!--End Logo icon -->
-                            <!-- Logo text -->
-                            <span class="logo-text">
-                                <!-- dark Logo text -->
-                                <!--  <img src="/static/assets/images/logo-text.png" alt="homepage" class="light-logo" /> -->
-                                  <h4>Box</h4>
-                            </span>
-                            <!-- Logo icon -->
-                            <!-- <b class="logo-icon"> -->
-                                <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                                <!-- Dark Logo icon -->
-                                <!-- <img src="assets/images/logo-text.png" alt="homepage" class="light-logo" /> -->
-
-                            <!-- </b> -->
-                            <!--End Logo icon -->
-                        </a>
-                        <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="ti-more"></i></a>
-                    </div>
-                    <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
-                        <ul class="navbar-nav float-left mr-auto">
-                            <li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
-                        </ul>
-                        <ul class="navbar-nav float-right">
-
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="font-24 mdi mdi-comment-processing"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown" aria-labelledby="2">
-                                    <ul class="list-style-none">
-                                        {% for notify_item in all_notification %}
-                                        <li>
-                                            <div class="">
-
-                                                <!-- Message -->
-                                                <a href="/main/box/{{user}}/{{ notify_item.uploaded_teamtitle }}/{{notify_item.uploaded_groupid}}/" class="link border-top">
-                                                    <div class="d-flex no-block align-items-center p-10">
-                                                       <i class="mdi mdi-bell font-20" style="margin-right:10px;margin-left:10px;margin-bottom:-20px;"></i>
-                                                        <div class="m-l-10">
-                                                            <p class="m-b-0"> {{ notify_item.uploaded_account }} 님이 업로드하였습니다.</p>
-                                                            <span class="mail-desc">{{ notify_item.uploaded_filename }} - {{ notify_item.uploaded_teamtitle }} <br>{{ notify_item.uploaded_datetime }}</span>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <!-- Message -->
-
-                                            </div>
-                                        </li>
-                                          {% endfor %}
-                                          <li style="height:30px;">
-                                              <div class="">
-
-                                                  <!-- Message -->
-                                                  <a href="javascript:void(0)" class="link border-top">
-                                                      <div class="d-flex no-block align-items-center p-10">
-                                                          <div class="m-l-10">
-                                                              <p class="m-b-0" style="margin-left:20px;">알림 더보기</p>
-
-                                                          </div>
-                                                      </div>
-                                                  </a>
-                                                  <!-- Message -->
-
-                                              </div>
-                                          </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/static/assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
-                                <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                                    <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
-                                    <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="login.html"><i class="fa fa-power-off m-r-5 m-l-5"></i> Login</a>
-                                    <div class="dropdown-divider"></div>
-                                    <div class="p-l-30 p-10"><a href="register.html" class="btn btn-sm btn-success btn-rounded">회원가입</a></div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </header>
-            <aside class="left-sidebar" data-sidebarbg="skin5">
-                <!-- Sidebar scroll-->
-                <div class="scroll-sidebar">
-                    <!-- Sidebar navigation-->
-                    <nav class="sidebar-nav">
-                        <ul id="sidebarnav" class="p-t-30">
-                          {% if request.user.is_authenticated %}
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/main/mypage/" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu"></span>마이페이지</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/main/box/{{user}}" aria-expanded="false"><i class="mdi mdi-auto-upload"></i><span class="hide-menu">파일 공유</span></a></li>
-                              {% endif %}
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="charts.html" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">공지사항</span></a></li>
-
-                        <!--<li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="tables.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Tables</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="grid.html" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span class="hide-menu">Full Width</span></a></li>-->
-
-                        </ul>
-                    </nav>
-                    <!-- End Sidebar navigation -->
-                </div>
-                <!-- End Sidebar scroll-->
-            </aside>
-            <div class="page-wrapper">
-                    <!-- 타이틀 시작 -->
-              <div class="page-breadcrumb">
-                         <div class="row">
-                                 <div class="col-12 d-flex no-block align-items-center">
-
-                                     <h4 class="page-title">안녕하세요 {{ user }}님, 같은 조의 멤버들과 결과 또는 진행상황을 보여줍니다</h4>
-                                     <br>
-                                      <p class="badge badge-dark" style="margin-top:15px;margin-left:20px;">현재 신용 크레딧 100</p>
-                                     <div class="ml-auto text-right">
-                                         <nav aria-label="breadcrumb">
-                                             <ol class="breadcrumb">
-                                                 <li class="breadcrumb-item"><a href="/main/index/">메인으로 돌아가기</a></li>
-                                                 <li class="breadcrumb-item active" aria-current="page">파일공유 시스템</li>
-                                             </ol>
-                                         </nav>
-                                     </div>
-                                 </div>
-                         </div>
-                </div>
                   <!-- End 타이틀-->
 
                   <div class="container-fluid">
                       <!-- ============================================================== -->
                       <!-- Start Page Content -->
                       <!-- ============================================================== -->
+                      <div class="row">
+                              <div class="col-12 d-flex no-block align-items-center">
 
+                                  <h4 class="page-title">안녕하세요 {{ user }}님, 같은 조의 멤버들과 결과 또는 진행상황을 보여줍니다</h4>
+                                  <br>
+                                   <p class="badge badge-dark" style="margin-top:15px;margin-left:20px;">현재 신용 크레딧 100</p>
+                                  <div class="ml-auto text-right">
+                                      <nav aria-label="breadcrumb">
+                                          <ol class="breadcrumb">
+                                              <li class="breadcrumb-item"><a href="/main/index/">메인으로 돌아가기</a></li>
+                                              <li class="breadcrumb-item active" aria-current="page">파일공유 시스템</li>
+                                          </ol>
+                                      </nav>
+                                  </div>
+                              </div>
+                      </div>
                       <div class="row">
 
                         {% if group %}
@@ -455,19 +154,19 @@
                                        {% if task_item.task_status == 'A' %}
                                        <td><p class="badge badge-dark">아직 시작되지 않음</p></td>
                                        {% endif %}
-                                       {% if task_item.task_status == B %}
+                                       {% if task_item.task_status == 'B' %}
                                        <td><p class="badge badge-primary">현재 진행중</p> </td>
                                        {% endif %}
-                                       {% if task_item.task_status == C %}
+                                       {% if task_item.task_status == 'C' %}
                                        <td><p class="badge badge-success">완료</p></td>
                                        {% endif %}
-                                       {% if task_item.task_status == D %}
+                                       {% if task_item.task_status == 'D' %}
                                        <td><p class="badge badge-info">파일 업로드 완료</p></td>
                                        {% endif %}
-                                       {% if task_item.task_status == E %}
+                                       {% if task_item.task_status == 'E' %}
                                        <td><p class="badge badge-warning">진행 중단</p></td>
                                        {% endif %}
-                                       {% if task_item.task_status == F %}
+                                       {% if task_item.task_status == 'F' %}
                                        <td><p class="badge badge-danger">취소</p></td>
                                        {% endif %}
                                        <td >
@@ -579,7 +278,6 @@
                                            {% endif %}
                                           {% if not file_item.user_name == user %}
                                         <!--     <form method="post" action="/main/box/{{user}}/score/{{ file_item.user_name }}/{{ file_item.file_name }}/">
-
                                            <p id="result" style="margin-top:10px;">같은 팀원의 문서를 평가해주세요.(별 1개 = 1점)</p>
                                                     {% csrf_token %}
                                                <p class="star_rating" style="margin-top:-15px;">
@@ -644,59 +342,6 @@
                 <footer class="footer text-center">
                     Copyright &copy 2019. Developed by <a href="http://www.sejong.ac.kr">Sejong University</a>.
                 </footer>
-            </div>
-        </div>
-        <script src="/static/assets/libs/jquery/dist/jquery.min.js"></script>
-        <script src="/static/dist/js/jquery.ui.touch-punch-improved.js"></script>
-        <script src="/static/dist/js/jquery-ui.min.js"></script>
-        <script src="/static/assets/libs/popper.js/dist/umd/popper.min.js"></script>
-        <script src="/static/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="/static/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-        <script src="/static/assets/extra-libs/sparkline/sparkline.js"></script>
-        <script src="/static/dist/js/waves.js"></script>
-        <script src="/static/dist/js/sidebarmenu.js"></script>
-        <script src="/static/dist/js/custom.min.js"></script>
-        <script src="/static/assets/libs/moment/min/moment.min.js"></script>
-        <script src="/static/assets/libs/fullcalendar/dist/fullcalendar.min.js"></script>
-        <script src="/static/dist/js/pages/calendar/cal-init.js"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src="/static/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
-         <script src="/static/dist/js/pages/mask/mask.init.js"></script>
-         <script src="/static/assets/libs/select2/dist/js/select2.full.min.js"></script>
-         <script src="/static/assets/libs/select2/dist/js/select2.min.js"></script>
-         <script src="/static/assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
-         <script src="/static/assets/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
-         <script src="/static/assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
-         <script src="/static/assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
-         <script src="/static/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-         <script src="/static/assets/libs/quill/dist/quill.min.js"></script>
-
-         <script type="text/javascript">
-             $(document).ready(function(){
-               $('#upload input').change(function () {
-                 $('#upload p').text(this.files[0].name +"파일이 선택됨");
-               });
-               $('#choo input').change(function () {
-                 $('#choo label').text(this.files[0].name +"파일이 선택됨");
-               });
-               $( ".star_rating a" ).click(function() {
-                    $(this).parent().children("a").removeClass("on");
-                    $(this).addClass("on").prevAll("a").addClass("on");
-
-                    return false;
-               });
-               $('#datepicker-autoclose').datepicker({
-                     autoclose: true,
-                     todayHighlight: true,
-                     orientation:'bottom left',
-               });
-               $('.mydatepicker').datepicker();
 
 
-
-             });
-         </script>
-
-    </body>
-
-</html>
+{% endblock %}

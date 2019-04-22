@@ -1,3 +1,4 @@
+
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="kr">
@@ -30,6 +31,15 @@
         <script src="/static/firepad-userlist.js"></script>
         <link rel="stylesheet" href="/static/firepad-userlist.css" />
 
+
+          <!-- box start -->
+        <link rel="stylesheet" type="text/css" href="/static/assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+        <link href="/static/dist/css/style.min.css" rel="stylesheet">
+          <link href="/static/box-style.css" rel="stylesheet">
+          <link href="/static/box-style.js" rel="stylesheet">
+            <!-- box end  -->
+
+
         <style>
            html { height: 100%; }
            body { margin: 0; height: 100%; }
@@ -42,9 +52,6 @@
            #firepad {
               position: absolute; width: 100%; height: 100%; top : 400px;
            }
-
-
-
          </style>
     </head>
 
@@ -90,50 +97,41 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown" aria-labelledby="2">
                                             <ul class="list-style-none">
-                                                <li>
-                                                    <div class="">
-                                                        <!-- Message -->
-                                                        <a href="javascript:void(0)" class="link border-top">
-                                                            <div class="d-flex no-block align-items-center p-10">
-                                                                <span class="btn btn-success btn-circle"><i class="ti-calendar"></i></span>
-                                                                <div class="m-l-10">
-                                                                    <h5 class="m-b-0">Event today</h5>
-                                                                    <span class="mail-desc">Just a reminder that event</span>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                        <!-- Message -->
-                                                        <a href="javascript:void(0)" class="link border-top">
-                                                            <div class="d-flex no-block align-items-center p-10">
-                                                                <span class="btn btn-info btn-circle"><i class="ti-settings"></i></span>
-                                                                <div class="m-l-10">
-                                                                    <h5 class="m-b-0">Settings</h5>
-                                                                    <span class="mail-desc">You can customize this template</span>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                        <!-- Message -->
-                                                        <a href="javascript:void(0)" class="link border-top">
-                                                            <div class="d-flex no-block align-items-center p-10">
-                                                                <span class="btn btn-primary btn-circle"><i class="ti-user"></i></span>
-                                                                <div class="m-l-10">
-                                                                    <h5 class="m-b-0">Pavan kumar</h5>
-                                                                    <span class="mail-desc">Just see the my admin!</span>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                        <!-- Message -->
-                                                        <a href="javascript:void(0)" class="link border-top">
-                                                            <div class="d-flex no-block align-items-center p-10">
-                                                                <span class="btn btn-danger btn-circle"><i class="fa fa-link"></i></span>
-                                                                <div class="m-l-10">
-                                                                    <h5 class="m-b-0">Luanch Admin</h5>
-                                                                    <span class="mail-desc">Just see the my new admin!</span>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </li>
+                                              {% for notify_item in all_notification %}
+                                                                                    <li>
+                                                                                        <div class="">
+
+                                                                                            <!-- Message -->
+                                                                                            <a href="/main/box/{{user}}/{{ notify_item.uploaded_teamtitle }}/{{notify_item.uploaded_groupid}}/" class="link border-top">
+                                                                                                <div class="d-flex no-block align-items-center p-10">
+                                                                                                   <i class="mdi mdi-bell font-20" style="margin-right:10px;margin-left:10px;margin-bottom:-20px;"></i>
+                                                                                                    <div class="m-l-10">
+                                                                                                        <p class="m-b-0"> {{ notify_item.uploaded_account }} 님이 업로드하였습니다.</p>
+                                                                                                        <span class="mail-desc">{{ notify_item.uploaded_filename }} - {{ notify_item.uploaded_teamtitle }} <br>{{ notify_item.uploaded_datetime }}</span>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </a>
+                                                                                            <!-- Message -->
+
+                                                                                        </div>
+                                                                                    </li>
+                                                                                      {% endfor %}
+                                                                                      <li style="height:30px;">
+                                                                                          <div class="">
+
+                                                                                              <!-- Message -->
+                                                                                              <a href="javascript:void(0)" class="link border-top">
+                                                                                                  <div class="d-flex no-block align-items-center p-10">
+                                                                                                      <div class="m-l-10">
+                                                                                                          <p class="m-b-0" style="margin-left:20px;">알림 더보기</p>
+
+                                                                                                      </div>
+                                                                                                  </div>
+                                                                                              </a>
+                                                                                              <!-- Message -->
+
+                                                                                          </div>
+                                                                                      </li>
                                             </ul>
                                         </div>
                                     </li>
@@ -193,6 +191,9 @@
     {% block content %}
     {% endblock %}
 
+
+
+
         <script src="/static/assets/libs/jquery/dist/jquery.min.js"></script>
         <script src="/static/dist/js/jquery.ui.touch-punch-improved.js"></script>
         <script src="/static/dist/js/jquery-ui.min.js"></script>
@@ -206,5 +207,44 @@
         <script src="/static/assets/libs/moment/min/moment.min.js"></script>
         <script src="/static/assets/libs/fullcalendar/dist/fullcalendar.min.js"></script>
         <script src="/static/dist/js/pages/calendar/cal-init.js"></script>
+
+
+
+         <!-- box start -->
+            <script src="/static/assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+             <script src="/static/dist/js/pages/mask/mask.init.js"></script>
+             <script src="/static/assets/libs/select2/dist/js/select2.full.min.js"></script>
+             <script src="/static/assets/libs/select2/dist/js/select2.min.js"></script>
+             <script src="/static/assets/libs/jquery-asColor/dist/jquery-asColor.min.js"></script>
+             <script src="/static/assets/libs/jquery-asGradient/dist/jquery-asGradient.js"></script>
+             <script src="/static/assets/libs/jquery-asColorPicker/dist/jquery-asColorPicker.min.js"></script>
+             <script src="/static/assets/libs/jquery-minicolors/jquery.minicolors.min.js"></script>
+             <script src="/static/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+             <script src="/static/assets/libs/quill/dist/quill.min.js"></script>
+
+
+                  <script type="text/javascript">
+                      $(document).ready(function(){
+                        $('#upload input').change(function () {
+                          $('#upload p').text(this.files[0].name +"파일이 선택됨");
+                        });
+                        $('#choo input').change(function () {
+                          $('#choo label').text(this.files[0].name +"파일이 선택됨");
+                        });
+                        $( ".star_rating a" ).click(function() {
+                             $(this).parent().children("a").removeClass("on");
+                             $(this).addClass("on").prevAll("a").addClass("on");
+                             return false;
+                        });
+                        $('#datepicker-autoclose').datepicker({
+                              autoclose: true,
+                              todayHighlight: true,
+                              orientation:'bottom left',
+                        });
+                        $('.mydatepicker').datepicker();
+                      });
+                  </script>
+                      <!-- box end -->
+
     </body>
 </html>
