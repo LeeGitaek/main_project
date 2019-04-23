@@ -1,0 +1,77 @@
+{% extends "main/base.html" %}
+{% block content %}
+ {% load box_extras %}
+
+                  <!-- End 타이틀-->
+
+                  <div class="container-fluid">
+                      <!-- ============================================================== -->
+                      <!-- Start Page Content -->
+                      <!-- ============================================================== -->
+                      <div class="row">
+                              <div class="col-12 d-flex no-block align-items-center">
+
+                                  <h4 class="page-title">안녕하세요 {{ user }}님, 같은 조의 멤버들과 결과 또는 진행상황을 보여줍니다</h4>
+                                  <br>
+                                   <p class="badge badge-dark" style="margin-top:5px;margin-left:20px;">현재 신용 크레딧 100</p>
+                                  <div class="ml-auto text-right">
+
+                                      <nav aria-label="breadcrumb">
+                                          <ol class="breadcrumb">
+                                              <li class="breadcrumb-item"><a href="/main/box/{{user}}/{{group}}/{{team}}">이전으로</a></li>
+                                              <li class="breadcrumb-item active" aria-current="page">파일공유 시스템</li>
+                                          </ol>
+                                      </nav>
+                                  </div>
+                              </div>
+                      </div>
+                      <div class="row">
+                     <div class="col-md-6">
+                         <div class="card">
+
+                                 <div class="card-body">
+                                     <h4 class="card-title">팀원의 문서를 평가해주세요 </h4>
+                                     <div class="alert alert-warning" role="alert">파일 정보 : {{revusername}} 팀원의 {{revfilename}} 문서를 평가합니다.</div>
+                                     <form method="post" action="/main/box/{{user}}/{{group}}/{{team}}/{{revusername}}/{{revfilename}}/review/">
+                                      {% csrf_token %}
+                                       <div class="form-group row">
+                                          <p class="star_rating" style="margin-top:10px;margin-left:15px;">
+                                                 <a href="#">★</a>
+                                                 <a href="#">★</a>
+                                                 <a href="#">★</a>
+                                                 <a href="#">★</a>
+                                                 <a href="#">★</a>
+                                             </p>
+                                             <h4 id="result" style="margin-top:15px;margin-left:10px;"> 0.0 점</h4>
+
+                                            </div>
+
+                                              <input type="hidden" value="{{revusername}}" name="revusername">
+                                                <input type="hidden" value="{{revfilename}}" name="revfilename">
+                                                <input type="hidden" value="{{group}}" name="subject">
+                                                  <input type="hidden" value="{{team}}" name="teamid">
+                                                  <input type="hidden" value="{{user}}" name="userid">
+                                                  <input type="hidden" id="texens" value="0" name="score">
+
+                                         <label for="cono1" style="margin-left:10px;"> 문서에 대한 피드백을 줍니다.</label>
+                                         <div class="col-sm-9">
+                                             <textarea class="form-control" placeholder="문서에 대한 피드백을 줍니다." name="comments"></textarea>
+                                         </div>
+
+
+                                 </div>
+                                 <div class="border-top">
+                                     <div class="card-body">
+                                         <button type="submit" class="btn btn-primary btn-sm" style="float:right;margin-bottom:20px;">평가 완료</button>
+                                     </div>
+                                 </div>
+                              </form>
+                         </div>
+                    </div> <!-- col end -->
+                  </div> <!-- row end -->
+                <footer class="footer text-center">
+                    Copyright &copy 2019. Developed by <a href="http://www.sejong.ac.kr">Sejong University</a>.
+                </footer>
+
+
+{% endblock %}

@@ -13,11 +13,11 @@
 
                                   <h4 class="page-title">안녕하세요 {{ user }}님, 같은 조의 멤버들과 결과 또는 진행상황을 보여줍니다</h4>
                                   <br>
-                                   <p class="badge badge-dark" style="margin-top:15px;margin-left:20px;">현재 신용 크레딧 100</p>
+                                   <p class="badge badge-dark" style="margin-top:5px;margin-left:20px;">현재 신용 크레딧 100</p>
                                   <div class="ml-auto text-right">
                                       <nav aria-label="breadcrumb">
                                           <ol class="breadcrumb">
-                                              <li class="breadcrumb-item"><a href="/main/index/">메인으로 돌아가기</a></li>
+                                              <li class="breadcrumb-item"><a href="/main/box/{{user}}">내가 올린 파일</a></li>
                                               <li class="breadcrumb-item active" aria-current="page">파일공유 시스템</li>
                                           </ol>
                                       </nav>
@@ -287,7 +287,7 @@
                                                       <a href="#">★</a>
                                                       <a href="#">★</a>
                                                   </p> -->
-                                                 <a href="#" style="display:inline;" class="btn btn-primary btn-sm">팀원의 문서를 평가하기</a>
+                                                 <a href="/main/box/{{user}}/{{group}}/{{team}}/score/{{ file_item.user_name }}/{{ file_item.file_name }}/" style="display:inline;" class="btn btn-primary btn-sm">팀원의 문서를 평가하기</a>
                                               <!--   </form> -->
                                           {% endif %}
                                        </div>
@@ -337,8 +337,74 @@
                                                              </div> <!-- table end -->
                                                     </div>
                                                 </div>
-                        </div>
+                        </div> <!-- col end -->
+                          <!-- review list start -->
+
                     </div>
+                <div class="row">
+                     <div class="col-md-6">
+                        <div class="card">
+                           <div class="card-body">
+                               <h4 class="card-title m-b-0">최근 작성한 문서 평가</h4>
+                           </div>
+
+                           <ul class="list-style-none">
+                             {% for review_item in all_reviews %}
+                               <li class="d-flex no-block card-body">
+                                   <i class="fa fa-check-circle w-30px m-t-5"></i>
+                                   <div>
+                                       <p class="m-b-0 font-medium p-0" style="margin-top:-3px;">{{review_item.review_file}}*{{review_item.review_subject}} - {{review_item.review_team}}</p>
+                                       <span class="text-muted">{{review_item.review_comments}}</span>
+                                   </div>
+                                   <div class="ml-auto">
+                                       <div class="tetx-right">
+
+                                           <span class="text-muted font-16">{{review_item.review_date}}</span>
+                                       </div>
+                                   </div>
+                               </li>
+
+
+
+                                {% endfor %}
+                           </ul>
+
+
+                       </div>
+                   </div>
+
+
+                 <div class="col-md-6">
+                       <!-- Card -->
+                       <div class="card">
+                           <div class="card-body">
+                               <h4 class="card-title">신용 크레딧 기록  <p class="badge badge-dark" style="margin-top:0px;margin-left:20px;">현재 신용 크레딧 100</p>
+                                 <p class="badge badge-dark" style="margin-top:0px;">나의 크레딧 발급 주소 : 18cBEMRxXHqzWWCxZNtU91F5sbUNKhL5PX </p></h4>
+                               <div class="chat-box scrollable" style="height:475px;">
+                                   <!--chat Row -->
+                                   <ul class="chat-list">
+                                       <!--chat Row -->
+
+
+                                       <li class="chat-item">
+                                           <div class="chat-img"><img src="/static/assets/images/big/img5.jpg" alt="user" style="width:50px;height:50px;"></div>
+                                           <div class="chat-content">
+                                               <h6 class="font-medium">협업관리시스템</h6>
+                                               <div class="box bg-light-info">협업관리시스템으로부터 크레딧이 도착했습니다.<br>발신자 주소: 1C6uJF13HZcdr216r34y6tKXJcsCsXSQtN <br> 수신자 발급주소: 18cBEMRxXHqzWWCxZNtU91F5sbUNKhL5PX <br>
+                                                 <크레딧 적용 내용..> <br> 도착한 크레딧 : 26 credit <br> 현재 신용 크레딧 합계: 126 credit </div>
+                                           </div>
+                                           <div class="chat-time">10:56 am</div>
+                                       </li>
+                                       <!--chat Row -->
+
+                                       <!--chat Row -->
+                                   </ul>
+                               </div>
+                           </div>
+
+                       </div>
+                </div> <!-- row end -->
+
                 <footer class="footer text-center">
                     Copyright &copy 2019. Developed by <a href="http://www.sejong.ac.kr">Sejong University</a>.
                 </footer>

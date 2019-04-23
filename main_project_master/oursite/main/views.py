@@ -82,8 +82,8 @@ def team_join(request, user_pk, team_pk): #템플릿 ~ urls로부터 user의 pk�
 
 ## DEVELOPER : 이기택
 ## BOX APP
-## Box 박스 앱 VIEWS CODE START ##
-## 2019/04/16 15:46 MOVED ##
+## Box 박스 앱 VIEWS CODE START
+## 2019/04/16 15:46 MOVED
 
 #box/username list
 def userfile(request,username):
@@ -92,13 +92,15 @@ def userfile(request,username):
     querysub2 = querysub1.subject_name
     all_notify = NotificationBox.objects.filter(uploaded_teamtitle=querysub2).order_by('-uploaded_datetime').iterator() # 알림 쿼리셋 메모리 쿼리 절약 캐싱
     all_group = Subject.objects.filter(userid=username).order_by('-created_date').iterator() # 그룹 정보
-
+    all_review = ReviewBox.objects.filter(review_er=username).order_by('-review_date').iterator() # 평가 기록
+    
     if not all_items:
          return render(request, 'box/box.html',{
             #'all_file_items': all_items,
             #'all_notification': all_notify,
             'user':username,
             #'all_groups':all_group,
+            #'all_reviews':all_review,
          })
     else :
         return render(request, 'box/box.html',{
@@ -106,6 +108,7 @@ def userfile(request,username):
             'all_notification': all_notify,
             'user':username,
             'all_groups':all_group,
+            'all_reviews':all_review,
         })
 
 #box grouping. box/username/group/team/
@@ -200,14 +203,35 @@ def registerTask(request,username,group,team):
         registertask_query.save()
         return redirect('/main/box/'+username+'/'+group+'/'+team)
 
-
-
 # 파일 평가 기능 구현 함수 작성중.
-# box/<username>/score/<revusername>/<revfilename>/
-#def document_review(username,revusername,revfilename):
-#    if request.method == 'POST' and request.POST['rev_score']:
+# box/<username>/<group>/<team>/score/<revusername>/<revfilename>/
+def document_review(request,username,group,team,revusername,revfilename):
+    return render(request, 'box/box_review.html',{
+        'revusername':revusername,
+        'revfilename':revfilename,
+        'user':username,
+        'group':group,
+        'team':team,
+    })
 
-## Box 박스 앱 VIEWS CODE END ##
+# /main/box/{{user}}/group/team/{{ file_item.user_name }}/{{ file_item.file_name }}/review/
+def document_review_action_handler(request,username,group,team,revusername,revfilename):
+    if request.method == 'POST' and request.POST['revusername']:
+        review_username = request.POST['revusername'] # 파일 올린 사용자
+        review_filename = request.POST['revfilename'] # 파일 이름
+        review_group = request.POST['subject'] # 과목
+        review_team = request.POST['teamid'] # 팀 그룹
+        review_er = request.POST['userid'] # 평가하는 사용자
+        review_score = request.POST['score'] # 평가 점수
+        review_comments = request.POST['comments'] # 평가 피드백
+        registerReview_query = ReviewBox(review_file=review_filename,review_uploader=review_username,review_subject=review_group,review_team=review_team,review_er=review_er,review_score=review_score,review_comments=review_comments)
+        registerReview_query.save()
+        return redirect('/main/box/'+username+'/'+group+'/'+team)
+
+    #/main/box/{{user}}/{{group}}/{{team}}/score/{{ file_item.user_name }}/{{ file_item.file_name }}/
+    #if request.method == 'POST' and request.POST['rev_score']:
+
+## Box 박스 앱 VIEWS CODE END
 ## DEVELOPER : 이기택
 ## BOX APP
-## 2019/04/16 15:46 MOVED ##
+#2019/04/16 15:46 MOVED

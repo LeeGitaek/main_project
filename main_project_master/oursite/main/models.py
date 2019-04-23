@@ -98,13 +98,15 @@ class DeadCredit(models.Model): # 크레딧 시스템 테이블
     credit_per_two = models.FloatField(null=True, blank=True, default=0.3) #크레딧 가중치
 
 class ReviewBox(models.Model): #파일 평가 테이블
-    review_file = models.TextField(max_length=255, blank=False) # 파일이름
+    review_file = models.CharField(max_length=255, blank=False) # 파일이름
     review_uploader = models.CharField(max_length=10, blank=False) # 업로더
     review_subject = models.CharField(max_length=20, blank=False) # 과목
     review_team = models.IntegerField(default=0,blank=False) # 팀 그룹 아이디 넘버
     review_er = models.CharField(max_length=20, blank=False) # 평가자
-    review_score = models.IntegerField(default=0,blank=False) # 평가점수
-
+    review_score = models.FloatField(default=0.0,blank=False) # 평가점수
+    review_comments = models.CharField(max_length=255, blank=True, default="의견 없음") # 평가 피드백 댓글 ,의견
+    review_date =  models.DateTimeField(auto_now_add=False,default=timezone.now) #평가 날짜
+    
 class ReviewCredit(models.Model):  # 크레딧 시스템 테이블
     credit_review_score = models.IntegerField(default=0,blank=False) # 리뷰 점수
     credit_per_three =  models.FloatField(null=True, blank=True, default=0.35) # 크레딧 가중치
