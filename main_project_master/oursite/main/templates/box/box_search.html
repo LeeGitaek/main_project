@@ -1,0 +1,109 @@
+{% extends "main/base.html" %}
+{% block content %}
+ {% load box_extras %}
+
+                  <!-- End 타이틀-->
+
+                  <div class="container-fluid">
+                      <!-- ============================================================== -->
+                      <!-- Start Page Content -->
+                      <!-- ============================================================== -->
+                      <div class="row">
+                              <div class="col-12 d-flex no-block align-items-center">
+
+                                  <h4 class="page-title">안녕하세요 {{ user }}님, 같은 조의 멤버들과 결과 또는 진행상황을 보여줍니다</h4>
+                                  <br>
+                                   <p class="badge badge-dark" style="margin-top:5px;margin-left:20px;">현재 신용 크레딧 100</p>
+                                  <div class="ml-auto text-right">
+
+                                      <nav aria-label="breadcrumb">
+                                          <ol class="breadcrumb">
+                                              <li class="breadcrumb-item"><a href="/main/box/{{user}}/">이전으로</a></li>
+                                              <li class="breadcrumb-item active" aria-current="page">파일공유 시스템</li>
+                                          </ol>
+                                      </nav>
+                                  </div>
+                              </div>
+                      </div>
+
+
+
+
+            <!-- ============================================================== -->
+            <!-- Start Page Content -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-body printableArea">
+                        <h3><b>검색</b> <span class="pull-right">#{{keyw}}</span></h3>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="pull-left">
+                                    <address>
+                                        {% if all_search_items %}
+                                        <h3> &nbsp;<b class="text-danger">다른 검색결과를 원하시면,</b></h3>
+                                         {% endif %}
+
+                                         {% if not all_search_items %}
+                                         <h3> &nbsp;<b class="text-danger">{{result}}</b></h3>
+                                          {% endif %}
+                                        <form method="post" action="/main/box/{{user}}/search/" style="width:30%;">
+                                            {% csrf_token %}
+                                              <div class="input-group" style="margin-left:10px;margin-bottom:10px;" >
+
+
+                                                  <div class="input-group-prepend">
+                                                      <span class="input-group-text" id="basic-addon1">파일 검색</span>
+                                                  </div>
+
+                                                  <input type="text" class="form-control" placeholder="파일을 찾습니다..입력후 엔터" aria-label="Username" aria-describedby="basic-addon1" name="search">
+
+
+                                              </div>
+                                      </form>
+                                    </address>
+                                </div>
+
+                            </div>
+                            {% if all_search_items %}
+                            <div class="col-md-12">
+                                <div class="table-responsive m-t-40" style="clear: both;">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">#</th>
+                                                <th>파일 정보</th>
+                                                <th class="text-right">과목</th>
+                                                <th class="text-right">팀</th>
+                                                <th class="text-right">업로드 날짜</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            {% for search_item in all_search_items %}
+                                            <tr>
+                                                <td class="text-center">{{search_item.id}}</td>
+                                                <td>{{search_item.file_name}}<br><a href="/main{{search_item.document}}" class="btn btn-dark btn-sm" style="margin-top:5px;" download>문서를 다운로드 합니다.</a></td>
+                                                <td class="text-right">{{ search_item.class_name  }} </td>
+                                                <td class="text-right">{{ search_item.t_num }} </td>
+                                                <td class="text-right">{{ search_item.uploaded_date }} </td>
+                                            </tr>
+                                            {% endfor %}
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+              </div> <!-- row end -->
+                <footer class="footer text-center">
+                    Copyright &copy 2019. Developed by <a href="http://www.sejong.ac.kr">Sejong University</a>.
+                </footer>
+
+
+{% endblock %}

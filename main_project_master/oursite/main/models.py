@@ -106,7 +106,7 @@ class ReviewBox(models.Model): #파일 평가 테이블
     review_score = models.FloatField(default=0.0,blank=False) # 평가점수
     review_comments = models.CharField(max_length=255, blank=True, default="의견 없음") # 평가 피드백 댓글 ,의견
     review_date =  models.DateTimeField(auto_now_add=False,default=timezone.now) #평가 날짜
-    
+
 class ReviewCredit(models.Model):  # 크레딧 시스템 테이블
     credit_review_score = models.IntegerField(default=0,blank=False) # 리뷰 점수
     credit_per_three =  models.FloatField(null=True, blank=True, default=0.35) # 크레딧 가중치

@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Team
 #box model import code start #
+from django.db.models import Q
 from django import template
 from django.core.files.storage import FileSystemStorage # file setting code
 from .models import FileListBox # model
@@ -93,7 +94,7 @@ def userfile(request,username):
     all_notify = NotificationBox.objects.filter(uploaded_teamtitle=querysub2).order_by('-uploaded_datetime').iterator() # 알림 쿼리셋 메모리 쿼리 절약 캐싱
     all_group = Subject.objects.filter(userid=username).order_by('-created_date').iterator() # 그룹 정보
     all_review = ReviewBox.objects.filter(review_er=username).order_by('-review_date').iterator() # 평가 기록
-    
+
     if not all_items:
          return render(request, 'box/box.html',{
             #'all_file_items': all_items,
@@ -230,6 +231,34 @@ def document_review_action_handler(request,username,group,team,revusername,revfi
 
     #/main/box/{{user}}/{{group}}/{{team}}/score/{{ file_item.user_name }}/{{ file_item.file_name }}/
     #if request.method == 'POST' and request.POST['rev_score']:
+# /main/box/{{user}}/search
+def search_documents_action_handler(request,username):
+    if request.method == 'POST' and request.POST['search']:
+        querysub1 = Subject.objects.get(userid=username)
+        querysub2 = querysub1.subject_name
+        all_notify = NotificationBox.objects.filter(uploaded_teamtitle=querysub2).order_by('-uploaded_datetime').iterator()
+        searchkey = request.POST['search']
+        result = '검색 결과 없음. 파일이 없네요 ㅠ '
+        querysearching1 = Subject.objects.get(userid=username)
+        querysearching2 = querysearching1.team_num_id
+        all_search = FileListBox.objects.filter( Q(file_name__icontains=searchkey),t_num=querysearching2).order_by('-uploaded_date').distinct().iterator() # 파일리스트 쿼리셋  메모리 쿼리 절약 캐싱
+
+        if not all_search:
+             return render(request, 'box/box_search.html',{
+            #    'all_search_items': all_search,
+                'all_notification': all_notify,
+                'user':username,
+                'result':result,
+                'keyw':searchkey,
+             })
+        else :
+            return render(request, 'box/box_search.html',{
+                'all_search_items': all_search,
+                'all_notification': all_notify,
+                'user':username,
+                #'result':result,
+                'keyw':searchkey,
+            })
 
 ## Box 박스 앱 VIEWS CODE END
 ## DEVELOPER : 이기택

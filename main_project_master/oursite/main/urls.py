@@ -33,7 +33,8 @@ urlpatterns = [
     path('box/<username>/',views.userfile),# 자신이 업로드한 파일 리스트
     path('box/<username>/<group>/<team>/',views.group_file), # 팀원들과 파일공유 가능한
     path('box/<username>/<group>/<team>/score/<revusername>/<revfilename>/',views.document_review), # 평가 스코어
-    path('box/<username>/<group>/<team>/<revusername>/<revfilename>/review/',views.document_review_action_handler), # 평가 저장 
+    path('box/<username>/<group>/<team>/<revusername>/<revfilename>/review/',views.document_review_action_handler), # 평가 저장
+    path('box/<username>/search/',views.search_documents_action_handler),
 # Box app URL CODE end#
 
 ]
