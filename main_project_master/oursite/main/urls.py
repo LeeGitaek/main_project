@@ -35,6 +35,8 @@ urlpatterns = [
     path('box/<username>/<group>/<team>/score/<revusername>/<revfilename>/',views.document_review), # 평가 스코어
     path('box/<username>/<group>/<team>/<revusername>/<revfilename>/review/',views.document_review_action_handler), # 평가 저장
     path('box/<username>/search/',views.search_documents_action_handler),
+    url(r'^box/(?P<username>\w+)/(?P<group>\w+)/(?P<team>\w+)/edit_yourstatus/(?P<edit_pk>\d+)$',views.edit_your_status_handler,name="edits"),
+    path('box/<username>/<group>/<team>/edit_yourstatus/update/<mode>/',views.update_status_handler),
 # Box app URL CODE end#
 
 ]

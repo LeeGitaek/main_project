@@ -149,7 +149,7 @@
                         <div class="col-md-12">
                        <div class="card">
                            <div class="card-body">
-                               <h5 class="card-title m-b-0">현재 협업 상황 - 진행상황을 팀원들이 볼 수 있도록 업데이트 해주세요 </h5>
+                               <h5 class="card-title m-b-0">현재 협업 상황 - {% if mode %}TASK #{{mode}} {% endif %}  {% if not mode %}진행 상황을 {% endif %}업데이트 해주세요. 신용 크레딧이 높아집니다.</h5>
                            </div>
                            <table class="table">
                                <thead>
@@ -163,10 +163,17 @@
                                    </tr>
                                </thead>
                                <tbody>
+                                {% if mode %}
+                                  <form method="post" action="/main/box/{{user}}/{{group}}/{{team}}/edit_yourstatus/update/{{mode}}/">
+                                    {% csrf_token %}
+                                {% endif %}
                                   {% for task_item in all_tasks %}
                                    <tr>
+
                                       <td>{{task_item.task_user}}</td>
+
                                        <td>{{task_item.task_role}}</td>
+                                   {% if not mode %}
                                        {% if task_item.task_status == 'A' %}
                                        <td><p class="badge badge-dark">아직 시작되지 않음</p></td>
                                        {% endif %}
@@ -185,9 +192,33 @@
                                        {% if task_item.task_status == 'F' %}
                                        <td><p class="badge badge-danger">취소</p></td>
                                        {% endif %}
+                                  {% endif %}
+
+                                  {% if mode %}
+                                  <td class="text-success">
+
+
+                                      <div class="col-md-9">
+                                          <select class="select2 form-control custom-select" style="width: 120%; height:36px;" name="taskch">
+
+                                              <optgroup label="진행상황 선택 ">
+                                                  <option value="A">아직 시작되지 않음</option>
+                                                  <option value="B">현재 진행중</option>
+                                                  <option value="C">완료</option>
+                                                  <option value="D">파일 업로드 완료 </option>
+                                                  <option value="E">진행 중단</option>
+                                                  <option value="F">취소</option>
+                                              </optgroup>
+
+                                          </select>
+                                      </div>
+
+                                  </td>
+                                  {% endif %}
                                        <td >
                                           {{task_item.task_dead}}
                                         </td>
+                                      {% if not mode %}
                                        <td>
                                           <span> {{task_item.task_percent}} % </span>
                                          <div class="progress">
@@ -195,12 +226,57 @@
                                             <div class="progress-bar progress-bar-striped progress-bar-animated bg-cyan" role="progressbar" style="width: {{task_item.task_percent}}%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                        </td>
+                                       {% endif %}
+                                       {% if mode %}
+                                       <td>
+                                          <span> 현재 : {{task_item.task_percent}} % </span>
+                                                                                     <div class="col-md-9">
+                                                                                         <select class="select2 form-control custom-select" style="width: 100%; height:36px;" name="taskstatus">
+
+                                                                                             <optgroup label="진행상황 선택 ">
+                                                                                                 <option value="0">0%</option>
+                                                                                                 <option value="10">10%</option>
+                                                                                                 <option value="15">15%</option>
+                                                                                                 <option value="20">20%</option>
+                                                                                                 <option value="25">25%</option>
+                                                                                                 <option value="30">30%</option>
+                                                                                                 <option value="35">35%</option>
+                                                                                                 <option value="40">40%</option>
+                                                                                                 <option value="45">45%</option>
+                                                                                                 <option value="50">50%</option>
+                                                                                                 <option value="55">55%</option>
+                                                                                                 <option value="60">60%</option>
+                                                                                                 <option value="65">65%</option>
+                                                                                                 <option value="70">70%</option>
+                                                                                                 <option value="75">75%</option>
+                                                                                                 <option value="80">80%</option>
+                                                                                                 <option value="85">85%</option>
+                                                                                                 <option value="90">90%</option>
+                                                                                                 <option value="95">95%</option>
+                                                                                                 <option value="100">100%</option>
+
+                                                                                             </optgroup>
+
+                                                                                         </select>
+                                                                                     </div>
+
+                                       </td>
+                                       {% endif %}
 
                                        {% if task_item.task_user == user %}
+                                         {% if not mode %}
                                         <td>
-                                            <button type="submit" class="btn btn-primary btn-sm">업데이트 / 신용 크레딧 받기</button>
+                                            <a href="{% url 'edits' edit_pk=task_item.id username=user group=group team=team  %}" class="btn btn-outline-dark btn-sm">업데이트 / 신용 크레딧 받기</a>
                                         </td>
+                                         {% endif %}
+                                         {% if mode %}
+                                         <td>
+                                             <button type="submit" class="btn btn-outline-dark btn-sm">업데이트 / 신용 크레딧 받기</a>
+                                         </td>
+                                       </form>
+                                         {% endif %}
                                        {% endif %}
+
                                    </tr>
 
                                      {% endfor %}
