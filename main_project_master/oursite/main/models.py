@@ -100,13 +100,6 @@ class TaskBox(models.Model): # task  테이블
     task_subject = models.CharField(max_length=20, blank=False) # 과목
     task_team =  models.IntegerField(default=0,blank=False) # 팀 그룹 아이디 넘버
 
-class RoleCredit(models.Model):  # 크레딧 시스템 테이블
-    credit_role =  models.CharField(max_length=10, blank=False) #역할
-    credit_per = models.FloatField(null=True, blank=True, default=0.1) # 크레딧 가중치
-
-class DeadCredit(models.Model): # 크레딧 시스템 테이블
-    credit_dead = models.DateTimeField(auto_now_add=False) # 데드라인
-    credit_per_two = models.FloatField(null=True, blank=True, default=0.3) #크레딧 가중치
 
 class ReviewBox(models.Model): #파일 평가 테이블
     review_file = models.CharField(max_length=255, blank=False) # 파일이름
@@ -117,15 +110,6 @@ class ReviewBox(models.Model): #파일 평가 테이블
     review_score = models.FloatField(default=0.0,blank=False) # 평가점수
     review_comments = models.CharField(max_length=255, blank=True, default="의견 없음") # 평가 피드백 댓글 ,의견
     review_date =  models.DateTimeField(auto_now_add=False,default=timezone.now) #평가 날짜
-
-class ReviewCredit(models.Model):  # 크레딧 시스템 테이블
-    credit_review_score = models.IntegerField(default=0,blank=False) # 리뷰 점수
-    credit_per_three =  models.FloatField(null=True, blank=True, default=0.35) # 크레딧 가중치
-
-class TeamHistoryCredit(models.Model): # 협업 히스토리 크레딧 시스템 테이블
-    th_user = models.CharField(max_length=20, blank=False) # 사용자
-    th_count_of_history = models.FloatField(null=True, blank=True, default=0.0) # 협업 히스토리 카운트
-    th_credit = models.FloatField(null=True, blank=True, default=0.15) # 크레딧 가중치
 
 
 # box model code -- end #

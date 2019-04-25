@@ -260,53 +260,6 @@ def search_documents_action_handler(request,username):
                 'keyw':searchkey,
             })
 
-#box status box/username/group/team/edit_yourstatus/
-def edit_your_status_handler(request,username,group,team,edit_pk):
-        all_items = FileListBox.objects.filter(class_name=group,t_num=team).order_by('-uploaded_date').iterator() # 파일리스트 쿼리셋  메모리 쿼리 절약 캐싱
-        all_notify = NotificationBox.objects.filter(uploaded_teamtitle=group).order_by('-uploaded_datetime').iterator() # 알림 쿼리셋 메모리 쿼리 절약 캐싱
-        all_group = Subject.objects.filter(userid=username).order_by('-created_date').iterator() # 그룹 정보
-        all_task = TaskBox.objects.filter(task_subject=group,task_team=team,id=edit_pk).order_by('-task_dead').iterator() # task
-
-        if not all_items:
-             return render(request, 'box/box.html',{
-                #'all_file_items': all_items,
-                'all_notification': all_notify,
-                'user':username,
-                'all_groups':all_group,
-                'group':group,
-                'team':team,
-                'mode':edit_pk,
-                'all_tasks':all_task,
-             })
-        else :
-            if not all_task:
-                    return render(request, 'box/box.html',{
-                        #'all_file_items': all_items,
-                        'all_notification': all_notify,
-                        'user':username,
-                        'all_groups':all_group,
-                        'group':group,
-                        'team':team,
-                        'mode':edit_pk,
-                        #'all_tasks':all_task,
-                     })
-            return render(request, 'box/box.html',{
-                'all_file_items': all_items,
-                'all_notification': all_notify,
-                'user':username,
-                'all_groups':all_group,
-                'group':group,
-                'team':team,
-                'mode':edit_pk,
-                'all_tasks':all_task,
-            })
-#box update of status -- box/username/group/team/edit_yourstatus/mode
-def update_status_handler(request,username,group,team,mode):
-    if request.method == 'POST' and request.POST['taskch']:
-        task_update_one = request.POST['taskch']
-        task_update_two = request.POST['taskstatus']
-        TaskBox.objects.filter(id=mode).update(task_percent=task_update_two,task_status=task_update_one)
-        return redirect('/main/box/'+username+'/'+group+'/'+team)
 ## Box 박스 앱 VIEWS CODE END
 ## DEVELOPER : 이기택
 ## BOX APP
