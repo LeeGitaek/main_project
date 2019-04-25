@@ -307,7 +307,6 @@ def update_status_handler(request,username,group,team,mode):
         task_update_two = request.POST['taskstatus']
         TaskBox.objects.filter(id=mode).update(task_percent=task_update_two,task_status=task_update_one)
         return redirect('/main/box/'+username+'/'+group+'/'+team)
-
 ## Box 박스 앱 VIEWS CODE END
 ## DEVELOPER : 이기택
 ## BOX APP
