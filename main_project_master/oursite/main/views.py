@@ -10,11 +10,7 @@ from .models import FileListBox # model
 from .models import NotificationBox # model
 from .models import Subject # 공통코드 부분
 from .models import TaskBox # model
-from .models import RoleCredit # model
-from .models import DeadCredit # model
 from .models import ReviewBox # model
-from .models import ReviewCredit # model
-from .models import TeamHistoryCredit # model
 import datetime as datetime
 import numpy as np # math
 import os # os
