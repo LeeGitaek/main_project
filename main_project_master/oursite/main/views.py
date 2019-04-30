@@ -2,6 +2,9 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Team
+from .forms import TeamForm
+from django.contrib.auth.models import User
+
 #box model import code start #
 from django.db.models import Q
 from django import template
@@ -12,12 +15,9 @@ from .models import Subject # 공통코드 부분
 from .models import TaskBox # model
 from .models import ReviewBox # model
 import datetime as datetime
-import numpy as np # math
 import os # os
 #box model import code end #
-from .forms import TeamForm
-from django.contrib.auth.models import User
-#홈 페이지
+
 def index(request):
     return render(request, 'main/index.html', {})
 
@@ -30,7 +30,6 @@ def notice(request):
 def mypage(request):
     return render(request, 'main/mypage.html', {})
 
-#회원가입 뷰
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -40,49 +39,36 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('mypage') #회원가입 완료하면 홈페이지로 리다이렉팅
+            return redirect('mypage')
     else:
         form = UserCreationForm()
     return render(request, 'main/signup.html', {'form': form})
 
-#팀 생성 뷰
 def team_new(request):
-    if request.method == 'POST': #포스트 방식으로 넘김 받는다면
-        form = TeamForm(request.POST, request.FILES) #forms.py에서 정의한 TeamForm에 POST로 받은 request.POST, request.FILES 데이터 저장
+    if request.method == 'POST':
+        form = TeamForm(request.POST, request.FILES)
         if form.is_valid():
           form.save()
           return  redirect('team_list')
     else:
-        form = TeamForm() #현재 요청이 'POST'가 아니라면 빈 폼을 보여준다.
+        form = TeamForm()
     return render(request, 'main/team_edit.html')
 
-#팀 목록 출력 뷰
 def team_list(request):
-    qs = Team.objects.all() #Team 테이블의 모든 객체를 받아옴
-    return render(request, 'main/team_list.html', { 'team_list' : qs }) #받아온 모든 Team 객체를 'team_list'란 이름을 부여하여 team_list.html 템플릿으로 넘겨준다.
+    qs = Team.objects.all()
+    return render(request, 'main/team_list.html', { 'team_list' : qs })
 
-#팀 상세 내역 뷰(팀 게시판 역할)
-def team_detail(request, pk):  #pk를 인자로 받아서
-    team = get_object_or_404(Team, pk=pk)  #Team 테이블의 pk를 primary key로 갖는 튜플을 뽑아서(만족하는 튜플이 없으면 404 에러)
-    return render(request, 'main/team_detail.html', {'team' : team}) #'team' 이란 이름으로 team_detail.html 에 보낸다.
+def team_detail(request, pk):
+    team = get_object_or_404(Team, pk=pk)
+    return render(request, 'main/team_detail.html', {'team' : team})
 
-#팀 가입 뷰
-def team_join(request, user_pk, team_pk): #템플릿 ~ urls로부터 user의 pk와 team의 pk를 받아온다.
-    user = User.objects.get(pk=user_pk)  #현재 로그인한 user의 객체를 가져온다.
-    user.userteam.team_num = get_object_or_404(Team, pk=team_pk) #유저의 team_num 속성에 team의 pk를 사용하여 참조한 팀 객체를 넣어준다. 주키를 넣어주면 동작안함!!(SQL join)
+def team_join(request, user_pk, team_pk):
+    user = User.objects.get(pk=user_pk)
+    user.userteam.team_num = get_object_or_404(Team, pk=team_pk)
     user.save()
     team = get_object_or_404(Team, pk=team_pk)
     return render(request, 'main/team_detail.html', {'team': team})
-   #return render(request, 'main/test.html', { 'id' : pk, 'team_num' : team })
 
-#SQL join 관련하여 알아둘것 : 외래키에 값을 넣어줄때 참조받는 테이블의 주키를 넣어주는게 아니라 그 튜플 객체 자체를 넘겨줘야한다.
-
-## DEVELOPER : 이기택
-## BOX APP
-## Box 박스 앱 VIEWS CODE START
-## 2019/04/16 15:46 MOVED
-
-#box/username list
 def userfile(request,username):
     all_items = FileListBox.objects.filter(user_name=username).order_by('-uploaded_date').iterator() # 파일리스트 쿼리셋  메모리 쿼리 절약 캐싱
     querysub1 = Subject.objects.get(userid=username)
@@ -256,7 +242,3 @@ def search_documents_action_handler(request,username):
                 'keyw':searchkey,
             })
 
-## Box 박스 앱 VIEWS CODE END
-## DEVELOPER : 이기택
-## BOX APP
-#2019/04/16 15:46 MOVED

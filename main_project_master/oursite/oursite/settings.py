@@ -16,7 +16,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
@@ -52,7 +51,6 @@ MIDDLEWARE = [
 ]
 
 
-
 ROOT_URLCONF = 'oursite.urls'
 
 TEMPLATES = [
@@ -73,11 +71,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'oursite.wsgi.application'
-
 FILE_UPLOAD_MAX_MEMORY_SIZE = 429916160
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
 #MySQL 연동 설정
 
 DATABASES = {
@@ -85,14 +81,11 @@ DATABASES = {
           'ENGINE': 'django.db.backends.mysql',
           'NAME': 'main_project', # DB명
           'USER': 'root', # 데이터베이스 계정
-          'PASSWORD': 'kor099060', # 계정 비밀번호
+          'PASSWORD': '0000', # 계정 비밀번호
           'HOST': '127.0.0.1', # 데이테베이스 주소(IP)
           'PORT': '3306', # 데이터베이스 포트(보통은 3306)
       }
 }
-
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -112,9 +105,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LOGIN_REDIRECT_URL = '/main/mypage/'  #로그인시 리다이렉트 경로설정
-LOGOUT_REDIRECT_URL = '/main/login/'  #로그아웃시 리다이렉트 경로설정
-SIGNUP_REDIRECT_URL = '/main/mypage/'  #회원가입 완료시 리다이렉트 경로설정
+LOGIN_REDIRECT_URL = '/main/mypage/'  #로그인시 리다이렉트
+LOGOUT_REDIRECT_URL = '/main/login/'  #로그아웃시 리다이렉트
+SIGNUP_REDIRECT_URL = '/main/mypage/'  #회원가입 완료시 리다이렉트
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
@@ -129,10 +122,9 @@ USE_L10N = True
 
 USE_TZ = True
 
-#css, javascript, images 파일과 같은 정적파일을 보관하는 경로
+#정적 파일경로 설정
 STATIC_URL = '/static/'
 
-# 앱별로 static 폴더 관리하게 해주는 옵션이라고 함.(없어도 되는데 뭔지 확인해봐야함)
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
