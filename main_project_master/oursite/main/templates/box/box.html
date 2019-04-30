@@ -1,276 +1,49 @@
 {% extends "main/base.html" %}
 {% block content %}
- {% load box_extras %}
-
-                  <!-- End 타이틀-->
-
-                  <div class="container-fluid">
-                      <!-- ============================================================== -->
-                      <!-- Start Page Content -->
-                      <!-- ============================================================== -->
-                      <div class="row">
-                              <div class="col-12 d-flex no-block align-items-center">
-
-                                  <h4 class="page-title">안녕하세요 {{ user }}님, 팀원들과 파일을 공유하세요.</h4>
-                                  <br>
-
-                                   <form method="post" action="/main/box/{{user}}/search/">
-                                       {% csrf_token %}
-                                         <div class="input-group" style="margin-left:10px;margin-bottom:10px;" >
-
-
-                                             <div class="input-group-prepend">
-                                                 <span class="input-group-text" id="basic-addon1">파일 검색</span>
-                                             </div>
-
-                                             <input type="text" class="form-control" placeholder="파일을 찾습니다..입력후 엔터" aria-label="Username" aria-describedby="basic-addon1" name="search">
-
-
-                                         </div>
-                                 </form>
-                                  <div class="ml-auto text-right" style="display:inline;">
-
-
-                                      <nav aria-label="breadcrumb">
-                                          <ol class="breadcrumb">
-                                              <li class="breadcrumb-item"><a href="/main/box/{{user}}">내가 올린 파일</a></li>
-                                              <li class="breadcrumb-item active" aria-current="page">파일공유 시스템</li>
-                                          </ol>
-                                      </nav>
-                                  </div>
-                              </div>
-                      </div>
-                      <div class="row">
-
-
-                        <!-- ============================================================== -->
-                        <!-- 업로드 부분 시작 -->
-                        <!-- ============================================================== -->
-                            {% if group %}
-                              <div class="col-md-6">
-                                 <div class="card">
-                                     <div class="card-body" style="height:200px;">
-                                         <h5 id="ctitle" class="card-title">파일을 끌어오세요</h5>
-
-                                           <form id="upload" action="/main/box/{{user}}/{{group}}/{{team}}/uploadto/" method="POST" enctype="multipart/form-data">
-                                                 {% csrf_token %}
-                                                    <p>파일을 끌어 오세요.</p>
-                                             <fieldset>
-                                               <div class="files">
-                                                 <input id="fileselect" type="file" name="myfile" class="addFile"/>
-                                               </div>
-                                               <div id="submitbutton">
-                                                 <button class="btn btn-primary btn-sm" type="submit">업로드</button>
-                                               </div>
-                                             </fieldset>
-                                           </form>
-
-                                         </p>
-                                     </div>
-                                 </div>
-                             </div>
-                             <div class="col-md-6">
-                                 <div class="card">
-                                     <div class="card-body">
-                                         <h5 class="card-title">파일을 선택하여 업로드합니다.</h5>
-                                         {% load static %}
-
-                                         <p>
-                                            <form id="choo" method="post" action="/main/box/{{user}}/{{group}}/{{team}}/uploadto/" enctype="multipart/form-data">
-                                              {% csrf_token %}
-
-                                                <div class="col-md-9">
-                                                    <div class="custom-file">
-                                                        <input type="file" name="myfile" class="custom-file-input" required>
-                                                        <label class="custom-file-label" >파일을 선택하여 업로드합니다.</label>
-
-                                                    </div>
-
-                                                      <button class="btn btn-primary btn-sm" style="margin-top:-60px;margin-left:400px;" type="submit">업로드</button>
-                                                </div>
-
-
-                                            </form>
-                                            </p>
-                                 </div>
-                             </div>
-                             </div>
-                             <!-- ============================================================== -->
-                             <!-- 업로드 부분 끝 -->
-                             <!-- ============================================================== -->
-                          {% endif %}
-
-                             <div class="col-md-8">
-                               <div class="card">
-                                 <div class="card-body">
-                                  <h4 class="card-title m-b-0">공유된 파일{{querys1}}</h4>
-                                 </div>
-                            <div class="comment-widgets scrollable">
-                                    {% for file_item in all_file_items %}
-                               <div class="d-flex flex-row comment-row">
-                                   <div class="p-2"><img src="/static/assets/images/big/auth-bg.jpg" alt="user" width="50" class="rounded-circle"></div>
-                                   <div class="comment-text w-100">
-
-                                       <h6 class="font-medium">{{ file_item.file_name }} · {{ file_item.file_size }} MB</h6>
-                                       <span class="m-b-15 d-block">#{{ file_item.user_name }} · {{ file_item.assignment_title }} 제출 · 서명 </span>
-
-                                       <div class="comment-footer">
-
-                                           <span class="text-muted float-right"> {{ file_item.team_title }} · {{file_item.uploaded_date}} · {{ file_item.class_name }}</span>
-                                           <br>
-                                           <a href="/main{{file_item.document}}" target="_blank" class="btn btn-cyan btn-sm">문서 보기</a>
-                                           <a href="/main{{file_item.document}}" download style="color:white;" class="btn btn-success btn-sm">다운로드</a>
-
-                                           {% if file_item.user_name == user %}
-                                           <form method="post" action="/main/box/{{ user }}/delete/" >
-                                             {% csrf_token %}
-                                             <input type="hidden" name="del" value="{{ file_item.id }}" />
-                                             <button type="submit" class="btn btn-danger btn-sm" style="margin-left:130px;margin-top:-52px;">삭제</button>
-                                           </form>
-                                           {% endif %}
-                                          {% if not file_item.user_name == user %}
-                                        <!--     <form method="post" action="/main/box/{{user}}/score/{{ file_item.user_name }}/{{ file_item.file_name }}/">
-                                           <p id="result" style="margin-top:10px;">같은 팀원의 문서를 평가해주세요.(별 1개 = 1점)</p>
-                                                    {% csrf_token %}
-                                               <p class="star_rating" style="margin-top:-15px;">
-                                                      <a href="#">★</a>
-                                                      <a href="#">★</a>
-                                                      <a href="#">★</a>
-                                                      <a href="#">★</a>
-                                                      <a href="#">★</a>
-                                                  </p> -->
-                                                 <a href="/main/box/{{user}}/{{group}}/{{team}}/score/{{ file_item.user_name }}/{{ file_item.file_name }}/" style="display:inline;" class="btn btn-primary btn-sm">팀원의 문서를 평가하기</a>
-                                              <!--   </form> -->
-
-                                          {% endif %}
-
-
-                                       </div>
-                                   </div>
-                               </div>
-
-                                 {% endfor %}
-<!--
-                                 {% if group %}
-
-
-                                         <a href="" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#exampleModal" style="margin-top:10px;margin-bottom:10px;">다른 팀원 평가보기</a>
-
-
-                                                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                       <div class="modal-dialog" role="document">
-                                                         <div class="modal-content">
-                                                           <div class="modal-header">
-                                                             <h5 class="modal-title" id="exampleModalLabel" style="color:black;"> {{ file_item.user_name }} 팀원이 업로드 한 {{ file_item.file_name }} 의<br> 팀원들의 의견입니다. (익명으로 처리)</h5>
-                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                               <span aria-hidden="true">&times;</span>
-                                                             </button>
-                                                           </div>
-                                                           <div class="modal-body">
-
-                                                           </div>
-                                                           <div class="modal-footer">
-
-                                                             <button type="button" class="btn btn-dark btn-sm" data-dismiss="modal">확인</button>
-                                                           </div>
-                                                         </div>
-                                                       </div>
-                                                     </div>
-
-                                 {% endif %}    -->
-
-
-                           </div>
-                       </div>
-                        </div>
-
-
-                        <div class="col-md-4">
-                                                <div class="card">
-                                                    <div class="card-body" style="font-size:13px;">
-                                                        <h5 class="card-title">현재 수강중인 과목</h5>
-
-                                                        <div class="card"><!-- table start -->
-                                                                 <div class="card-body">
-                                                                     <p class="card-title">과목 선택후 파일 업로드가 가능합니다.</p>
-                                                                 </div>
-                                                                 <table class="table">
-                                                                   <thead>
-                                                                     <tr>
-                                                                       <th scope="col">#</th>
-                                                                       <th scope="col">수강 과목</th>
-                                                                       <th scope="col">팀 이름</th>
-
-                                                                     </tr>
-                                                                   </thead>
-                                                                   <tbody>
-                                                                       {% for group_item in all_groups %}
-
-                                                                       <tr style="color:white;">
-                                                                         <th scope="row"><a class="btn btn-dark btn-sm" href="/main/box/{{user}}/{{ group_item.subject_name }}/{{ group_item.team_num_id }}/">{{ group_item.num }}</a></th>
-                                                                         <td><a class="btn btn-primary btn-sm"  href="/main/box/{{user}}/{{ group_item.subject_name }}/{{ group_item.team_num_id }}/">{{ group_item.subject_name }}</a> </td>
-                                                                         <td><a class="btn btn-success btn-sm" href="/main/box/{{user}}/{{ group_item.subject_name }}/{{ group_item.team_num_id }}/">{{ group_item.team_num_id }}조</a></td>
-
-                                                                       </tr>
-                                                                       {% endfor %}
-
-                                                                   </tbody>
-                                                                 </table>
-                                                             </div> <!-- table end -->
-                                                    </div>
-                                                </div>
-                        </div> <!-- col end -->
-                          <!-- review list start -->
-
-                    </div>
-
-                    {% if not group %}
-
-        {% if not group %}
-
+<div class="container-fluid">
+     <div id="main-wrapper">
+        <div class="page-wrapper">
+            <div class="container-fluid">
                 <div class="row">
-                     <div class="col-md-6">
-                        <div class="card">
-                           <div class="card-body">
-                               <h4 class="card-title m-b-0">최근 작성한 문서 평가</h4>
-                           </div>
+                  <div class="col-md-8">
+                    <div class="card">
+                      <div class="card-body">
 
-                           <ul class="list-style-none">
-                             {% for review_item in all_reviews %}
-                               <li class="d-flex no-block card-body">
-                                   <i class="fa fa-check-circle w-30px m-t-5"></i>
-                                   <div>
-                                       <p class="m-b-0 font-medium p-0" style="margin-top:-3px;">{{review_item.review_file}}*{{review_item.review_subject}} - {{review_item.review_team}}</p>
-                                       <span class="text-muted">{{review_item.review_comments}}</span>
-                                   </div>
-                                   <div class="ml-auto">
-                                       <div class="tetx-right">
-
-                                           <span class="text-muted font-16">{{review_item.review_date}}</span>
-                                       </div>
-                                   </div>
-                               </li>
+                                <h5 class="card-title m-b-0">팀 파일 공유 </h5>
+                            </div>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th></th>
+                                                <th scope="col">번호</th>
+                                                <th scope="col">팀 이름</th>
+                                                <th scope="col">프로젝트명</th>
 
 
+                                            </tr>
+                                        </thead>
+                                        {% for team in team_list %}
+                                        <tbody class="customtable">
+                                        <tr>
+                                            <th><a href="{% url 'boxteam_detail' pk=team.pk %}" class="btn btn-primary"> 팀 파일 공유하기</a></th>
+                                                <td>{{ team.pk }}</td>
+                                                <td>{{ team.team_name }}</td>
+                                                <td>{{ team.text }}</td>
 
-                                {% endfor %}
-                           </ul>
-
-
-                       </div>
-                   </div>
-
-
-                </div> <!-- row end -->
-
-                  {% endif %}
-
-
-             {% endif %}
-
-                <footer class="footer text-center">
-                    Copyright &copy 2019. Developed by <a href="http://www.sejong.ac.kr">Sejong University</a>.
-                </footer>
-
-
+                                        </tr>
+                                        {% endfor %}
+                                     </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer text-center">
+    All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+</footer>
 {% endblock %}

@@ -159,7 +159,7 @@
                                 <ul id="sidebarnav" class="p-t-30">                                                        <!-- url의 'name' 값을 넣어준다. -->
                                     {% if not user.is_anonymous %}
                                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'mypage' %}" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">마이페이지</span></a></li>
-                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/main/box/{{ user }}" aria-expanded="false"><i class="mdi mdi-auto-upload"></i><span class="hide-menu">파일공유</span></a></li>
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/main/box/" aria-expanded="false"><i class="mdi mdi-auto-upload"></i><span class="hide-menu">파일공유</span></a></li>
                                     {% endif %}
                                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'notice' %}" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">공지사항</span></a></li>
                                 </ul>
