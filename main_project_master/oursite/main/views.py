@@ -26,6 +26,7 @@ def notice(request):
 def mypage(request):
     return render(request, 'main/mypage.html', {})
 
+#
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
