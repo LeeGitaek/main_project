@@ -1,19 +1,19 @@
 {% extends "main/base.html" %}
 {% block content %}
 <div class="container-fluid">
-    <div class="row">
+    <div class="row" style="float:left">
         <div class="col-md-6">
-            <div class="card">
+            <div class="card" style="width:950px;float:left">
                 <div class="card-body">
                     <h1 class="btn btn-primary">팀 게시판</h1>
                     <div class="comment-widgets scrollable">
                         <div class="d-flex flex-row comment-row m-t-0">
                             <div class="comment-text w-100">
                                 <div class="comment-footer">
-                                   <p> <h7>팀 번호:</h7> {{ team.num }}</p>
-                                   <p> <h7>팀명:</h7> {{ team.team_name }}</p>
-                                   <p> <h7>프로젝트 이름:</h7> {{ team.project_name }}</p>
-                                   <p> <h7>프로젝트 설명:</h7> {{ team.text }}</p>
+                                    <p> <h7>팀 번호:</h7> {{ team.num }}</p>
+                                    <p> <h7>팀명:</h7> {{ team.team_name }}</p>
+                                    <p> <h7>프로젝트 이름:</h7> {{ team.project_name }}</p>
+                                    <p> <h7>프로젝트 설명:</h7> {{ team.text }}</p>
                                 </div>
                             </div>
                         </div>
@@ -21,8 +21,8 @@
                 </div>
             </div>
                  <!-- # 코드 요소 검사를 통해 user list 라는 코드가 버그를 일으키고 있어 삭제하여 해결. -->
-                  <div id="firepad" style="height:600px;"></div>
-                 <script>
+            <div id="firepad" style="height:900px;width:950px;clear:both"></div>
+                <script>
                    function init() {
                      //// Initialize Firebase.
                      //// TODO: replace with your Firebase project configuration.
@@ -71,6 +71,14 @@
                 </script>
         </div>
     </div>
+
+    <div style="float:left;margin-left:40px" id="chat"></div>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script>
+            var path = window.location.pathname.split("/");
+            path.pop()
+            $('#chat').append('<iframe src="http://127.0.0.1:8000/main/chat/' + path.pop() + '" width="600" height="1300" frameborder="0"></iframe>');
+        </script>
 </div>
 <footer class="footer text-center" style="margin-top:500px;">
     Copyright &copy 2019. Developed by <a href="http://www.sejong.ac.kr">Sejong University</a>.

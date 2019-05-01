@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
+from django.db import models
+from django.contrib.auth import get_user_model
 
 class Team(models.Model): # 팀 테이블
     num = models.AutoField(primary_key=True)                        # 팀 번호(주키)
@@ -37,3 +39,15 @@ class FileListBox(models.Model): # 파일 리스트 테이블
     file_size = models.FloatField(null=True, blank=True, default=0) # 파일 크기
     document = models.FileField(upload_to='documents/',max_length=1500) # 파일 업로드 field
     t_num = models.IntegerField(default=0,blank=False) # 팀 그룹 아이디 넘버
+
+class Message(models.Model):
+    author = models.ForeignKey(get_user_model(), related_name='author_messages', on_delete=models.CASCADE)
+    content = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+    roomName = models.TextField()
+
+    def __str__(self):
+        return self.author.username
+
+    def last_10_messages(room):
+        return Message.objects.order_by('timestamp').filter(roomName=room)

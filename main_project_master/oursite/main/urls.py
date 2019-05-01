@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 from django.conf.urls import include, url
 from django.contrib.auth import views as login_views
 from django.conf import settings
@@ -21,6 +21,7 @@ urlpatterns = [
     path('box/',views.userfile),# 자신이 업로드한 파일 리스트
     url(r'^box/board/(?P<pk>\d+)/$', views.boxteam_detail, name='boxteam_detail'),#팀 프로젝트 게시판 템플릿
     # Box app URL CODE end#
+    re_path(r'^chat/(?P<room_name>[^/]+)/$', views.room, name='room'),
 ]
 
 # Box file setting code start
