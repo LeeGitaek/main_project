@@ -16,16 +16,6 @@ class Team(models.Model): # 팀 테이블
     def str(self):
         return self.num
 
-class Subject(models.Model): # 과목 테이블
-    num = models.AutoField(primary_key=True)                        # 과목 번호(주키)
-    created_date = models.DateTimeField(default=timezone.now)       # 과목 생성 날짜
-    subject_name = models.CharField(max_length=100)                    # 과목 이름
-    team_num = models.ForeignKey(Team, on_delete=models.CASCADE,null=True) #팀 테이블을 참조하는 외래키
-    userid = models.CharField(max_length=50,blank=False,default='DEFAULT VALUE')   #유저아이디 키
-
-    def str(self):
-        return self.num
-
 class UserTeam(models.Model): # 유저 테이블 (auth_user 테이블을 OneToOne 방식으로 확장,팀 번호 속성을 부여하기 위해 확장함)
     user = models.OneToOneField(User, on_delete=models.CASCADE) #auth_user와 One to One 세팅
     team_num = models.ForeignKey(Team, on_delete=models.CASCADE, null=True) #팀 번호 속성
