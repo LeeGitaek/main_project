@@ -17,6 +17,9 @@ import datetime as datetime
 import os # os
 #box model import code end #
 
+def login(request):
+    return redirect('/main/index/')
+
 def index(request):
     return render(request, 'main/index.html', {})
 
@@ -104,3 +107,6 @@ def room(request, room_name):
         'room_name_json': mark_safe(json.dumps(room_name)),
         'username' : mark_safe(json.dumps(request.user.username)),
     })
+
+def chat(request):
+    return render(request, 'chat/index.html', {})

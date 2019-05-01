@@ -72,12 +72,12 @@
         </div>
     </div>
 
-    <div style="float:left;margin-left:40px" id="chat"></div>
+    <div style="margin-left:40px;float:left" id="chat"></div>
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
         <script>
             var path = window.location.pathname.split("/");
             path.pop()
-            $('#chat').append('<iframe src="http://127.0.0.1:8000/main/chat/' + path.pop() + '" width="600" height="1300" frameborder="0"></iframe>');
+            $('#chat').append('<iframe src="http://127.0.0.1:8000/main/chat/' + path.pop() + '/" width="600" height="1300" frameborder="0"></iframe>');
         </script>
 </div>
 <footer class="footer text-center" style="margin-top:500px;">
