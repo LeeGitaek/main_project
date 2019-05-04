@@ -6,5 +6,5 @@ from django.urls import path
 urlpatterns = [
     url('admin/', admin.site.urls), #장고 내장 admin으로 매핑되는 url
     url('main/', include('main.urls')), #main 앱 urls로 매핑되는 url
-    url('', views.login, name='Login')
+    url('', views.index, name='index')
 ]

@@ -66,6 +66,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
+                'main.context_processors.default',
             ],
         },
     },
@@ -95,8 +96,8 @@ DATABASES = {
           'NAME': 'main_project', # DB명
           'USER': 'root', # 데이터베이스 계정
           'PASSWORD': '0000', # 계정 비밀번호
-          'HOST': '127.0.0.1', # 데이테베이스 주소(IP)
-          'PORT': '3306', # 데이터베이스 포트(보통은 3306)
+          'HOST': 'localhost',# 데이테베이스 주소(IP)
+          'PORT': '', # 데이터베이스 포트(보통은 3306)
       }
 }
 

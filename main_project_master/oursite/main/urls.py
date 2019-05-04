@@ -23,6 +23,10 @@ urlpatterns = [
     # Box app URL CODE end#
     path('chat/', views.chat, name='chat'),
     re_path(r'^chat/(?P<room_name>[^/]+)/$', views.room, name='room'),
+
+    path('subject_assign/', views.subject_assign, name='subject_assign'),  # 로그인 후 보여지는 마이페이지 템플릿
+    url(r'^subject_list/(?P<user_pk>\d+)$', views.subject_list, name='subject_list'),
+
 ]
 
 # Box file setting code start

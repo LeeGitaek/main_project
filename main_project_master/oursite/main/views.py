@@ -1,8 +1,8 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Team
-from .forms import TeamForm
+from .models import Team,Subject,SubjectAssign
+from .forms import TeamForm,SubjectAssignForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.utils.safestring import mark_safe
@@ -17,11 +17,8 @@ import datetime as datetime
 import os # os
 #box model import code end #
 
-def login(request):
-    return redirect('/main/index/')
-
 def index(request):
-    return render(request, 'main/index.html', {})
+    return render(request, 'registration/login.html', {})
 
 def board(request):
     return render(request, 'main/board.html', {})
@@ -32,7 +29,6 @@ def notice(request):
 def mypage(request):
     return render(request, 'main/mypage.html', {})
 
-#
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -46,6 +42,21 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'main/signup.html', {'form': form})
+
+
+def subject_assign(request):
+    if request.method == 'POST':
+        form = SubjectAssignForm(request.POST, request.FILES)
+        if form.is_valid():
+          form.save()
+          return  redirect('subject_assign')
+    else:
+        form = SubjectAssignForm()
+    return render(request, 'main/subject_edit.html')
+
+def subject_list(request, user_pk):
+    qs = SubjectAssign.objects.filter(user_num = user_pk)
+    return render(request, 'main/subject_list.html', { 'subject_list' : qs })
 
 def team_new(request):
     if request.method == 'POST':
@@ -67,7 +78,7 @@ def team_detail(request, pk):
 
 def team_join(request, user_pk, team_pk):
     user = User.objects.get(pk=user_pk)
-    user.userteam.team_num = get_object_or_404(Team, pk=team_pk)
+    user.User_extends.team_num = get_object_or_404(Team, pk=team_pk)
     user.save()
     team = get_object_or_404(Team, pk=team_pk)
     return render(request, 'main/team_detail.html', {'team': team})
@@ -110,3 +121,10 @@ def room(request, room_name):
 
 def chat(request):
     return render(request, 'chat/index.html', {})
+
+
+def distribute_subjects(request):
+    qs = SubjectAssign.objects.all()
+    return {
+        'subjects': qs
+    }

@@ -1,87 +1,266 @@
 {% extends "main/base.html" %}
 {% block content %}
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h1 class="card-title">마이페이지 입니다.</h1>
-                </div>
-                <div class="comment-widgets scrollable">
-                    <h2 class="font-medium">현재수강 중인 과목</h2>
-                    <!-- Comment Row -->
-                    <div class="d-flex flex-row comment-row m-t-0">
-                        <div class="comment-text w-100">
-                          <a href = "{% url 'team_list' %}"><h3 class="font-medium">데이터베이스</h3></a>
-                        980=-79=87=0     <h3 class="font-medium">알고리즘</h3>
-                            <h3 class="font-medium">자료구조</h3>
-                            <h3 class="font-medium">컴퓨터네트워크</h3>
-                        </div>
-                    </div>
-                     {% if user.is_authenticated %}
-                    <h4>반갑습니다</h4>{{ user.username }} <h4>님</h4>
-                    <p >현재 가입한 팀 : {{ user.userteam.team_num_id}}</p> <!-- team_num 조회시 DB에 있는 이름인 team_num_id로 조회해야함.-->
-                    <p><a href = "{% url 'logout' %}" class = "btn btn-info">Logout</a></p>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- BEGIN MODAL -->
-    <div class="modal none-border" id="my-event">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title"><strong>Add Event</strong></h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-                <div class="modal-body"></div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success save-event waves-effect waves-light">Create event</button>
-                    <button type="button" class="btn btn-danger delete-event waves-effect waves-light" data-dismiss="modal">Delete</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal Add Category -->
-    <div class="modal fade none-border" id="add-new-event">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title"><strong>Add</strong> a category</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label class="control-label">Category Name</label>
-                                <input class="form-control form-white" placeholder="Enter name" type="text" name="category-name" />
-                            </div>
-                            <div class="col-md-6">
-                                <label class="control-label">Choose Category Color</label>
-                                <select class="form-control form-white" data-placeholder="Choose a color..." name="category-color">
-                                    <option value="success">Success</option>
-                                    <option value="danger">Danger</option>
-                                    <option value="info">Info</option>
-                                    <option value="primary">Primary</option>
-                                    <option value="warning">Warning</option>
-                                    <option value="inverse">Inverse</option>
-                                </select>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger waves-effect waves-light save-category" data-dismiss="modal">Save</button>
-                    <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
+ <p><h5><a href="{% url 'subject_assign' %}">{{ user.username }}님에게 과목 할당하기</a>/&nbsp;<a href="{% url 'subject_list' user_pk=user.pk %}">{{ user.username }}님의 과목리스트</a></h5></p>
+
+<div class="left-box">
+ <div class="card">
+     <div class="card-body">
+         <h4 class="card-title m-b-0">과제 리스트</h4>
+     </div>
+     <ul class="list-style-none">
+         <li class="card-body">
+             <a href="#" class="m-b-0 p-0">
+                 <div class="d-flex no-block">
+                     <i class="fa fa-check-circle w-30px m-t-5"></i>
+                     <div>
+                         <span class="font-bold">Themeforest</span> Approved My college <span class="font-bold">1 user</span>
+                         <span>2 Hours Ago</span>
+                     </div>
+                 </div>
+             </a>
+         </li>
+         <li class="card-body border-top">
+             <a href="#" class="m-b-0 p-0">
+                 <div class="d-flex no-block">
+                     <i class="fa fa-gift w-30px m-t-5"></i>
+                     <div>
+                         <span class="font-bold">My College is PSD Template</span> Theme
+                         <span>2 Months Ago</span>
+                     </div>
+                 </div>
+             </a>
+         </li>
+         <li class="card-body border-top">
+             <a href="#" class="m-b-0 p-0">
+                 <div class="d-flex no-block">
+                     <i class="fa fa-plus w-30px m-t-5"></i>
+                     <div>
+                         <span class="font-bold">Lorem ipsum doler set</span> adadas
+                         <span>21 Days Ago</span>
+                     </div>
+                 </div>
+             </a>
+         </li>
+         <li class="card-body border-top">
+             <a href="#" class="m-b-0 p-0">
+                 <div class="d-flex no-block">
+                     <i class="fa fa-leaf w-30px m-t-5"></i>
+                     <div>
+                         <span class="font-bold">ITs my first admin</span> so very excited.
+                         <span>20 Days Ago</span>
+                     </div>
+                 </div>
+             </a>
+         </li>
+         <li class="card-body border-top">
+             <a href="#" class="m-b-0 p-0">
+                 <div class="d-flex no-block">
+                     <i class="fa fa-user w-30px m-t-5"></i>
+                     <div>
+                         <span class="font-bold"> I am alwayse here </span>you have any question
+                         <span>12 Days Ago</span>
+                     </div>
+                 </div>
+             </a>
+         </li>
+     </ul>
+ </div>
+
+
+    <div class="card">
+     <div class="card-body">
+         <h4 class="card-title m-b-0">최근 게시물</h4>
+     </div>
+     <ul class="list-style-none">
+         <li class="card-body">
+             <a href="#" class="m-b-0 p-0">
+                 <div class="d-flex no-block">
+                     <i class="fa fa-check-circle w-30px m-t-5"></i>
+                     <div>
+                         <span class="font-bold">Themeforest</span> Approved My college <span class="font-bold">1 user</span>
+                         <span>2 Hours Ago</span>
+                     </div>
+                 </div>
+             </a>
+         </li>
+         <li class="card-body border-top">
+             <a href="#" class="m-b-0 p-0">
+                 <div class="d-flex no-block">
+                     <i class="fa fa-gift w-30px m-t-5"></i>
+                     <div>
+                         <span class="font-bold">My College is PSD Template</span> Theme
+                         <span>2 Months Ago</span>
+                     </div>
+                 </div>
+             </a>
+         </li>
+         <li class="card-body border-top">
+             <a href="#" class="m-b-0 p-0">
+                 <div class="d-flex no-block">
+                     <i class="fa fa-plus w-30px m-t-5"></i>
+                     <div>
+                         <span class="font-bold">Lorem ipsum doler set</span> adadas
+                         <span>21 Days Ago</span>
+                     </div>
+                 </div>
+             </a>
+         </li>
+         <li class="card-body border-top">
+             <a href="#" class="m-b-0 p-0">
+                 <div class="d-flex no-block">
+                     <i class="fa fa-leaf w-30px m-t-5"></i>
+                     <div>
+                         <span class="font-bold">ITs my first admin</span> so very excited.
+                         <span>20 Days Ago</span>
+                     </div>
+                 </div>
+             </a>
+         </li>
+         <li class="card-body border-top">
+             <a href="#" class="m-b-0 p-0">
+                 <div class="d-flex no-block">
+                     <i class="fa fa-user w-30px m-t-5"></i>
+                     <div>
+                         <span class="font-bold"> I am alwayse here </span>you have any question
+                         <span>12 Days Ago</span>
+                     </div>
+                 </div>
+             </a>
+         </li>
+     </ul>
+ </div>
 </div>
-<footer class="footer text-center">
-    All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
-</footer>
+
+
+
+<div class="right-box">
+ <div class="card">
+     <div class="card-body">
+         <h4 class="card-title m-b-0">회의</h4>
+     </div>
+     <ul class="list-style-none">
+         <li class="card-body">
+             <a href="#" class="m-b-0 p-0">
+                 <div class="d-flex no-block">
+                     <i class="fa fa-check-circle w-30px m-t-5"></i>
+                     <div>
+                         <span class="font-bold">Themeforest</span> Approved My college <span class="font-bold">1 user</span>
+                         <span>2 Hours Ago</span>
+                     </div>
+                 </div>
+             </a>
+         </li>
+         <li class="card-body border-top">
+             <a href="#" class="m-b-0 p-0">
+                 <div class="d-flex no-block">
+                     <i class="fa fa-gift w-30px m-t-5"></i>
+                     <div>
+                         <span class="font-bold">My College is PSD Template</span> Theme
+                         <span>2 Months Ago</span>
+                     </div>
+                 </div>
+             </a>
+         </li>
+         <li class="card-body border-top">
+             <a href="#" class="m-b-0 p-0">
+                 <div class="d-flex no-block">
+                     <i class="fa fa-plus w-30px m-t-5"></i>
+                     <div>
+                         <span class="font-bold">Lorem ipsum doler set</span> adadas
+                         <span>21 Days Ago</span>
+                     </div>
+                 </div>
+             </a>
+         </li>
+         <li class="card-body border-top">
+             <a href="#" class="m-b-0 p-0">
+                 <div class="d-flex no-block">
+                     <i class="fa fa-leaf w-30px m-t-5"></i>
+                     <div>
+                         <span class="font-bold">ITs my first admin</span> so very excited.
+                         <span>20 Days Ago</span>
+                     </div>
+                 </div>
+             </a>
+         </li>
+         <li class="card-body border-top">
+             <a href="#" class="m-b-0 p-0">
+                 <div class="d-flex no-block">
+                     <i class="fa fa-user w-30px m-t-5"></i>
+                     <div>
+                         <span class="font-bold"> I am alwayse here </span>you have any question
+                         <span>12 Days Ago</span>
+                     </div>
+                 </div>
+             </a>
+         </li>
+     </ul>
+ </div>
+
+
+    <div class="card">
+     <div class="card-body">
+         <h4 class="card-title m-b-0">Q&A</h4>
+     </div>
+     <ul class="list-style-none">
+         <li class="card-body">
+             <a href="#" class="m-b-0 p-0">
+                 <div class="d-flex no-block">
+                     <i class="fa fa-check-circle w-30px m-t-5"></i>
+                     <div>
+                         <span class="font-bold">Themeforest</span> Approved My college <span class="font-bold">1 user</span>
+                         <span>2 Hours Ago</span>
+                     </div>
+                 </div>
+             </a>
+         </li>
+         <li class="card-body border-top">
+             <a href="#" class="m-b-0 p-0">
+                 <div class="d-flex no-block">
+                     <i class="fa fa-gift w-30px m-t-5"></i>
+                     <div>
+                         <span class="font-bold">My College is PSD Template</span> Theme
+                         <span>2 Months Ago</span>
+                     </div>
+                 </div>
+             </a>
+         </li>
+         <li class="card-body border-top">
+             <a href="#" class="m-b-0 p-0">
+                 <div class="d-flex no-block">
+                     <i class="fa fa-plus w-30px m-t-5"></i>
+                     <div>
+                         <span class="font-bold">Lorem ipsum doler set</span> adadas
+                         <span>21 Days Ago</span>
+                     </div>
+                 </div>
+             </a>
+         </li>
+         <li class="card-body border-top">
+             <a href="#" class="m-b-0 p-0">
+                 <div class="d-flex no-block">
+                     <i class="fa fa-leaf w-30px m-t-5"></i>
+                     <div>
+                         <span class="font-bold">ITs my first admin</span> so very excited.
+                         <span>20 Days Ago</span>
+                     </div>
+                 </div>
+             </a>
+         </li>
+         <li class="card-body border-top">
+             <a href="#" class="m-b-0 p-0">
+                 <div class="d-flex no-block">
+                     <i class="fa fa-user w-30px m-t-5"></i>
+                     <div>
+                         <span class="font-bold"> I am alwayse here </span>you have any question
+                         <span>12 Days Ago</span>
+                     </div>
+                 </div>
+             </a>
+         </li>
+     </ul>
+ </div>
+</div>
+
+<footer class="footer text-center">All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a></footer>
 {% endblock %}
