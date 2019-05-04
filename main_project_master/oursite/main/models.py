@@ -1,4 +1,3 @@
-from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -7,18 +6,12 @@ from django.db import models
 from django.contrib.auth import get_user_model
 
 class Subject(models.Model):
-    num = models.AutoField(primary_key=True)  # 과목 번호(주키)
+    num = models.IntegerField(primary_key=True)  # 과목 번호(주키)
     subject_name = models.CharField(max_length=100)  # 과목 이름
 
-class Fuck(models.Model):
-    num = models.AutoField(primary_key=True)
+class Subject_Assign(models.Model): # 팀 테이블
     user_num = models.IntegerField(null = True)
-    subject_num =  models.ForeignKey(Subject, on_delete=models.CASCADE, null=True)
-
-class SubjectAssign(models.Model): # 팀 테이블
-    num = models.AutoField(primary_key=True)
-    user_num = models.IntegerField(null = True)
-    subject_num =  models.ForeignKey(Subject, on_delete=models.CASCADE, null=True)
+    subject_num = models.ForeignKey(Subject, on_delete=models.CASCADE, null=True)
 
     def str(self):
         return self.num

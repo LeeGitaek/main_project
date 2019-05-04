@@ -10,6 +10,8 @@
                    <form method="POST">
                     {% csrf_token %}
 
+                       <input type="hidden"  name="subject_num" class="form-control" value="{{ subject_num }}">
+
                       <div class="form-group row">
                           <label for="id_title" class="col-sm-3 text-right control-label col-form-label">팀 이름</label>
                           <div class="col-sm-9">

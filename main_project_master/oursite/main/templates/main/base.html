@@ -120,21 +120,17 @@
                     <aside class="left-sidebar" data-sidebarbg="skin5">
                         <div class="scroll-sidebar">
                             <nav class="sidebar-nav">
-                                <ul id="sidebarnav" class="p-t-30">                                                        <!-- url의 'name' 값을 넣어준다. -->
+                                <ul id="sidebarnav" class="p-t-30">
+                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'notice' %}" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">공지사항</span></a></li>
                                     {% if not user.is_anonymous %}
                                     <!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/main/box/" aria-expanded="false"><i class="mdi mdi-auto-upload"></i><span class="hide-menu">파일공유</span></a></li>-->
-
-
                                         {% for subject in subjects %}
                                         {%  if subject.user_num == user.pk %}
-                                            <!--<p>{{subject.subject_num.num}}</p>-->
-                                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/main/box/" aria-expanded="false"><i class="mdi mdi-auto-upload"></i><span class="hide-menu">{{subject.subject_num.subject_name}}</span></a></li>
-                                        {% endif %}
+                                            <!--<p>{{subject.subject_num}}</p>-->
+                                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'board' subject_num=subject.subject_num.num  %}" aria-expanded="false"><i class="mdi mdi-auto-upload"></i><span class="hide-menu">{{subject.subject_num.subject_name}}</span></a></li>
+                                        {% endif %}                                                                                       <!-- subject_num=subject.subject_num.num -->
                                         {% endfor %}
-
-
                                     {% endif %}
-                                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'notice' %}" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">공지사항</span></a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -145,13 +141,6 @@
                                 <div class="col-12 d-flex no-block align-items-center">
                                     <div class="ml-auto text-right">
                                         <nav aria-label="breadcrumb">
-
-                                            <!--
-                                            <ol class="breadcrumb">
-                                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                                <li class="breadcrumb-item active" aria-current="page">Library</li>
-                                            </ol>
-                                            -->
 
                                         </nav>
                                     </div>

@@ -1,7 +1,7 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Team,Subject,SubjectAssign
+from .models import Team,Subject,Subject_Assign
 from .forms import TeamForm,SubjectAssignForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -55,25 +55,26 @@ def subject_assign(request):
     return render(request, 'main/subject_edit.html')
 
 def subject_list(request, user_pk):
-    qs = SubjectAssign.objects.filter(user_num = user_pk)
+    qs = Subject_Assign.objects.filter(user_num = user_pk)
     return render(request, 'main/subject_list.html', { 'subject_list' : qs })
 
-def team_new(request):
+def team_new(request, subject_pk):
     if request.method == 'POST':
         form = TeamForm(request.POST, request.FILES)
         if form.is_valid():
           form.save()
-          return  redirect('team_list')
+          return redirect('mypage')
     else:
         form = TeamForm()
-    return render(request, 'main/team_edit.html')
+    return render(request, 'main/team_edit.html', {'subject_num' : subject_pk })
 
-def team_list(request):
+def team_list(request,subject_num):
     qs = Team.objects.all()
-    return render(request, 'main/team_list.html', { 'team_list' : qs })
+    tmp = int(subject_num) #폼으로 넘겨받으면 문자로 받아지기 때문에 int로 형변환해준다. (안해주면 team_list.html에서 if문 동작 안함)
+    return render(request, 'main/team_list.html', { 'team_list' : qs, 'subject_num' : tmp })
 
-def team_detail(request, pk):
-    team = get_object_or_404(Team, pk=pk)
+def team_detail(request, subject_pk, team_pk):
+    team = get_object_or_404(Team, pk=team_pk)
     return render(request, 'main/team_detail.html', {'team' : team})
 
 def team_join(request, user_pk, team_pk):
@@ -122,9 +123,3 @@ def room(request, room_name):
 def chat(request):
     return render(request, 'chat/index.html', {})
 
-
-def distribute_subjects(request):
-    qs = SubjectAssign.objects.all()
-    return {
-        'subjects': qs
-    }

@@ -9,11 +9,16 @@ urlpatterns = [
     path('index/', login_views.LoginView.as_view(template_name='registration/login.html'), name='Login'),#웹페이지 첫 템플릿(로그인 템플릿)
     path('mypage/', views.mypage, name='mypage'), #로그인 후 보여지는 마이페이지 템플릿
     path('notice/', views.notice, name='notice'),  # 공지사항 템플릿
-    path('board/', views.team_list, name='team_list'), # 과목별 팀 프로젝트 게시판 목록 템플릿
+
+    url(r'^board/(?P<subject_num>\d+)/$', views.team_list, name='board'),#팀 프로젝트 게시판 템플릿
+
     path('signup/', views.signup, name='Signup'), #회원가입 템플릿
     path('', include('django.contrib.auth.urls'), ), #logout 템플릿
-    url(r'^board/(?P<pk>\d+)/$', views.team_detail, name='team_detail'),#팀 프로젝트 게시판 템플릿
-    path('team_new/', views.team_new, name='team_new'), #팀 생성 템플릿
+    url(r'^board/(?P<subject_pk>\d+)/(?P<team_pk>\d+)/$', views.team_detail, name='team_detail'),#팀 프로젝트 게시판 템플릿
+
+    #path('team_new/', views.team_new, name='team_new'), #팀 생성 템플릿  /(?P<subject_pk>\d+)/$
+    url(r'team_new/(?P<subject_pk>\d+)/$', views.team_new, name='team_new'),  # 팀 생성 템플릿
+
     url(r'^team_join/(?P<user_pk>\d+)/(?P<team_pk>\d+)/$', views.team_join, name='team_join'), #팀 가입 템블릿
 
     # Box app URL CODE start #
