@@ -1,5 +1,16 @@
 {% extends "main/base.html" %}
 {% block content %}
+<div class="page-wrapper">
+  <div class="page-breadcrumb">
+      <div class="row">
+          <div class="col-12 d-flex no-block align-items-center">
+              <div class="ml-auto text-right">
+                  <nav aria-label="breadcrumb">
+                  </nav>
+              </div>
+          </div>
+      </div>
+  </div>
 <div class="container-fluid">
     <div class="row" style="float:left">
         <div class="col-md-6">
@@ -80,6 +91,7 @@
             $('#chat').append('<iframe src="http://127.0.0.1:8000/main/chat/' + path.pop() + '/" width="600" height="1300" frameborder="0"></iframe>');
         </script>
 </div>
+     </div>
 <footer class="footer text-center" style="margin-top:500px;">
     Copyright &copy 2019. Developed by <a href="http://www.sejong.ac.kr">Sejong University</a>.
 </footer>

@@ -1,50 +1,269 @@
 {% extends "main/base.html" %}
 {% block content %}
-<div class="container-fluid">
-     <div id="main-wrapper">
-        <div class="page-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <a href="{% url 'team_new' subject_pk=subject_num %}" class="btn btn-primary">새 그룹 만들기</a>
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title m-b-0">데이터베이스 팀 프로젝트 게시판 </h5>
-                            </div>
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th></th>
-                                                <th scope="col">번호</th>
-                                                <th scope="col">팀 이름</th>
-                                                <th scope="col">프로젝트명</th>
-                                                <th scope="col">프로젝트 개요</th>
-                                                <th scope="col"></th>
-                                            </tr>
-                                        </thead>
-                                        {% for team in team_list %}
-                                        {% if team.subject_num == subject_num %}
-                                        <tbody class="customtable">
-                                        <tr>
-                                            <th><p><a href="{% url 'team_detail' subject_pk=subject_num team_pk=team.pk %}" class="btn btn-primary">팀 게시판</a></th>
-                                                <td>{{ team.pk }}</td>
-                                                <td>{{ team.team_name }}</td>
-                                                <td>{{ team.text }}</td>
-                                            <td><p><a href="{% url 'team_join' user_pk=user.pk team_pk=team.pk %}" class="btn btn-primary"> 팀 등록</a></p> </td>
-                                        </tr>
-                                        {% endif %}
-                                        {% endfor %}
-                                     </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="page-wrapper">
+  <div class="page-breadcrumb">
+      <div class="row">
+          <div class="col-12 d-flex no-block align-items-center">
+                  <nav aria-label="breadcrumb">
+                     {% for subject in subjects %}
+                       {% if subject.user_num == user.pk and subject.subject_num.num == subject_num %} <!--외래키를 통해 접근하면 참조되는 테이블의 객체에 접근됨-->
+                       <h2 class="card-title m-b-0">{{subject.subject_num.subject_name}} 프로젝트 게시판</h2>
+                       {% endif %}
+                      {% endfor %}
+                  </nav>
+          </div>
+      </div>
+  </div>
+
+  <div class="left-box">
+   <div class="card">
+       <div class="card-body">
+          <a href = "{% url 'subject_notice' %}"><h4 class="card-title m-b-0">프로젝트 공지</h4></a>
+       </div>
+       <ul class="list-style-none">
+           <li class="card-body">
+               <a href="#" class="m-b-0 p-0">
+                   <div class="d-flex no-block">
+                       <i class="fa fa-check-circle w-30px m-t-5"></i>
+                       <div>
+                           <span class="font-bold">SQL 실습 1번 과제</span>
+                       </div>
+                   </div>
+               </a>
+           </li>
+           <li class="card-body border-top">
+               <a href="#" class="m-b-0 p-0">
+                   <div class="d-flex no-block">
+                       <i class="fa fa-check-circle w-30px m-t-5"></i>
+                       <div>
+                           <span class="font-bold">서양고전 강독 강의요약문 3주차</span>
+                       </div>
+                   </div>
+               </a>
+           </li>
+           <li class="card-body border-top">
+               <a href="#" class="m-b-0 p-0">
+                  <div class="d-flex no-block">
+                       <i class="fa fa-check-circle w-30px m-t-5"></i>
+                       <div>
+                           <span class="font-bold">운영체제 보고서 과제</span>
+                       </div>
+                   </div>
+               </a>
+           </li>
+           <li class="card-body border-top">
+               <a href="#" class="m-b-0 p-0">
+                   <div class="d-flex no-block">
+                       <i class="fa fa-check-circle w-30px m-t-5"></i>
+                       <div>
+                           <span class="font-bold">알고리즘 실습과제(Tree)</span>
+                       </div>
+                   </div>
+               </a>
+           </li>
+           <li class="card-body border-top">
+               <a href="#" class="m-b-0 p-0">
+                   <div class="d-flex no-block">
+                       <i class="fa fa-check-circle w-30px m-t-5"></i>
+                       <div>
+                           <span class="font-bold">알고리즘 실습과제(탐색)</span>
+                       </div>
+                   </div>
+               </a>
+           </li>
+       </ul>
+   </div>
+
+
+     <div class="card">
+       <div class="card-body">
+           <a href = "{% url 'subject_assignment' %}"><h4 class="card-title m-b-0">프로젝트 과제</h4></a>
+       </div>
+       <ul class="list-style-none">
+           <li class="card-body">
+               <a href="#" class="m-b-0 p-0">
+                   <div class="d-flex no-block">
+                       <i class="fa fa-check-circle w-30px m-t-5"></i>
+                       <div>
+                           <span class="font-bold">SQL 실습 1번 과제</span>
+                       </div>
+                   </div>
+               </a>
+           </li>
+           <li class="card-body border-top">
+               <a href="#" class="m-b-0 p-0">
+                   <div class="d-flex no-block">
+                       <i class="fa fa-check-circle w-30px m-t-5"></i>
+                       <div>
+                           <span class="font-bold">서양고전 강독 강의요약문 3주차</span>
+                       </div>
+                   </div>
+               </a>
+           </li>
+           <li class="card-body border-top">
+               <a href="#" class="m-b-0 p-0">
+                  <div class="d-flex no-block">
+                       <i class="fa fa-check-circle w-30px m-t-5"></i>
+                       <div>
+                           <span class="font-bold">운영체제 보고서 과제</span>
+                       </div>
+                   </div>
+               </a>
+           </li>
+           <li class="card-body border-top">
+               <a href="#" class="m-b-0 p-0">
+                   <div class="d-flex no-block">
+                       <i class="fa fa-check-circle w-30px m-t-5"></i>
+                       <div>
+                           <span class="font-bold">알고리즘 실습과제(Tree)</span>
+                       </div>
+                   </div>
+               </a>
+           </li>
+           <li class="card-body border-top">
+               <a href="#" class="m-b-0 p-0">
+                   <div class="d-flex no-block">
+                       <i class="fa fa-check-circle w-30px m-t-5"></i>
+                       <div>
+                           <span class="font-bold">알고리즘 실습과제(탐색)</span>
+                       </div>
+                   </div>
+               </a>
+           </li>
+       </ul>
+     </div>
+  </div>
+
+
+
+  <div class="right-box">
+   <div class="card">
+       <div class="card-body">
+           <h4 class="card-title m-b-0">팀</h4>
+
+         {% for subject in subjects %}
+          {% if subject.user_num == user.pk and subject.subject_num.num == subject_num %}
+           {% if subject.team_num == null%}
+            <div class="d-flex no-block">
+                       <i class="fa fa-check-circle w-30px m-t-5"></i>
+                       <div>
+                           <span class="font-bold">현재 소속된 팀이 없습니다. 팀을 찾아보세요!</span>
+                           <a href="{% url 'find_team' subject_pk=subject_num %}" class="btn btn-primary">팀 찾아보기</a>
+                       </div>
             </div>
-        </div>
-    </div>
+           {% else %}
+           현재 소속한 팀 : {{ subject.team_num.team_name }} &nbsp <a href="{% url 'team_detail' subject_pk=subject_num team_pk=subject.team_num.num %}" class="btn btn-primary">팀 게시판 입장!</a>
+           {% endif %}
+           {% endif %}
+         {% endfor %}
+       </div>
+
+        <ul class="list-style-none">
+         <li class="card-body border-top">
+             <a href="#" class="m-b-0 p-0">
+                 <div class="d-flex no-block">
+                     <i class="fa fa-check-circle w-30px m-t-5"></i>
+                     <div>
+                         <span class="font-bold">서양고전 강독 강의요약문 3주차</span>
+                     </div>
+                 </div>
+             </a>
+         </li>
+         <li class="card-body border-top">
+             <a href="#" class="m-b-0 p-0">
+                <div class="d-flex no-block">
+                     <i class="fa fa-check-circle w-30px m-t-5"></i>
+                     <div>
+                         <span class="font-bold">운영체제 보고서 과제</span>
+                     </div>
+                 </div>
+             </a>
+         </li>
+         <li class="card-body border-top">
+             <a href="#" class="m-b-0 p-0">
+                 <div class="d-flex no-block">
+                     <i class="fa fa-check-circle w-30px m-t-5"></i>
+                     <div>
+                         <span class="font-bold">알고리즘 실습과제(Tree)</span>
+                     </div>
+                 </div>
+             </a>
+         </li>
+         <li class="card-body border-top">
+             <a href="#" class="m-b-0 p-0">
+                 <div class="d-flex no-block">
+                     <i class="fa fa-check-circle w-30px m-t-5"></i>
+                     <div>
+                         <span class="font-bold">알고리즘 실습과제(탐색)</span>
+                     </div>
+                 </div>
+             </a>
+         </li>
+     </ul>
+   </div>
+
+
+   <div class="card">
+     <div class="card-body">
+         <a href = "{% url 'subject_board' %}"><h4 class="card-title m-b-0">프로젝트 토론 게시판</h4></a>
+     </div>
+     <ul class="list-style-none">
+         <li class="card-body">
+             <a href="#" class="m-b-0 p-0">
+                 <div class="d-flex no-block">
+                     <i class="fa fa-check-circle w-30px m-t-5"></i>
+                     <div>
+                         <span class="font-bold">SQL 실습 1번 과제</span>
+                     </div>
+                 </div>
+             </a>
+         </li>
+         <li class="card-body border-top">
+             <a href="#" class="m-b-0 p-0">
+                 <div class="d-flex no-block">
+                     <i class="fa fa-check-circle w-30px m-t-5"></i>
+                     <div>
+                         <span class="font-bold">서양고전 강독 강의요약문 3주차</span>
+                     </div>
+                 </div>
+             </a>
+         </li>
+         <li class="card-body border-top">
+             <a href="#" class="m-b-0 p-0">
+                <div class="d-flex no-block">
+                     <i class="fa fa-check-circle w-30px m-t-5"></i>
+                     <div>
+                         <span class="font-bold">운영체제 보고서 과제</span>
+                     </div>
+                 </div>
+             </a>
+         </li>
+         <li class="card-body border-top">
+             <a href="#" class="m-b-0 p-0">
+                 <div class="d-flex no-block">
+                     <i class="fa fa-check-circle w-30px m-t-5"></i>
+                     <div>
+                         <span class="font-bold">알고리즘 실습과제(Tree)</span>
+                     </div>
+                 </div>
+             </a>
+         </li>
+         <li class="card-body border-top">
+             <a href="#" class="m-b-0 p-0">
+                 <div class="d-flex no-block">
+                     <i class="fa fa-check-circle w-30px m-t-5"></i>
+                     <div>
+                         <span class="font-bold">알고리즘 실습과제(탐색)</span>
+                     </div>
+                 </div>
+             </a>
+         </li>
+     </ul>
+   </div>
 </div>
+</div>
+
+
 <footer class="footer text-center">
     All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
 </footer>

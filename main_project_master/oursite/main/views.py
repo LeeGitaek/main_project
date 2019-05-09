@@ -1,21 +1,17 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import Team,Subject,Subject_Assign
-from .forms import TeamForm,SubjectAssignForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.safestring import mark_safe
+from django.core.files.storage import FileSystemStorage # file setting code
+from .models import Team,Subject_Assign,FileListBox
+from .forms import TeamForm,SubjectAssignForm
+import datetime as datetime
 import json
 
-#box model import code start #
-from django.db.models import Q
-from django import template
-from django.core.files.storage import FileSystemStorage # file setting code
-from .models import FileListBox # model
-import datetime as datetime
-import os # os
-#box model import code end #
+def lab(request):
+    return render(request,'main/lab.html', {})
 
 def index(request):
     return render(request, 'registration/login.html', {})
@@ -28,6 +24,20 @@ def notice(request):
 
 def mypage(request):
     return render(request, 'main/mypage.html', {})
+
+def subject_assignment(request):
+    return render(request, 'main/subject_assignment.html', {})
+
+def subject_board(request):
+    return render(request, 'main/subject_board.html', {})
+
+def subject_notice(request):
+    return render(request, 'main/subject_notice.html', {})
+
+def find_team(request,subject_pk):
+    qs = Team.objects.all()
+    tmp=int(subject_pk)
+    return render(request, 'main/find_team.html', {'team_list' : qs, 'subject_num' : tmp})
 
 def signup(request):
     if request.method == 'POST':
@@ -42,7 +52,6 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'main/signup.html', {'form': form})
-
 
 def subject_assign(request):
     if request.method == 'POST':
@@ -63,7 +72,7 @@ def team_new(request, subject_pk):
         form = TeamForm(request.POST, request.FILES)
         if form.is_valid():
           form.save()
-          return redirect('mypage')
+          return redirect('find_team', subject_pk)
     else:
         form = TeamForm()
     return render(request, 'main/team_edit.html', {'subject_num' : subject_pk })
@@ -76,13 +85,18 @@ def team_list(request,subject_num):
 def team_detail(request, subject_pk, team_pk):
     team = get_object_or_404(Team, pk=team_pk)
     return render(request, 'main/team_detail.html', {'team' : team})
-
-def team_join(request, user_pk, team_pk):
-    user = User.objects.get(pk=user_pk)
-    user.User_extends.team_num = get_object_or_404(Team, pk=team_pk)
+'''
+def team_join(request, subject_pk, user_pk, team_pk):
+    user = Subject_Assign.objects.get(user_num=user_pk, subject_num = subject_pk)
+    user.team_num_id = get_object_or_404(Team, pk=team_pk)
     user.save()
-    team = get_object_or_404(Team, pk=team_pk)
-    return render(request, 'main/team_detail.html', {'team': team})
+    return render(request, 'main/team_detail.html', {'user': user})
+    '''
+def team_join(request, subject_pk, user_pk, team_pk):
+    user = Subject_Assign.objects.get(user_num=user_pk, subject_num = subject_pk)
+    user.team_num_id = get_object_or_404(Team, pk=team_pk)
+    user.save()
+    return render(request, 'main/team_detail.html', {'user': user})
 
 def userfile(request):
     qs = Team.objects.all()
