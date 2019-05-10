@@ -78,4 +78,11 @@
 + channels 설치 : <https://channels.readthedocs.io/en/latest/installation.html>
 + win32api 설치 : pip install pypiwin32
 + channels_redis 설치 : pip install channels_redis
-+ 도커설치필요.. 다음에 업로드하겠음
++ 도커 설치
+  + window 버전
+    + 도커 설치 : <https://steemit.com/kr/@mystarlight/docker>
+    + redis 설치 : <https://hwigyeom.ntils.com/entry/Windows-%EC%97%90-Redis-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0-1>
+    + docker run -p 6379:6379 -d redis:2.8
+    + pip install channels_redis
+
+<http://jeonghwan-kim.github.io/2018/01/25/before-jquery.html>
