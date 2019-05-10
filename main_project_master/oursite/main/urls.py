@@ -36,8 +36,12 @@ urlpatterns = [
     path('box/',views.userfile),# 자신이 업로드한 파일 리스트
     url(r'^box/board/(?P<pk>\d+)/$', views.boxteam_detail, name='boxteam_detail'),#팀 프로젝트 게시판 템플릿
 
+    #채팅 및 평가
     path('chat/', views.chat, name='chat'),
     re_path(r'^chat/(?P<room_name>[^/]+)/$', views.room, name='room'),
+    re_path(r'^chat/(?P<room_name>[^/]+)', views.room, name='room'),
+    path('evaluate_member/', views.evaluate_member, name='evaluate_member'),
+    path('evaluate/', views.evaluate, name='evaluate'),
 
     path('lab', views.lab, name='lab'),
 ]

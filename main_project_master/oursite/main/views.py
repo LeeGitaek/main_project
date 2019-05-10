@@ -9,6 +9,7 @@ from .models import Team,Subject_Assign,FileListBox
 from .forms import TeamForm,SubjectAssignForm
 import datetime as datetime
 import json
+from django.http import HttpResponse
 
 def lab(request):
     return render(request,'main/lab.html', {})
@@ -136,4 +137,15 @@ def room(request, room_name):
 
 def chat(request):
     return render(request, 'chat/index.html', {})
+
+def evaluate(request):
+    return render(request, 'main/team_evaluate.html', {'username' : mark_safe(json.dumps(request.user.username))})
+
+def evaluate_member(request):
+    data = {
+        'mem1': '박병욱',
+        'mem2': '이기택',
+        'mem3': '엄태선'
+    }
+    return HttpResponse(json.dumps(data), content_type="application/json")
 
