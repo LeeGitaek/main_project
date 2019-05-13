@@ -80,9 +80,20 @@
 + channels_redis 설치 : pip install channels_redis
 + 도커 설치
   + window 버전
-    + 도커 설치 : <https://steemit.com/kr/@mystarlight/docker>
-    + redis 설치 : <https://hwigyeom.ntils.com/entry/Windows-%EC%97%90-Redis-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0-1>
-    + docker run -p 6379:6379 -d redis:2.8
+    + 도커 설치 : <https://steemit.com/kr/@mystarlight/docker
+    
+    + ~~redis 설치 : <https://hwigyeom.ntils.com/entry/Windows-%EC%97%90-Redis-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0-1>~~
+    
+      ~~레디스 설치 파일을 관리자 권한으로 실행해서 설치해야함.~~
+    
+    + cmd창에서 docker run -p 6379:6379 -d redis:2.8
+    
+      redis 자동설치됨.
+    
     + pip install channels_redis
 
 <http://jeonghwan-kim.github.io/2018/01/25/before-jquery.html>
+
+requirements.txt만드는 법 : pip freeze > requirements.txt
+
+requirements 설치하는 법 : pip install -r requirements.txt
