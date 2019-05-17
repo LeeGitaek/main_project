@@ -1,4 +1,4 @@
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -10,6 +10,7 @@ from .forms import TeamForm,SubjectAssignForm
 import datetime as datetime
 import json
 from django.http import HttpResponse
+from .evaluate import Evaluate
 
 def lab(request):
     return render(request,'main/lab.html', {})
@@ -139,6 +140,8 @@ def chat(request):
     return render(request, 'chat/index.html', {})
 
 def evaluate(request):
+    user_pk = User.objects.get(username=request.user.username).id
+    Evaluate.evalMessage(Evaluate, user_pk, 2)
     return render(request, 'main/team_evaluate.html', {'username' : mark_safe(json.dumps(request.user.username))})
 
 def evaluate_member(request):

@@ -91,6 +91,8 @@
       redis 자동설치됨.
     
     + pip install channels_redis
+  
++ 구글 클라우드 감정분석 API : pip install --upgrade google-cloud-language
 
 <http://jeonghwan-kim.github.io/2018/01/25/before-jquery.html>
 

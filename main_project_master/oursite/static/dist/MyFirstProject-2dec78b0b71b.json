@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "majestic-poetry-237912",
+  "private_key_id": "2dec78b0b71b11825fc68456b172ab0451ada057",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDQvbfIS6HmpBV9\nu7URZYQB2syCKUdR7sXkyho2D3nacByUMDYjMATggCZev9s5w4CEpbSt24FLFais\n0W1ge6LuB+X2SiyEXB1K8FWDY3rHzVzvrHwI11c8zun4UlZIHKHlBWgU+Vy7Vhy0\ndlHbVWchekPBuBJccuNp0xFazcgaciYPWhMhucjK0yAiYrQ7ccSEOfRs8VTlnMWp\nL9kxkZZuNnfxJMmUh7ctXS71EbVOkLzXUjUTc7LOxduqQoiny9BCfQH0orj1U/Q2\n5Q1vL6rM5rdgKiJB4xbPXWceLUhM6WmG+kJGcAhnIrStfu1fDdLOHTnH5GgRMJvk\na0tgmB3BAgMBAAECggEAAgiwi1UrVG/psrIwczqHP60LXEL9NNVBXIzt657D0Ub8\nNvhvn/D7ly7Ae6CzHjwOBZzcvBXyYPzVdNZMknRZ89JOtr3lyFC3y1oN/JaspK5B\nrHyEhTczRykn+qQIvwaiZYojh710nnGvcWsMD076JIdzChFFAogZuFdWvl5Yx7iB\nAx5ii6ibDq1DbwKvGQtvLCWZfqpGyNXgBbMK4PKIJORHvvpBRUJanyqSGbidxYad\nIgO8gED4BBlvkuITAE0fDj8We+NmMMHIA+zWnU2NVxmi+ITAXTc2zr/E3XC8GhMG\nchmVZR2sFwAttyQuNX53cOPxv2MGr0Khd1EQKu/FwQKBgQDuYkS/4GDR9zYGF2pX\nY5aHKDiAcmpXr2YKeuzJusQ/OGdX7dfTC3ia/gTSgbal9eUtPYrqjmK3o9gKhYWT\nA+wrFYLPFoN5k9Z48D7Xt5vyuiX5nrXQxL01p7lWrw+ubmh2sK8Q+sgMAV2sxqNZ\nTuM4geImrL37A3mraHYsjy+PsQKBgQDgKqtKnmSagl9JkmO5QZxp7PN3JXsEHZhw\nDSEe5vx5ne+9/ifQnMlFETwgER5C+G+ywrAiM39zeTApRxaasEkRs8BpdvlMew7c\ncRoM51Dp9MMvWFUyRCg9+Zu7w0uejk8HsyvCIufg3g/X5qHYAqqUJDAg53WjsXv8\nKhkSqGiDEQKBgQDqmOrvqfGesJsKA6Ezv140RPDV98OP552UUsUVAih/zxJlBjyQ\nBYn7fmFgiScmzIdtrlM34khkUWobcKuzsviIrfK9unpI+6TmAAjYYmmmxmr47agg\nfH14gEd1d3MHRsCnjdm77BFTP0Tg89tt2KTkx224gee1UAY9GeCymXdFAQKBgQCb\nR1NSI/gCQ27oErx7dmR3x4g6rz7QcgPHEoEv28dmIy4PyL8htYmCC1c/yzvQHjGZ\nfVzuxAd0IK1o2nJhAt4Koh4VsDEudkusDbiC2bTl6wNNh320jRvnGkFzReva0C8U\nYVtdZjqDPK9y2bKgY/BvH8Yq9Mo7ctU0rqChmQCUUQKBgA7mD5UjP61TiKUmBnex\nBn/qGNjctevSNb5Wn5DEWfdtfTHunaxX9p+Du+DV5ceV+u2XOOBMpddjHfoiawv6\ntebc4J0Tsp9hOz9DruUZvn+wFcTcwNUNAxl709pR7U2AAFEdSculoUazIq+djZxh\ntu8cXJznzeJzVVpMQJFsxMRi\n-----END PRIVATE KEY-----\n",
+  "client_email": "starting-account-j8loquwj23fy@majestic-poetry-237912.iam.gserviceaccount.com",
+  "client_id": "101978604761142798212",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/starting-account-j8loquwj23fy%40majestic-poetry-237912.iam.gserviceaccount.com"
+}
