@@ -120,7 +120,7 @@ def DocsOfUser(request,teamnum,teamname):
         fs = FileSystemStorage()
         formatted_date = now.strftime('%Y-%m-%d %H:%M:%S')
         filename = fs.save(myfile.name, myfile)
-        filesize = round( myfile.size/1000000 , 1) #file size
+        filesize =  myfile.size #file size
         uploaded_file_url = fs.url(filename) # file link
         team_title = teamname
         t_num = teamnum
