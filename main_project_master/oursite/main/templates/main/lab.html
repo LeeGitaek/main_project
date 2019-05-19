@@ -1,260 +1,71 @@
 {% extends "main/base.html" %}
 {% block content %}
-<div class="page-wrapper">
-  <div class="page-breadcrumb">
-      <div class="row">
-          <div class="col-12 d-flex no-block align-items-center">
-              <div class="ml-auto text-right">
-                  <nav aria-label="breadcrumb">
-                  </nav>
-              </div>
-          </div>
-      </div>
-  </div>
- <p><h5><a href="{% url 'subject_assign' %}">{{ user.username }}님에게 과목 할당하기</a>/&nbsp;<a href="{% url 'subject_list' user_pk=user.pk %}">{{ user.username }}님의 과목리스트</a></h5></p>
+            <div class="page-breadcrumb">
+                 <div class="row">
+                     <div class="col-12 d-flex no-block align-items-center">
+                           <h4 class="page-title">Widgets</h4>
+                         <div class="ml-auto text-right">
+                             <nav aria-label="breadcrumb">
+                               <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Library</li>
+                                </ol>
+                             </nav>
+                         </div>
+                     </div>
+                 </div>
+             </div>
 
-<div class="left-box">
- <div class="card">
-     <div class="card-body">
-         <h4 class="card-title m-b-0">과제 리스트</h4>
-     </div>
-     <ul class="list-style-none">
-         <li class="card-body">
-             <a href="#" class="m-b-0 p-0">
-                 <div class="d-flex no-block">
-                     <i class="fa fa-check-circle w-30px m-t-5"></i>
-                     <div>
-                         <span class="font-bold">SQL 실습 1번 과제</span>
-                     </div>
-                 </div>
-             </a>
-         </li>
-         <li class="card-body border-top">
-             <a href="#" class="m-b-0 p-0">
-                 <div class="d-flex no-block">
-                     <i class="fa fa-check-circle w-30px m-t-5"></i>
-                     <div>
-                         <span class="font-bold">서양고전 강독 강의요약문 3주차</span>
-                     </div>
-                 </div>
-             </a>
-         </li>
-         <li class="card-body border-top">
-             <a href="#" class="m-b-0 p-0">
-                <div class="d-flex no-block">
-                     <i class="fa fa-check-circle w-30px m-t-5"></i>
-                     <div>
-                         <span class="font-bold">운영체제 보고서 과제</span>
-                     </div>
-                 </div>
-             </a>
-         </li>
-         <li class="card-body border-top">
-             <a href="#" class="m-b-0 p-0">
-                 <div class="d-flex no-block">
-                     <i class="fa fa-check-circle w-30px m-t-5"></i>
-                     <div>
-                         <span class="font-bold">알고리즘 실습과제(Tree)</span>
-                     </div>
-                 </div>
-             </a>
-         </li>
-         <li class="card-body border-top">
-             <a href="#" class="m-b-0 p-0">
-                 <div class="d-flex no-block">
-                     <i class="fa fa-check-circle w-30px m-t-5"></i>
-                     <div>
-                         <span class="font-bold">알고리즘 실습과제(탐색)</span>
-                     </div>
-                 </div>
-             </a>
-         </li>
-     </ul>
- </div>
+            <div class="container-fluid">
+                   <div class="row">
 
+                    <div class="col-md-4">
+                        <div class="card">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home" role="tab"><span class="hidden-sm-up"></span> <span class="hidden-xs-down">Tab1</span></a> </li>
+                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile" role="tab"><span class="hidden-sm-up"></span> <span class="hidden-xs-down">Tab2</span></a> </li>
+                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#messages" role="tab"><span class="hidden-sm-up"></span> <span class="hidden-xs-down">Tab3</span></a> </li>
+                            </ul>
+                            <!-- Tab panes -->
+                            <div class="tab-content tabcontent-border">
+                                <div class="tab-pane active" id="home" role="tabpanel">
+                                    <div class="p-20">
+                                        <img src="/static/assets/images/background/sejong1.jpg" class="img-fluid">
+                                        <p>And is full of waffle to It has multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.multiple paragraphs and is full of waffle to pad out the comment..</p>
+                                    </div>
+                                </div>
+                                <div class="tab-pane  p-20" id="profile" role="tabpanel">
+                                    <div class="p-20">
+                                        <img src="/static/assets/images/background/sejong1.jpg" class="img-fluid">
+                                        <p class="m-t-10">And is full of waffle to It has multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.multiple paragraphs and is full of waffle to pad out the comment..</p>
+                                    </div>
+                                </div>
+                                <div class="tab-pane p-20" id="messages" role="tabpanel">
+                                    <div class="p-20">
+                                        <p>And is full of waffle to It has multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.multiple paragraphs and is full of waffle to pad out the comment..</p>
+                                        <img src="/static/assets/images/background/sejong1.jpg" class="img-fluid">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-   <div class="card">
-     <div class="card-body">
-         <h4 class="card-title m-b-0">최근 게시물</h4>
-     </div>
-     <ul class="list-style-none">
-         <li class="card-body">
-             <a href="#" class="m-b-0 p-0">
-                 <div class="d-flex no-block">
-                     <i class="fa fa-check-circle w-30px m-t-5"></i>
-                     <div>
-                         <span class="font-bold">SQL 실습 1번 과제</span>
-                     </div>
-                 </div>
-             </a>
-         </li>
-         <li class="card-body border-top">
-             <a href="#" class="m-b-0 p-0">
-                 <div class="d-flex no-block">
-                     <i class="fa fa-check-circle w-30px m-t-5"></i>
-                     <div>
-                         <span class="font-bold">서양고전 강독 강의요약문 3주차</span>
-                     </div>
-                 </div>
-             </a>
-         </li>
-         <li class="card-body border-top">
-             <a href="#" class="m-b-0 p-0">
-                <div class="d-flex no-block">
-                     <i class="fa fa-check-circle w-30px m-t-5"></i>
-                     <div>
-                         <span class="font-bold">운영체제 보고서 과제</span>
-                     </div>
-                 </div>
-             </a>
-         </li>
-         <li class="card-body border-top">
-             <a href="#" class="m-b-0 p-0">
-                 <div class="d-flex no-block">
-                     <i class="fa fa-check-circle w-30px m-t-5"></i>
-                     <div>
-                         <span class="font-bold">알고리즘 실습과제(Tree)</span>
-                     </div>
-                 </div>
-             </a>
-         </li>
-         <li class="card-body border-top">
-             <a href="#" class="m-b-0 p-0">
-                 <div class="d-flex no-block">
-                     <i class="fa fa-check-circle w-30px m-t-5"></i>
-                     <div>
-                         <span class="font-bold">알고리즘 실습과제(탐색)</span>
-                     </div>
-                 </div>
-             </a>
-         </li>
-     </ul>
-   </div>
-</div>
+                    <div class="col-md-4">
 
+                    </div>
+                </div>
 
+                <div class="row">
 
-<div class="right-box">
- <div class="card">
-     <div class="card-body">
-         <h4 class="card-title m-b-0">회의</h4>
-     </div>
-     <ul class="list-style-none">
-         <li class="card-body">
-             <a href="#" class="m-b-0 p-0">
-                 <div class="d-flex no-block">
-                     <i class="fa fa-check-circle w-30px m-t-5"></i>
-                     <div>
-                         <span class="font-bold">SQL 실습 1번 과제</span>
-                     </div>
-                 </div>
-             </a>
-         </li>
-         <li class="card-body border-top">
-             <a href="#" class="m-b-0 p-0">
-                 <div class="d-flex no-block">
-                     <i class="fa fa-check-circle w-30px m-t-5"></i>
-                     <div>
-                         <span class="font-bold">서양고전 강독 강의요약문 3주차</span>
-                     </div>
-                 </div>
-             </a>
-         </li>
-         <li class="card-body border-top">
-             <a href="#" class="m-b-0 p-0">
-                <div class="d-flex no-block">
-                     <i class="fa fa-check-circle w-30px m-t-5"></i>
-                     <div>
-                         <span class="font-bold">운영체제 보고서 과제</span>
-                     </div>
-                 </div>
-             </a>
-         </li>
-         <li class="card-body border-top">
-             <a href="#" class="m-b-0 p-0">
-                 <div class="d-flex no-block">
-                     <i class="fa fa-check-circle w-30px m-t-5"></i>
-                     <div>
-                         <span class="font-bold">알고리즘 실습과제(Tree)</span>
-                     </div>
-                 </div>
-             </a>
-         </li>
-         <li class="card-body border-top">
-             <a href="#" class="m-b-0 p-0">
-                 <div class="d-flex no-block">
-                     <i class="fa fa-check-circle w-30px m-t-5"></i>
-                     <div>
-                         <span class="font-bold">알고리즘 실습과제(탐색)</span>
-                     </div>
-                 </div>
-             </a>
-         </li>
-     </ul>
- </div>
+                    <div class="col-md-4">
 
+                    </div>
 
-   <div class="card">
-     <div class="card-body">
-         <h4 class="card-title m-b-0">Q&A</h4>
-     </div>
-     <ul class="list-style-none">
-         <li class="card-body">
-             <a href="#" class="m-b-0 p-0">
-                 <div class="d-flex no-block">
-                     <i class="fa fa-check-circle w-30px m-t-5"></i>
-                     <div>
-                         <span class="font-bold">SQL 실습 1번 과제</span>
-                     </div>
-                 </div>
-             </a>
-         </li>
-         <li class="card-body border-top">
-             <a href="#" class="m-b-0 p-0">
-                 <div class="d-flex no-block">
-                     <i class="fa fa-check-circle w-30px m-t-5"></i>
-                     <div>
-                         <span class="font-bold">서양고전 강독 강의요약문 3주차</span>
-                     </div>
-                 </div>
-             </a>
-         </li>
-         <li class="card-body border-top">
-             <a href="#" class="m-b-0 p-0">
-                <div class="d-flex no-block">
-                     <i class="fa fa-check-circle w-30px m-t-5"></i>
-                     <div>
-                         <span class="font-bold">운영체제 보고서 과제</span>
-                     </div>
-                 </div>
-             </a>
-         </li>
-         <li class="card-body border-top">
-             <a href="#" class="m-b-0 p-0">
-                 <div class="d-flex no-block">
-                     <i class="fa fa-check-circle w-30px m-t-5"></i>
-                     <div>
-                         <span class="font-bold">알고리즘 실습과제(Tree)</span>
-                     </div>
-                 </div>
-             </a>
-         </li>
-         <li class="card-body border-top">
-             <a href="#" class="m-b-0 p-0">
-                 <div class="d-flex no-block">
-                     <i class="fa fa-check-circle w-30px m-t-5"></i>
-                     <div>
-                         <span class="font-bold">알고리즘 실습과제(탐색)</span>
-                     </div>
-                 </div>
-             </a>
-         </li>
-     </ul>
-   </div>
+                    <div class="col-md-4">
 
- </div>
+                    </div>
+                </div>
+            </div>
 
-</div>
-
-<footer class="footer text-center">All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a></footer>
 {% endblock %}

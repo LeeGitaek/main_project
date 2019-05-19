@@ -1,4 +1,5 @@
 import math
+'''
 from .models import Message
 from google.cloud import language_v1
 from google.cloud.language_v1 import enums
@@ -40,5 +41,5 @@ class Evaluate():
         response = client.analyze_sentiment(document)
         sentiment = response.document_sentiment
         eva_sentiment = sentiment.score
-
+'''
 

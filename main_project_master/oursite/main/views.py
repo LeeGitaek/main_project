@@ -10,7 +10,7 @@ from .forms import TeamForm,SubjectAssignForm
 import datetime as datetime
 import json
 from django.http import HttpResponse
-from .evaluate import Evaluate
+#from .evaluate import Evaluate
 
 def lab(request):
     return render(request,'main/lab.html', {})
