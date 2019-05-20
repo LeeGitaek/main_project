@@ -10,7 +10,7 @@ from .forms import TeamForm,SubjectAssignForm
 import datetime as datetime
 import json
 from django.http import HttpResponse
-#from .evaluate import Evaluate
+from .evaluate import Evaluate
 
 def lab(request):
     return render(request,'main/lab.html', {})
@@ -84,7 +84,7 @@ def team_list(request,subject_num):
     tmp = int(subject_num) #폼으로 넘겨받으면 문자로 받아지기 때문에 int로 형변환해준다. (안해주면 team_list.html에서 if문 동작 안함)
     return render(request, 'main/team_list.html', { 'team_list' : qs, 'subject_num' : tmp })
 
-def team_detail(request, subject_pk, team_pk):
+def team_detail(request, subject_pk, team_pk, hash):
     team = get_object_or_404(Team, pk=team_pk)
     return render(request, 'main/team_detail.html', {'team' : team})
 '''
@@ -94,10 +94,11 @@ def team_join(request, subject_pk, user_pk, team_pk):
     user.save()
     return render(request, 'main/team_detail.html', {'user': user})
     '''
-def team_join(request, subject_pk, user_pk, team_pk):
+def team_join(request, subject_pk, user_pk, team_pk, hash):
     user = Subject_Assign.objects.get(user_num=user_pk, subject_num = subject_pk)
     user.team_num_id = get_object_or_404(Team, pk=team_pk)
     user.save()
+    # hash = Team.objects.get(pk=team_pk).hash
     return render(request, 'main/team_detail.html', {'user': user})
 
 def userfile(request):

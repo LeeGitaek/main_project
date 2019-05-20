@@ -99,3 +99,5 @@
 requirements.txt만드는 법 : pip freeze > requirements.txt
 
 requirements 설치하는 법 : pip install -r requirements.txt
+
++ team테이블에 hash칼럼 추가. 새로 마이그레이션해야하는데 기본값을 주던지 종료하던지라는 옵션 선택해야하는 에러가 뜸. 해당 에러는 Quit을 선택해서 종료 후, main-migrations에서 __init__을 제외하고 0001_inital.py와 같은 파일을 삭제. make migrations와 migrate를 진행하면 hash테이블 추가됨. 

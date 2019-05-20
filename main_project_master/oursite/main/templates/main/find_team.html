@@ -38,11 +38,11 @@
                                         {% if team.subject_num == subject_num %}
                                         <tbody class="customtable">
                                         <tr>
-                                            <th><p><a href="{% url 'team_detail' subject_pk=subject_num team_pk=team.pk %}" class="btn btn-primary">팀 게시판</a></th>
+                                            <th><p><a href="{% url 'team_detail' subject_pk=subject_num team_pk=team.pk hash=team.hash %}" class="btn btn-primary">팀 게시판</a></th>
                                                 <td>{{ team.pk }}</td>
                                                 <td>{{ team.team_name }}</td>
                                                 <td>{{ team.text }}</td>
-                                            <td><p><a href="{% url 'team_join' subject_pk=subject_num user_pk=user.pk team_pk=team.pk %}" class="btn btn-primary"> 팀 등록</a></p></td>
+                                            <td><p><a href="{% url 'team_join' subject_pk=subject_num user_pk=user.pk team_pk=team.pk hash=team.hash %}" class="btn btn-primary"> 팀 등록</a></p></td>
                                         </tr>
                                         {% endif %}
                                         {% endfor %}

@@ -2,57 +2,78 @@
 {% extends "main/base.html" %}
 {% block content %}
 <div class="page-wrapper">
-  <div class="page-breadcrumb">
-      <div class="row">
-          <div class="col-12 d-flex no-block align-items-center">
-              <div class="ml-auto text-right">
-                  <nav aria-label="breadcrumb">
-                  </nav>
-              </div>
-          </div>
-      </div>
-  </div>
-<div class="container-fluid">
-  <div class="row">
-      <div class="col-md-6">
-          <div class="card">
-              <div class="card-body">
-                  <h2 class="card-title">팀 등록하기</h2>
-                   <form method="POST">
-                    {% csrf_token %}
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">팀 등록하기</h2>
+                        <form method="POST">
+                            {% csrf_token %}
 
-                       <input type="hidden"  name="subject_num" class="form-control" value="{{ subject_num }}">
+                            <input type="hidden"  name="subject_num" class="form-control" value="{{ subject_num }}">
 
-                      <div class="form-group row">
-                          <label for="id_title" class="col-sm-3 text-right control-label col-form-label">팀 이름</label>
-                          <div class="col-sm-9">
-                              <input type="text"  name="team_name" maxlength="200" required id="id_title" class="form-control" placeholder="팀 이름을 입력하세요.">
-                          </div>
-                      </div>
+                            <div class="form-group row">
+                                <label for="id_title" class="col-sm-3 text-right control-label col-form-label">팀 이름</label>
+                                <div class="col-sm-9">
+                                    <input type="text"  name="team_name" maxlength="200" required id="id_title" class="form-control" placeholder="팀 이름을 입력하세요.">
+                                </div>
+                            </div>
 
-                      <div class="form-group row">
-                          <label for="id_project_title" class="col-sm-3 text-right control-label col-form-label">프로젝트 명</label>
-                          <div class="col-sm-9">
-                              <input type="text" name="project_name" maxlength="200" required id="id_project_title" class="form-control" placeholder="프로젝트명을 입력하세요.">
-                          </div>
-                      </div>
+                            <div class="form-group row">
+                                <label for="id_project_title" class="col-sm-3 text-right control-label col-form-label">프로젝트 명</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="project_name" maxlength="200" required id="id_project_title" class="form-control" placeholder="프로젝트명을 입력하세요.">
+                                </div>
+                            </div>
 
-                      <div class="form-group row">
-                          <label for="id_text" class="col-sm-3 text-right control-label col-form-label">프로젝트 설명</label>
-                          <div class="col-sm-9">
-                              <textarea name="text"  cols="40" rows="10" required id="id_text" class="form-control"></textarea>
-                          </div>
-                      </div>
+                            <div class="form-group row">
+                                <label for="id_text" class="col-sm-3 text-right control-label col-form-label">프로젝트 설명</label>
+                                <div class="col-sm-9">
+                                    <textarea name="text"  cols="40" rows="10" required id="id_text" class="form-control"></textarea>
+                                </div>
+                            </div>
 
-                       <button type="submit" class="btn btn-primary">팀 등록</button>
+                            <div class="tableTop1" style="display:none">
+                                <input type="text" name="hash" maxlength="200" required id="id_hash" class="form-control">
+                            </div>
 
-                    </form>
-              </div>
-          </div>
-      </div>
-  </div>
+                            <button type="submit" class="btn btn-primary">팀 등록</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
- </div>
+
+<script>
+    function getExampleRef() {
+        var config = {
+            apiKey: '<API_KEY>',
+            authDomain: "firepad-tests.firebaseapp.com",
+            databaseURL: "https://firepad-tests.firebaseio.com"
+        };
+        firebase.initializeApp(config);
+
+        var ref = firebase.database().ref();
+        ref = ref.push(); // generate unique location.
+        $('#id_hash').val(ref.key);
+    }
+
+    window.onload = getExampleRef;
+</script>
 
 <footer class="footer text-center">
     All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.

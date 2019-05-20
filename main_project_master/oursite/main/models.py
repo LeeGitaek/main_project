@@ -12,6 +12,7 @@ class Team(models.Model): # 팀 테이블
     project_name = models.CharField(max_length=100)                 # 프로젝트 이름
     text = models.TextField()                                       # 프로젝트 내용
     subject_num = models.IntegerField(null = True)
+    hash = models.CharField(max_length=100)
 
     def str(self):
         return self.num

@@ -5,7 +5,7 @@ from .models import Team,Subject_Assign
 class TeamForm(forms.ModelForm):
     class Meta:
         model = Team
-        fields = ('subject_num', 'team_name', 'project_name', 'text')
+        fields = ('subject_num', 'team_name', 'project_name', 'text', 'hash')
 
 class SubjectAssignForm(forms.ModelForm):
     class Meta:

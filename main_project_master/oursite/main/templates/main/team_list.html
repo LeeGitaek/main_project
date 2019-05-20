@@ -152,7 +152,9 @@
                        </div>
             </div>
            {% else %}
-           현재 소속한 팀 : {{ subject.team_num.team_name }} &nbsp <a href="{% url 'team_detail' subject_pk=subject_num team_pk=subject.team_num.num %}" class="btn btn-primary">팀 게시판 입장!</a>
+           {% with team=subject.team_num.hash %}
+           현재 소속한 팀 : {{ subject.team_num.team_name }} &nbsp <a href="{% url 'team_detail' subject_pk=subject_num team_pk=subject.team_num.num hash=team %}" class="btn btn-primary">팀 게시판 입장!</a>
+           {% endwith %}
            {% endif %}
            {% endif %}
          {% endfor %}

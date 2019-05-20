@@ -22,12 +22,12 @@ urlpatterns = [
 
     url(r'^board/(?P<subject_num>\d+)/$', views.team_list, name='board'),#과목 게시판(board/과목번호)
 
-    url(r'^board/(?P<subject_pk>\d+)/(?P<team_pk>\d+)/$', views.team_detail, name='team_detail'),#팀 게시판(board/과목번호/팀번호)
+    url(r'^board/(?P<subject_pk>\d+)/(?P<team_pk>\d+)/(?P<hash>[-\w]+)$', views.team_detail, name='team_detail'),# 팀 게시판(board/과목번호/팀번호)
 
 
     url(r'team_new/(?P<subject_pk>\d+)/$', views.team_new, name='team_new'),  #팀 생성(team_new/과목번호)
 
-    url(r'^team_join/(?P<subject_pk>\d+)/(?P<user_pk>\d+)/(?P<team_pk>\d+)/$', views.team_join, name='team_join'), #팀 가입(team_join/과목번호/유저번호/팀번호)
+    url(r'^team_join/(?P<subject_pk>\d+)/(?P<user_pk>\d+)/(?P<team_pk>\d+)/(?P<hash>[-\w]+)$', views.team_join, name='team_join'), #팀 가입(team_join/과목번호/유저번호/팀번호)
 
     path('subject_assign/', views.subject_assign, name='subject_assign'),  #과목 할당
     url(r'^subject_list/(?P<user_pk>\d+)$', views.subject_list, name='subject_list'), #과목 리스트(subject_list/유저번호)
