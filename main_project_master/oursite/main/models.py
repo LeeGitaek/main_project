@@ -25,9 +25,25 @@ class Subject_Assign(models.Model): #유저, 과목 관계 테이블
     user_num = models.IntegerField(null=True)
     subject_num = models.ForeignKey(Subject, on_delete=models.CASCADE, null=True)
     team_num = models.ForeignKey(Team, on_delete=models.CASCADE, null=True)
+    evaluate = models.FloatField(default=0)
 
     def str(self):
         return self.num
+
+class Meeting(models.Model):
+    team_num = models.ForeignKey(Team, on_delete=models.CASCADE)
+    meeting_num = models.IntegerField()
+    date_start = models.DateTimeField() #회의 시작 시간
+    date_end = models.DateTimeField() #회의 종료 시간
+    title = models.CharField(max_length=200) #회의제목
+    hash = models.CharField(max_length=100)
+
+class Meeting_Evaluate(models.Model):
+    team_num = models.IntegerField()
+    meeting_num = models.IntegerField()
+    user_num = models.IntegerField()
+    evaluate = models.FloatField(default=0)
+
 
 '''
 class User_extends(models.Model): # 유저 테이블 (auth_user 테이블을 OneToOne 방식으로 확장,팀 번호 속성을 부여하기 위해 확장함)

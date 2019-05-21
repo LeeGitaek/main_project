@@ -11,12 +11,11 @@ import datetime as datetime
 import json
 from django.http import HttpResponse
 from .evaluate import Evaluate
+from django.contrib.auth import views as login_views
+from django.urls import path, re_path
 
 def lab(request):
     return render(request,'main/lab.html', {})
-
-def index(request):
-    return render(request, 'registration/login.html', {})
 
 def board(request):
     return render(request, 'main/board.html', {})
@@ -24,6 +23,7 @@ def board(request):
 def notice(request):
     return render(request, 'main/notice.html', {})
 
+@login_required(login_url='/main/index/')
 def mypage(request):
     return render(request, 'main/mypage.html', {})
 
