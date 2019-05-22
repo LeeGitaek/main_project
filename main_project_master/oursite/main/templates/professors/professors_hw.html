@@ -1,0 +1,84 @@
+{% extends "main/base.html" %}
+{% block content %}
+<div class="container-fluid" >
+    <div class="row">
+
+        <div class="col-md-12">
+                     <div class="card">
+                         <div class="card-body">
+                            <h5 class="card-title m-b-0"><a href="/main/professors/hw/" class="btn btn-dark btn"><i class="mdi mdi-timetable"></i>&nbsp;과제 </a>
+
+                                                             <select class="select2 form-control custom-select" style="width: 10%;">
+                                                                 <option>최신순</option>
+                                                                 <option>과목</option>
+                                                                 <option>분반</option>
+                                                                 <option>과제 종료</option>
+                                                                 <option>과제 진행중</option>
+                                                             </select>
+
+                              <a href="/main/professors/hw/upload/" class="btn btn-dark btn" style="float:right;"><i class="mdi mdi-apple-keyboard-caps"></i>&nbsp;과제 올리기</a></h5>
+                         </div>
+                         <table class="table">
+                             <thead>
+                                 <tr>
+                                     <th scope="col">과제 &nbsp;<i class="mdi mdi-timetable"></i> </th>
+                                     <th scope="col">데드라인&nbsp;<i class="mdi mdi-alarm-multiple"></i> </th>
+                                     <th scope="col">현재 제출  </th>
+                                     <th scope="col">과제 종료 / 제출 목록 보기 </th>
+                                     <th scope="col">수정 및 삭제 </th>
+                                 </tr>
+                             </thead>
+                             <tbody>
+                                 <tr>
+                                     <td><a href="#" class="link">[운영체제-02] 코드 제출과제 </a></td>
+                                     <td>2019-05-06까지</td>
+                                     <td> 52명 </td>
+                                      <td><a href="" class="btn btn-outline-primary">제출 목록 보기</a></td>
+                                      <td><a href="" class="btn btn-secondary btn-sm"> 수정</a>&nbsp;<a href="" class="btn btn-danger btn-sm">삭제</a></td>
+                                 </tr>
+                                 <tr>
+                                     <td><a href="#" class="link">[운영체제-03] 코드 제출과제 </a></td>
+                                     <td>2019-05-06까지</td>
+                                      <td>  55명 </td>
+                                      <td><a href="" class="btn btn-outline-primary">제출 목록 보기</a></td>
+                                      <td><a href="" class="btn btn-secondary btn-sm"> 수정</a>&nbsp;<a href="" class="btn btn-danger btn-sm">삭제</a></td>
+                                 </tr>
+                                 <tr>
+                                     <td><a href="#" class="link">[운영체제-02] 코드 제출과제 </a></td>
+                                     <td>2019-05-14까지</td>
+                                      <td> 8명 </td>
+                                     <td>과제 진행중</td>
+                                       <td><a href="" class="btn btn-secondary btn-sm"> 수정</a>&nbsp;<a href="" class="btn btn-danger btn-sm">삭제</a></td>
+                                 </tr>
+                                 <tr>
+                                     <td><a href="#" class="link">[운영체제-03] 코드 제출과제 </a></td>
+                                     <td>2019-05-14까지</td>
+                                      <td> 9명 </td>
+                                     <td>과제 진행중</td>
+                                       <td><a href="" class="btn btn-secondary btn-sm"> 수정</a>&nbsp;<a href="" class="btn btn-danger btn-sm">삭제</a></td>
+                                 </tr>
+                                 <tr>
+                                     <td><a href="#" class="link">[운영체제-04] 코드 제출과제 </a></td>
+                                     <td>2019-05-15까지</td>
+                                    <td> 3명 </td>
+                                    <td>과제 진행중</td>
+                                      <td><a href="" class="btn btn-secondary btn-sm"> 수정</a>&nbsp;<a href="" class="btn btn-danger btn-sm">삭제</a></td>
+                                 </tr>
+
+
+                           </tbody>
+                         </table>
+                     </div>
+                 </div>
+                 <div class="col-md-4">
+                 <a href="/main/professors/" class="btn btn-dark btn">홈으로</a>
+                 </div>
+
+    </div>     <!-- row end -->
+
+    </div><!-- container end -->
+
+<footer class="footer text-center">
+            Copyright &copy 2019. Developed by <a href="http://www.sejong.ac.kr">Sejong University</a>.
+  </footer>
+{% endblock %}

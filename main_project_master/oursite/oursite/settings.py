@@ -73,7 +73,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'oursite.wsgi.application'
-FILE_UPLOAD_MAX_MEMORY_SIZE = 429916160
 
 ASGI_APPLICATION = 'oursite.routing.application' #채팅을 위해선 필요한 설정
 #채팅을 위해선 필요한 설정
@@ -88,6 +87,7 @@ CHANNEL_LAYERS = {
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
+
 #MySQL 연동 설정
 
 DATABASES = {
@@ -95,9 +95,9 @@ DATABASES = {
           'ENGINE': 'django.db.backends.mysql',
           'NAME': 'main_project', # DB명
           'USER': 'root', # 데이터베이스 계정
-          'PASSWORD': '0000', # 계정 비밀번호
+          'PASSWORD': 'kor099060', # 계정 비밀번호
           'HOST': 'localhost',# 데이테베이스 주소(IP)
-          'PORT': '', # 데이터베이스 포트(보통은 3306)
+          'PORT': '3306', # 데이터베이스 포트(보통은 3306)
       }
 }
 

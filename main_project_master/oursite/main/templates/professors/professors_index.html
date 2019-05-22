@@ -1,0 +1,183 @@
+{% extends "main/base.html" %}
+{% block content %}
+<div class="container-fluid" >
+    <div class="row">
+        <div class="col-md-4">
+                     <div class="card">
+                         <div class="card-body">
+                             <h5 class="card-title m-b-0"><a href="/main/professors/subjects/" class="btn btn-dark btn"><i class="mdi mdi-anchor"></i>&nbsp;담당과목</a></h5>
+                         </div>
+                         <table class="table">
+                             <thead>
+                                 <tr>
+                                     <th scope="col">강의 과목&nbsp;<i class="mdi mdi-format-size"></i></th>
+                                     <th scope="col">분반 &nbsp;<i class="mdi mdi-format-list-numbers"></i></th>
+                                 </tr>
+                             </thead>
+                             <tbody>
+                                 <tr>
+                                     <td>운영체제</td>
+                                     <td>02</td>
+                                 </tr>
+                                 <tr>
+                                     <td>운영체제</td>
+                                     <td>03</td>
+                                 </tr>
+                                 <tr>
+                                     <td>운영체제</td>
+                                     <td>04</td>
+                                 </tr>
+
+                           </tbody>
+                         </table>
+                     </div>
+                 </div>
+                 <div class="col-md-4">
+                     <div class="card">
+                         <div class="card-body">
+                             <h5 class="card-title m-b-0"><a href="/main/professors/alerts/" class="btn btn-dark btn"><i class="mdi mdi-bell-outline"></i>&nbsp;공지사항</a><a href="/main/professors/alerts/upload/" class="btn btn-dark btn" style="float:right;"><i class="mdi mdi-auto-upload"></i>&nbsp;공지 올리기</a></h5>
+                         </div>
+                         <table class="table">
+                             <thead>
+                                 <tr>
+                                     <th scope="col">공지사항&nbsp;<i class="mdi mdi-message-text-outline"></i></th>
+                                     <th scope="col">날짜 &nbsp;<i class="mdi mdi-calendar-question"></i></th>
+                                 </tr>
+                             </thead>
+                             <tbody>
+                                 <tr>
+                                     <td><a href="#" class="link"><i class="mdi mdi-alert-box"></i>[운영체제-02] <br>내일 수업은 휴강입니다.</a></td>
+                                     <td>2019-05-08</td>
+                                 </tr>
+                                 <tr>
+                                     <td><a href="#" class="link"><i class="mdi mdi-alert-box"></i> [운영체제-03]<br>기말고사 관련 공지입니다.</a></td>
+                                     <td>2019-05-11</td>
+                                 </tr>
+                                 <tr>
+                                     <td><a href="#" class="link"><i class="mdi mdi-alert-box"></i> [운영체제-04]<br>온라인 강의 수강안내</a></td>
+                                     <td>2019-05-12</td>
+                                 </tr>
+
+                           </tbody>
+                         </table>
+                     </div>
+                 </div>
+                 <div class="col-md-4">
+                     <div class="card">
+                         <div class="card-body">
+                             <h5 class="card-title m-b-0"><a href="/main/professors/hw/" class="btn btn-dark btn"><i class="mdi mdi-timetable"></i>&nbsp;과제 </a><a href="/main/professors/hw/upload/" class="btn btn-dark btn" style="float:right;"><i class="mdi mdi-apple-keyboard-caps"></i>&nbsp;과제 올리기</a></h5>
+                         </div>
+                         <table class="table">
+                             <thead>
+                                 <tr>
+                                     <th scope="col">과제 &nbsp;<i class="mdi mdi-timetable"></i> </th>
+                                     <th scope="col">데드라인&nbsp;<i class="mdi mdi-alarm-multiple"></i> </th>
+                                 </tr>
+                             </thead>
+                             <tbody>
+                                 <tr>
+                                     <td><a href="#" class="link">코드 제출과제 </a></td>
+                                     <td>2019-05-12까지</td>
+                                 </tr>
+
+                           </tbody>
+                         </table>
+                     </div> <!-- card end -->
+                 </div>   <!-- col end -->
+    </div>     <!-- row end -->
+
+    <div class="row">
+        <div class="col-md-4">
+                     <div class="card">
+                         <div class="card-body">
+                             <h5 class="card-title m-b-0"><a href="/main/professors/group/" class="btn btn-dark btn"><i class="mdi mdi-webpack"></i>&nbsp;팀 구성</a><a href="/main/professors/hw/upload/" class="btn btn-dark btn" style="float:right;"><i class="mdi mdi-elevator"></i>&nbsp;학생 그룹 만들기</a></h5>
+                         </div>
+                         <table class="table">
+                             <thead>
+                                 <tr>
+                                     <th scope="col">강의 과목 &nbsp;<i class="mdi mdi-format-size"></i></th>
+                                     <th scope="col">분반&nbsp;<i class="mdi mdi-format-list-numbers"></i></th>
+                                     <th scope="col">팀 목록 &nbsp;<i class="mdi mdi-webpack"></i></th>
+                                 </tr>
+                             </thead>
+                             <tbody>
+                                 <tr>
+                                     <td>운영체제</td>
+                                     <td>02</td>
+                                     <td><a href="" class="btn btn-outline-primary"><i class="mdi mdi-webpack"></i>&nbsp;팀 목록보기</a></td>
+                                 </tr>
+                                 <tr>
+                                     <td>운영체제</td>
+                                     <td>03</td>
+                                     <td><a href="" class="btn btn-outline-primary"><i class="mdi mdi-webpack"></i>&nbsp;팀 목록보기</a></td>
+                                 </tr>
+
+                           </tbody>
+                         </table>
+                     </div>
+                 </div>
+                 <div class="col-md-4">
+                     <div class="card">
+                         <div class="card-body">
+                             <h5 class="card-title m-b-0"><a href="/main/professors/students" class="btn btn-dark btn"><i class="mdi mdi-account-settings"></i>&nbsp;학생 목록</a></h5>
+                         </div>
+                         <table class="table">
+                             <thead>
+                                 <tr>
+                                     <th scope="col">강의 과목&nbsp;<i class="mdi mdi-format-size"></i></th>
+                                     <th scope="col">분반&nbsp;<i class="mdi mdi-format-list-numbers"></i></th>
+                                     <th scope="col">학생 목록&nbsp;<i class="mdi mdi-account-settings"></i></th>
+                                 </tr>
+                             </thead>
+                             <tbody>
+                                 <tr>
+                                     <td><a href="#" class="link">운영체제</a></td>
+                                     <td>02</td>
+                                     <td><a href="" class="btn btn-outline-primary"><i class="mdi mdi-account-settings"></i>&nbsp;학생 목록보기</a></td>
+                                 </tr>
+                                 <tr>
+                                     <td><a href="#" class="link">운영체제</a></td>
+                                     <td>03</td>
+                                     <td><a href="" class="btn btn-outline-primary"><i class="mdi mdi-account-settings"></i>&nbsp;학생 목록보기</a></td>
+                                 </tr>
+
+                           </tbody>
+                         </table>
+                     </div> <!-- card end -->
+                 </div> <!-- col end -->
+                 <div class="col-md-4">
+                     <div class="card">
+                         <div class="card-body">
+                             <h5 class="card-title m-b-0"><a href="/main/professors/qna/" class="btn btn-dark btn"><i class="mdi mdi-comment-question-outline"></i>&nbsp; 질문과 답변</a><a href="/main/professors/qna/upload/" class="btn btn-dark btn" style="float:right;"><i class="mdi mdi-nfc-tap"></i>&nbsp;질문 또는 투표하기</a></h5>
+                         </div>
+                         <table class="table">
+                             <thead>
+                                 <tr>
+                                     <th scope="col">강의 과목&nbsp;<i class="mdi mdi-format-size"></i></th>
+                                     <th scope="col">분반&nbsp;<i class="mdi mdi-format-list-numbers"></i></th>
+                                     <th scope="col">Q&A &nbsp;<i class="mdi mdi-comment-question-outline"></i></th>
+                                 </tr>
+                             </thead>
+                             <tbody>
+                                 <tr>
+                                     <td><a href="#" class="link">운영체제</a></td>
+                                     <td>02</td>
+                                     <td><a href="" class="btn btn-outline-primary"><i class="mdi mdi-comment-question-outline"></i>&nbsp; 답변하기</a></td>
+                                 </tr>
+                                 <tr>
+                                     <td><a href="#" class="link">운영체제</a></td>
+                                     <td>03</td>
+                                     <td><a href="" class="btn btn-outline-primary"><i class="mdi mdi-comment-question-outline"></i>&nbsp; 답변하기</a></td>
+                                 </tr>
+
+                           </tbody>
+                         </table>
+                     </div> <!-- card end -->
+                 </div> <!-- col end -->
+        </div> <!-- row end -->
+    </div><!-- container end -->
+
+<footer class="footer text-center">
+            Copyright &copy 2019. Developed by <a href="http://www.sejong.ac.kr">Sejong University</a>.
+  </footer>
+{% endblock %}

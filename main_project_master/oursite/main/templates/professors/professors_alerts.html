@@ -1,0 +1,75 @@
+{% extends "main/base.html" %}
+{% block content %}
+<div class="container-fluid" >
+    <div class="row">
+
+        <div class="col-md-12">
+                     <div class="card">
+                         <div class="card-body">
+                             <h5 class="card-title m-b-0"><a href="/main/professors/alerts/" class="btn btn-dark btn"><i class="mdi mdi-anchor"></i>&nbsp;공지사항</a>
+
+
+                               <select class="select2 form-control custom-select" style="width: 10%;">
+                                   <option>최신순</option>
+                                   <option>과목</option>
+                                   <option>분반</option>
+                               </select>
+
+
+                               <a href="/main/professors/alerts/upload/" class="btn btn-dark btn" style="float:right;"><i class="mdi mdi-auto-upload"></i>&nbsp;공지 올리기</a></h5>
+                         </div>
+                         <table class="table">
+                             <thead>
+                                 <tr>
+                                     <th scope="col">공지사항&nbsp;<i class="mdi mdi-message-text-outline"></i></th>
+                                     <th scope="col">날짜 &nbsp;<i class="mdi mdi-calendar-question"></i></th>
+                                     <th scope="col">수정 및 삭제 </th>
+                                 </tr>
+                             </thead>
+                             <tbody>
+                                 <tr>
+                                     <td><a href="#" class="link"><i class="mdi mdi-alert-box"></i>[운영체제-02] <br>내일 수업은 휴강입니다.</a></td>
+                                     <td>2019-05-08</td>
+                                       <td><a href="" class="btn btn-secondary btn-sm"> 수정</a>&nbsp;<a href="" class="btn btn-danger btn-sm">삭제</a></td>
+                                 </tr>
+                                 <tr>
+                                     <td><a href="#" class="link"><i class="mdi mdi-alert-box"></i> [운영체제-03]<br>기말고사 관련 공지입니다.</a></td>
+                                     <td>2019-05-11</td>
+                                       <td><a href="" class="btn btn-secondary btn-sm"> 수정</a>&nbsp;<a href="" class="btn btn-danger btn-sm">삭제</a></td>
+                                 </tr>
+                                 <tr>
+                                     <td><a href="#" class="link"><i class="mdi mdi-alert-box"></i> [운영체제-04]<br>온라인 강의 수강안내</a></td>
+                                     <td>2019-05-12</td>
+                                       <td><a href="" class="btn btn-secondary btn-sm"> 수정</a>&nbsp;<a href="" class="btn btn-danger btn-sm">삭제</a></td>
+                                 </tr>
+                                 <tr>
+                                     <td><a href="#" class="link"><i class="mdi mdi-alert-box"></i>[운영체제-02] <br>내일 수업은 휴강입니다.</a></td>
+                                     <td>2019-05-08</td>
+                                       <td><a href="" class="btn btn-secondary btn-sm"> 수정</a>&nbsp;<a href="" class="btn btn-danger btn-sm">삭제</a></td>
+                                 </tr>
+                                 <tr>
+                                     <td><a href="#" class="link"><i class="mdi mdi-alert-box"></i> [운영체제-03]<br>기말고사 관련 공지입니다.</a></td>
+                                     <td>2019-05-11</td>
+                                       <td><a href="" class="btn btn-secondary btn-sm"> 수정</a>&nbsp;<a href="" class="btn btn-danger btn-sm">삭제</a></td>
+                                 </tr>
+                                 <tr>
+                                     <td><a href="#" class="link"><i class="mdi mdi-alert-box"></i> [운영체제-04]<br>온라인 강의 수강안내</a></td>
+                                     <td>2019-05-12</td>
+                                       <td><a href="" class="btn btn-secondary btn-sm"> 수정</a>&nbsp;<a href="" class="btn btn-danger btn-sm">삭제</a></td>
+                                 </tr>
+                           </tbody>
+                         </table>
+                     </div>
+                 </div>
+                 <div class="col-md-4">
+                 <a href="/main/professors/" class="btn btn-dark btn">홈으로</a>
+                 </div>
+
+    </div>     <!-- row end -->
+
+    </div><!-- container end -->
+
+<footer class="footer text-center">
+            Copyright &copy 2019. Developed by <a href="http://www.sejong.ac.kr">Sejong University</a>.
+  </footer>
+{% endblock %}
