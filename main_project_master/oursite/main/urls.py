@@ -32,9 +32,10 @@ urlpatterns = [
     path('subject_assign/', views.subject_assign, name='subject_assign'),  #과목 할당
     url(r'^subject_list/(?P<user_pk>\d+)$', views.subject_list, name='subject_list'), #과목 리스트(subject_list/유저번호)
 
-    path('box/<teamnum>/<teamname>/uploadto/',views.DocsOfUser), # 업로드
+     #path('box/<teamnum>/<teamname>/uploadto/',views.DocsOfUser), # 업로드
+    re_path(r'^addreq_projects/(?P<username>[\w_]{3,50})/(?P<teamnum>\d+)/(?P<teamname>[\w_]{3,50})/$',views.addreq_project,name="addreq_project"),
     path('box/',views.userfile),# 자신이 업로드한 파일 리스트
-    url(r'^box/board/(?P<pk>\d+)/$', views.boxteam_detail, name='boxteam_detail'),#팀 프로젝트 게시판 템플릿
+    url(r'^box/board/(?P<pk>\d+)', views.boxteam_detail, name='boxteam_detail'),#팀 프로젝트 게시판 템플릿
 
     #채팅 및 평가
     path('chat/', views.chat, name='chat'),
@@ -44,6 +45,12 @@ urlpatterns = [
     path('evaluate/', views.evaluate, name='evaluate'),
 
     path('lab', views.lab, name='lab'),
+
+      #교수님 관리페이지
+    path('professor/',views.professor_manage, name='professor'),
+    path('professor/subject/',views.professor_subject,name='p_subject'),
+    path('professor/alerts/',views.professor_alerts,name='p_alerts'),
+    path('professor/hw/',views.professor_hw,name='p_hw'),
 ]
 
 # Box file setting code start

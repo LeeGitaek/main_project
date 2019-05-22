@@ -101,6 +101,7 @@ def team_join(request, subject_pk, user_pk, team_pk, hash):
     # hash = Team.objects.get(pk=team_pk).hash
     return render(request, 'main/team_detail.html', {'user': user})
 
+#파일 공유 페이지 시작
 def userfile(request):
     qs = Team.objects.all()
     return render(request, 'box/box.html',{
@@ -112,23 +113,12 @@ def boxteam_detail(request, pk):
     all_items = FileListBox.objects.filter(t_num=pk).order_by('-uploaded_date').iterator()
     return render(request, 'box/box_detail.html', {'team' : team,'all_file_items': all_items,})
 
-#box upload function
-def DocsOfUser(request,teamnum,teamname):
-    if request.method == 'POST' and request.FILES['myfile']:
 
-        now = datetime.datetime.now()
-        myfile = request.FILES['myfile']
-        fs = FileSystemStorage()
-        formatted_date = now.strftime('%Y-%m-%d %H:%M:%S')
-        filename = fs.save(myfile.name, myfile)
-        filesize =  myfile.size #file size
-        uploaded_file_url = fs.url(filename) # file link
-        team_title = teamname
-        t_num = teamnum
-        querys1 = FileListBox(file_name=filename,team_title=team_title,file_size=filesize,t_num=t_num,document=uploaded_file_url,uploaded_date=formatted_date)
-        querys1.save()
-
-        return redirect('/main/box/board/'+teamnum)
+def addreq_project(request, username , teamnum, teamname):
+    files = request.FILES.getlist('files[]')
+    datafunction.addShare(username,teamnum,teamname, files)
+    return redirect('/main/box/board/'+teamnum)
+#파일 공유 페이지 끝
 
 @login_required
 def room(request, room_name):
@@ -153,3 +143,19 @@ def evaluate_member(request):
     }
     return HttpResponse(json.dumps(data), content_type="application/json")
 
+
+
+# 교수님 관리페이지
+
+def professor_manage(request):
+    return render('professors/professors_index.html')
+
+def professor_subject(request):
+    return render('professors/professors_subjects.html')
+
+
+def professor_alerts(request):
+    return render('professors/professors_alerts.html')
+
+def professor_hw(request):
+    return render('professors/professors_hw.html')
