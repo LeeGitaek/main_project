@@ -1,5 +1,6 @@
 {% extends "main/base.html" %}
 {% block content %}
+
 <div class="container-fluid">
     <div class="row">
       <div class="col-md-6">
@@ -27,23 +28,29 @@
       <div class="col-md-6">
           <div class="card">
               <div class="card-body">
-                  <h5 class="card-title">파일을 선택하여 업로드합니다.</h5>
+
                   {% load static %}
 
 
-                     <form id="choo" method="post" action="/main/box/{{team.num}}/{{team.team_name}}/uploadto/" enctype="multipart/form-data">
+                      <form role="form" method="post" action="{% url 'addreq_project' user.username team.num team.team_name %}" enctype="multipart/form-data" data-parsley-validate>
 
                        {% csrf_token %}
 
-                         <div class="col-md-9">
-                             <div class="custom-file">
-                                 <input type="file" name="myfile" class="custom-file-input" required>
-                                 <label class="custom-file-label" >파일을 선택하여 업로드합니다.</label>
+                      <div class="row">
+                               <div class="col-sm-12 col-xs-12">
+                                  <h4 class="header-title m-t-0">파일 업로드 <button style="float:right;" class="btn btn-dark btn-sm waves-effect waves-light" type="submit">
+                               파일 업로드
+                               </button> </h4>
 
-                             </div>
-
-                               <button class="btn btn-primary btn-sm" style="margin-top:20px;" type="submit">업로드</button>
-                         </div>
+                                  <div class="p-20">
+                                     <div class="form-group clearfix">
+                                        <div class="col-sm-12 padding-left-0 padding-right-0">
+                                           <input type="file" name="files[]" id="filer_input1" parsley-trigger="change" required="required" data-parsley-required-message="Minimum one file required" multiple="multiple">
+                                        </div>
+                                     </div>
+                                  </div>
+                               </div>
+                            </div>
 
 
                      </form>
@@ -65,7 +72,7 @@
                                          <div class="p-2"><img src="/static/assets/images/big/auth-bg.jpg" alt="user" width="50" class="rounded-circle"></div>
                                          <div class="comment-text w-100">
 
-                                             <h6 class="font-medium">{{ file_item.file_name }} · {{ file_item.file_size }} BYTE</h6>
+                                             <h6 class="font-medium">{{ file_item.file_name }} · <span class="badge badge-dark">{{ file_item.file_size }} </span></h6>
 
 
                                              <div class="comment-footer">
@@ -88,4 +95,5 @@
 <footer class="footer text-center" style="margin-top:500px;">
     Copyright &copy 2019. Developed by <a href="http://www.sejong.ac.kr">Sejong University</a>.
 </footer>
+
 {% endblock %}
