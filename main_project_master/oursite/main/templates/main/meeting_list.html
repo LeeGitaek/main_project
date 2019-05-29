@@ -1,0 +1,59 @@
+{% extends "main/base.html" %}
+{% block content %}
+<div class="page-breadcrumb">
+    <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+            <div class="ml-auto text-right">
+                <nav aria-label="breadcrumb">
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div id="main-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <a href="{% url 'meeting_new' subject_pk=subject_pk team_pk=team_pk %}" class="btn btn-primary">새 그룹 만들기</a>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title m-b-0">{{ subject_name }} {{ team_name }} 팀 회의 게시판 </h5>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="thead-light">
+                                <tr>
+                                    <th></th>
+                                    <th scope="col">회차</th>
+                                    <th scope="col">내용</th>
+                                    <th scope="col">시작일</th>
+                                    <th scope="col">종료일</th>
+                                    <th scope="col"></th>
+                                </tr>
+                                </thead>
+                                {% for meeting in meeting_list %}
+                                <tbody class="customtable">
+                                <tr>
+                                    <!--                                    <th><p><a href="{% url 'team_detail' subject_pk=subject_pk team_pk=team_pk meeting_num=meeting.meeting_num hash=meeting.hash %}" class="btn btn-primary">팀 게시판</a></th>-->
+                                    <td></td>
+                                    <td>{{ meeting.meeting_num }}</td>
+                                    <td>{{ meeting.title }}</td>
+                                    <td>{{ meeting.date_start }}</td>
+                                    <td>{{ meeting.date_end }}</td>
+                                    <td><p><a href="{% url 'meeting_join' subject_pk=subject_pk user_pk=user.pk team_pk=team_pk meeting_num=meeting.meeting_num hash=meeting.hash %}" class="btn btn-primary"> 회의 참여</a></p></td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer text-center">
+    All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+</footer>
+{% endblock %}

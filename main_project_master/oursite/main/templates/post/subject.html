@@ -1,0 +1,142 @@
+{% extends "main/base.html" %}
+{% block content %}
+<br>
+<div class="page-breadcrumb">
+    <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+            <h2 class="card-title m-b-0">{{subject.subject_name}} 게시판</h2>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6" style="height: 450px;"> <!-- 좌상단 -->
+            <div class="card" style="height: 400px">
+                <div class="card-body">
+                    <a href="{% url 'notice_board' subject.pk %}"><h3 class="card-title m-b-0">공지 게시판</h3></a>
+                    <br>
+                    <div class="comment-widgets scrollable" style="max-height: 300px;">
+                        {% for post in post %}
+                        {% if post.post_type.pk == 1 %}
+                        {% if post.subject.pk == subject.pk %}
+                        <ul class="list-style-none">
+                            <li class="d-flex no-block card-body">
+                                <div style="height:40px;">
+                                    <a href="{% url 'post' post.pk %}" class="m-b-0 font-medium p-0">{{ post.title }}</a>
+                                    <span class="m-b-15 d-block">{{ post.text }}</span>
+                                </div>
+                                <div class="ml-auto">
+                                    <div class="tetx-right">
+                                        <h5 class="text-muted m-b-0">{{ post.created_date.year }}.{{ post.created_date.month }}.{{ post.created_date.day }}</h5>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <hr>
+                        {% endif %}
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6" style="height: 450px;"> <!-- 우상단 -->
+            <div class="card" style="height: 400px;">
+                <div class="card-body">
+                    <h3 class="card-title m-b-0">팀</h3>
+                    {% for subject in subjects_ %}
+                    {% if subject.user_num == user.pk and subject.subject_num.num == subject_pk %}
+                    {% if subject.team_num == null%}
+                    <div class="d-flex no-block">
+                        <i class="fa fa-check-circle w-30px m-t-5"></i>
+                        <div>
+                            <span class="font-bold">현재 소속된 팀이 없습니다. 팀을 찾아보세요!</span>
+                            <a href="{% url 'find_team' subject_pk=subject_pk %}" class="btn btn-primary">팀 찾아보기</a>
+                        </div>
+                    </div>
+                    {% else %}
+                    현재 소속한 팀 : {{ subject.team_num.team_name }} &nbsp <a href="{% url 'meeting_list' subject_pk=subject_pk team_pk=subject.team_num.num %}" class="btn btn-primary">팀 게시판 입장!</a>
+                    {% endif %}
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-6" style="height: 40px;"> <!-- 좌하단 -->
+            <div class="card" style="height: 450px">
+                <div class="card-body">
+                    <a href="{% url 'debate_board' subject.pk %}"><h3 class="card-title m-b-0">토론 게시판</h3></a>
+                    <br>
+                    <div class="comment-widgets scrollable" style="max-height: 300px;">
+                        {% for post in post %}
+                        {% if post.post_type.pk == 2 %}
+                        {% if post.subject.pk == subject.pk %}
+                        <a href="{% url 'post' post.pk %}">
+                            <ul class="list-style-none">
+                                <li class="d-flex no-block card-body">
+                                    <div style="height:40px;">
+                                        <div class="m-b-0 font-medium p-0" style="color: black;">{{ post.title }}</div>
+                                        <span class="m-b-15 d-block" style="color: black;">{{ post.text }}</span>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <div class="tetx-right">
+                                            <h5 class="text-muted m-b-0">{{ post.created_date.year }}.{{ post.created_date.month }}.{{ post.created_date.day }}</h5>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </a>
+                        <hr>
+                        {% endif %}
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-6" style="height: 450px;"> <!-- 우하단 -->
+            <div class="card" style="height: 400px">
+                <div class="card-body">
+                    <a href="{% url 'file_board' subject.pk %}"><h3 class="card-title m-b-0">파일 게시판</h3></a>
+                    <br>
+                    <div class="comment-widgets scrollable" style="max-height: 300px;">
+                        {% for post in post %}
+                        {% if post.post_type.pk == 3 %}
+                        {% if post.subject.pk == subject.pk %}
+                        <ul class="list-style-none">
+                            <li class="d-flex no-block card-body">
+                                <div style="height:40px;">
+                                    <a href="{% url 'post' post.pk %}" class="m-b-0 font-medium p-0">{{ post.title }}
+                                    </a>
+                                    <span class="m-b-15 d-block">{{ post.text }}</span>
+
+                                </div>
+
+                                <div class="ml-auto">
+                                    <div class="tetx-right">
+
+                                        <h5 class="text-muted m-b-0">{{ post.created_date.year }}.{{ post.created_date.month }}.{{ post.created_date.day }}</h5>
+                                    </div>
+                                </div>
+
+                            </li>
+                        </ul>
+                        <hr>
+                        {% endif %}
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

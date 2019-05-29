@@ -1,0 +1,149 @@
+{% extends "main/base.html" %}
+{% load staticfiles %}
+{% block content %}
+  <link href="{% static 'assets_box/css/sweetalert2.min.css' %}" rel="stylesheet" type="text/css" />
+<div class="container-fluid">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title m-b-0">{{ subject.subject_name }} 파일 게시판</h4>
+                    </div>
+
+                    <div class="btn-group" style="padding-left:20px">
+                      <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                          파일 올리기
+                        </button>
+
+                        <!-- Modal subject.pk post_type.pk -->
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">파일 게시판 - 새로운 글</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+
+
+                              <div class="modal-body">
+                                <div class="row">
+                                        <div class="col-md-12">
+                                          <form method="post" id="post_form" action="{% url 'addreq_post' user.username subject.subject_name sub_pk post_type.pk %}" enctype="multipart/form-data">
+                                           {% csrf_token %}
+                                                  <div class="form-group">
+                                                      <label for="exampleFormControlTextarea1">제목</label>
+                                                       <input type="text" id="title" name="p_title" class="form-control" placeholder="제목">
+                                                   </div>
+                                                  <div class="form-group">
+                                                      <label for="exampleFormControlTextarea1">게시물 내용</label>
+                                                      <textarea name="p_text" id="post_t" class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="게시물 내용을 적어주세요."></textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                      <label for="exampleFormControlFile1">파일을 첨부합니다.</label>
+                                                      <input type="file" name="cl[]" class="form-control-file" id="pfiles">
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">돌아가기</button>
+                                                      <button type="button" onclick="form_submit()" class="btn btn-primary" data-dismiss="modal">게시판에 글 올리기</button>
+                                                    </div>
+                                                    </form>
+                                                    <script type="text/javascript">
+                                                       function form_submit() {
+                                                         document.getElementById("post_form").submit();
+                                                        }
+                                                     </script>
+                                        </div>
+                                    </div>
+                              </div>
+
+
+
+
+                            </div>
+                          </div>
+                        </div>
+
+                    </div>
+
+                    <p></p>
+
+                    <table id="zero_config">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="profile">프로필</th>
+                            <th scope="col" class="title">제목</th>
+                            <th scope="col" class="author">작성자</th>
+                            <th scope="col" class="created_date">등록일</th>
+                            <th scope="col" class="views">조회수</th>
+                            <th scope="col" class="recommendation">추천수</th>
+                        </tr>
+                        </thead>
+                        <div class="comment-widgets scrollable">
+                            <tbody>
+                            {% for post in posts %}
+                            {% if post.post_type.pk == 3 %}
+                            {% if post.subject.pk == subject.pk %}
+                            <tr>
+                                <td><div class="p-2"><img src="/static/assets/images/users/1.jpg" alt="user" width="20" class="rounded-circle"></div></td>
+                                <td><span class="m-b-15 d-block" style="font-size:1.2em;"><a href="{% url 'post' pk=post.pk %}">{{ post.title }}</a></span></a></td>
+                                <td><span class="m-b-15 d-block" style="font-size:1em;">{{ post.author }}</span></td>
+                                <td><span class="m-b-15 d-block" style="font-size:1em;">{{ post.created_date }}</span></td>
+                                <td><span class="m-b-15 d-block" style="font-size:1em;">{{ post.visit }}</span></td>
+                            </tr>
+                            {% endif %}
+                            {% endif %}
+                            {% endfor %}
+                            </tbody>
+                        </div>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+
+<style>
+.profile{
+    width: 30px;
+}
+
+.title{
+width: 400px;
+margin-left:-20em;
+}
+
+.author{
+    width: 30px;
+}
+
+.created_date{
+    width: 100px;
+}
+
+.views{
+    width: 50px;
+}
+
+.recommendation{
+    width: 50px;
+}
+
+th{
+border-top: 2px solid #444444;
+border-bottom: 2px solid #444444;
+    border-collapse: collapse;
+}
+
+td{
+    border-bottom: 1px solid #808080
+}
+</style>

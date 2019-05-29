@@ -1,0 +1,47 @@
+{% extends "main/base.html" %}
+{% block content %}
+<div class="page-breadcrumb">
+    <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+            <h2 class="card-title">과목 관리</h2>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body"></div>
+                <div class="btn-group" style="padding-left:20px ">
+                    <a href="{% url 'manage_subject_new' %}" class="btn btn-info">과목 생성</a>
+                </div>
+                <hr>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>학수 번호</th>
+                            <th>과목</th>
+                            <th>교수님</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+
+                        {% for subject in subjects %}
+                        <tbody>
+                        <tr>
+                            <td>{{ subject.num }}</td>
+                            <td>{{ subject.subject_name }}</td>
+                            <td>{{ subject.prof }}</td>
+                            <td><a href="{% url 'manage_subject_remove' subject.pk %}" class="btn btn-danger btn-sm">삭제</a></td>
+                        </tr>
+                        </tbody>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

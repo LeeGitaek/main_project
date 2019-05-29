@@ -1,0 +1,138 @@
+{% extends "main/base.html" %}
+{% block content %}
+
+<div class="page-breadcrumb">
+    <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+            <h1 class="page-title">
+                <a href="{% url 'subject' post.subject.pk %}">{{ post.subject.subject_name }}</a> /
+                {% if post.post_type.pk == 1 %}
+                <a href="{% url 'notice_board' post.subject.pk %}">{{ post.post_type.kr_name }} 게시판</a>
+                {% endif %}
+
+                {% if post.post_type.pk == 2 %}
+                <a href="{% url 'debate_board' post.subject.pk %}">{{ post.post_type.kr_name }} 게시판</a>
+                {% endif %}
+
+                {% if post.post_type.pk == 3 %}
+                <a href="{% url 'file_board' post.subject.pk %}">{{ post.post_type.kr_name }} 게시판</a>
+                {% endif %}
+            </h1>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <!--{{ post.counter_visit }}-->
+                <div class="alert">
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ message }}
+                    </div>
+
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="post" style="padding-left : 20px;">
+
+                    {% if post.created_date %}
+                    <h3>{{ post.title }}</h3>
+                    <div class="date">
+                        <span class="text-muted float-right">{{ post.created_date }}</span>
+                        글쓴이 : {{ post.auth }}
+                    </div>
+                    <div class="post_detail_edit_or_delete">
+                        <a href="{% url 'post_edit' pk=post.pk %}" class="btn btn-cyan btn-sm">수정</a>
+                        <a href="{% url 'post_remove' pk=post.pk subject_pk=post.subject.pk %}" class="btn btn-danger btn-sm">삭제</a>
+                    </div>
+                    {% endif %}
+                    <hr>
+                    <div class="post_detail_text">
+                        {% if post.post_type.pk == 3 %}
+
+                           첨부된 파일 : <span class="badge badge-dark"> <a href="/main{{post.documents}}" download style="color:white;" >Download {{ post.file_name }} </a></span>
+                        {% endif %}
+
+                        <p style="margin-top:20px;">{{ post.text|linebreaksbr }}</p>
+                    </div><hr>
+
+                    <div class="menu">
+
+                    </div><!-- 게시물 앞뒤로 이동 -->
+
+                    <!-- 댓글 -->
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <form method="POST" action="{% url 'comment_new' post.pk %}">{% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-lg-10">
+                                            <input type="text"  name="text" maxlength="500" required id="id_title" class="form-control">
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <button type="submit" class="btn btn-success btn-sm float-right">댓글 등록</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th class="comment_profile"></th>
+                            <th class="comment_auth"></th>
+                            <th class="comment_text"></th>
+                            <th class="comment_button"></th>
+                            <th class="comment_date"></th>
+                        </tr>
+                        </thead>
+
+                        {% for comment in post.comments.all %}
+                        <tbody>
+                        <tr>
+                            <td><img src="/static/assets/images/users/1.jpg" alt="user" width="20" class="rounded-circle"></td>
+                            <td><span class="m-b-15 d-block" style="font-size:1em;">{{ comment.auth }}</span></td>
+                            <td><span class="m-b-15 d-block" style="font-size:1em;">{{ comment.text|linebreaks }}</span></td>
+                            <td>{% if user.is_authenticated %}<a href="{% url 'comment_remove' post.pk comment.pk%}" class="mdi mdi-alert" style="color: red;"></a>{% endif %}</td>
+                            <td><span class="m-b-15 d-block" style="font-size:0.7em;">{{ comment.created_date }}</span></td>
+                        </tr>
+                        </tbody>
+                        {% endfor %}
+                    </table>
+                    </def>
+                    <!-- 게시물 앞뒤로 이동 -->
+                    <div class="board_move"></div>
+                    <hr>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.comment_profile{
+    width: 1px;
+    }
+.comment_auth{
+    width: 80px;
+}
+
+.comment_button{
+    width: 1px;
+}
+.comment_date{
+    width: 120px;
+}
+td{
+    border-bottom: 1px solid #808080
+}
+</style>
+{% endblock %}

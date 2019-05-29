@@ -1,24 +1,11 @@
 {% extends "main/base.html" %}
 {% block content %}
-<div class="page-wrapper">
-  <div class="page-breadcrumb">
-      <div class="row">
-          <div class="col-12 d-flex no-block align-items-center">
-              <div class="ml-auto text-right">
-                  <nav aria-label="breadcrumb">
-                  </nav>
-              </div>
-          </div>
-      </div>
-  </div>
+
 <div class="container-fluid">
-     <div id="main-wrapper">
-        <div class="page-wrapper">
-            <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
                         <a href="{% url 'team_new' subject_pk=subject_num %}" class="btn btn-primary">새 그룹 만들기</a>
-                        <div class="card">
+                        <div class="card" style="margin-top:40px;">
                             <div class="card-body">
                                 <h5 class="card-title m-b-0">데이터베이스 팀 프로젝트 게시판 </h5>
                             </div>
@@ -53,11 +40,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-     </div>
-<footer class="footer text-center">
-    All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
-</footer>
+
+
+
 {% endblock %}

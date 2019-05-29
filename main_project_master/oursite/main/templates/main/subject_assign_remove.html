@@ -1,0 +1,60 @@
+<!--팀 생성  템플릿-->
+{% extends "main/base.html" %}
+{% block content %}
+<div class="page-breadcrumb">
+    <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+            <h4 class="page-title">할당 해제</h4>
+            <div class="ml-auto text-right">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Library</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">{{ user.username }}님이 수강 완료한 과목을 선택하세요</h3>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="card">
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>학수 번호</th>
+                            <th>과목 이름</th>
+                            <th>교수님 성함</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+
+                        {% for subject in subjects_ %}
+                        <tbody>
+                        <tr>
+                            <td>{{ subject.subject_num.num }}번</td>
+                            <td>{{ subject.subject_num.subject_name }}</td>
+                            <td>{{ subject.subject_num.prof }}  교수님</td>
+                            <td><a href="{% url 'subject_assign_delete' subject.subject_num.pk %}" class="btn btn-danger btn-sm">삭제</a></td>
+                        </tr>
+                        </tbody>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

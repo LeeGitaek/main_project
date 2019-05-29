@@ -6,5 +6,5 @@ from .models import Subject_Assign
 def default(request):
     qs = Subject_Assign.objects.all()
     return dict(
-        subjects = qs,
+        subjects_ = qs,
     )

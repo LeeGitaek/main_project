@@ -1,0 +1,53 @@
+<!--과목 생성-->
+{% extends "main/base.html" %}
+{% block content %}
+
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-md-6">
+          <div class="card">
+              <div class="card-body" >
+                  <h2 class="card-title" style="padding-left : 40px;">과목 생성</h2>
+                  <form method="POST"> <!-- form 자체를 뿌려주는게 좋을까? 우선 직접 돌려보고 비교해야 할듯-->
+                      {% csrf_token %}
+                      <!--HTML/CSS로 직접 꾸미는 방법 -->
+                      <div class="form-group row">
+                          <label for="id_subject" class="col-sm-3 text-right control-label col-form-label">과목명</label>
+                          <div class="col-sm-9">
+                              <input type="text"  name="subject_name" maxlength="200" required id="id_subject" class="form-control" placeholder="과목명을 입력하세요."> <!--input의 name을 "name"으로 설정해준 것은 subject.name 때문-->
+                          </div>
+                      </div>
+
+                      <div class="form-group row">
+                          <label for="id_prof" class="col-sm-3 text-right control-label col-form-label">교수님 성함</label>
+                          <div class="col-sm-9">
+                              <input type="text" name="prof" maxlength="200" required id="id_prof" class="form-control" placeholder="교수님의 성함을 입력하세요">
+                          </div>
+                      </div>
+
+                      <div class="form-group row">
+                          <label for="id_num" class="col-sm-3 text-right control-label col-form-label">학수 번호</label>
+                          <div class="col-sm-9">
+                              <input type="text"  name="num" maxlength="200" required id="id_num" class="form-control" placeholder="학수번호를 입력하세요.">
+                          </div>
+                      </div>
+
+                      <!--form을 직접 뿌리는 방법-->
+                      <!-- form을 css로 꾸미고 싶은데 어떡해 하면 좋을지 모르겠습니다 https://docs.djangoproject.com/en/2.2/ref/forms/api/#outputting-forms-as-html 참고 -->
+                      <!--<table>
+                          {{ form.as_table }}
+                      </table>-->
+
+                       <button type="submit" class="btn btn-info">과목 등록</button>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<footer class="footer text-center">
+    All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+</footer>
+{% endblock %}

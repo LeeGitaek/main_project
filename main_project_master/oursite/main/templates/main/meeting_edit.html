@@ -1,0 +1,82 @@
+<!--팀 생성  템플릿-->
+{% extends "main/base.html" %}
+{% block content %}
+<div class="page-wrapper">
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">회의 등록하기</h2>
+                        <form method="POST">
+                            {% csrf_token %}
+
+                            <input type="hidden"  name="team_num" class="form-control" value="{{ team_pk }}">
+                            <input type="hidden"  name="meeting_num" class="form-control" value="{{ meeting_num }}">
+
+                            <div class="form-group row">
+                                <label for="id_title" class="col-sm-3 text-right control-label col-form-label">회의 주제</label>
+                                <div class="col-sm-9">
+                                    <input type="text"  name="title" maxlength="200" required id="id_title" class="form-control" placeholder="회의 주제을 입력하세요.">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="id_date_start" class="col-sm-3 text-right control-label col-form-label">회의 시작시간</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="datetime-local" name="date_start" maxlength="200" required id="id_date_start">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="id_date_end" class="col-sm-3 text-right control-label col-form-label">회의 종료시간</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" type="datetime-local"  name="date_end" required id="id_date_end" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="tableTop1" style="display:none">
+                                <input type="text" name="hash" maxlength="200" required id="id_hash" class="form-control">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">팀 등록</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function getExampleRef() {
+        var config = {
+            apiKey: '<API_KEY>',
+            authDomain: "firepad-tests.firebaseapp.com",
+            databaseURL: "https://firepad-tests.firebaseio.com"
+        };
+        firebase.initializeApp(config);
+
+        var ref = firebase.database().ref();
+        ref = ref.push(); // generate unique location.
+        $('#id_hash').val(ref.key);
+    }
+
+    window.onload = getExampleRef;
+</script>
+
+<footer class="footer text-center">
+    All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+</footer>
+{% endblock %}

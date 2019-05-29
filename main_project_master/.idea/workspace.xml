@@ -2,11 +2,38 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41f15244-aa0c-4c14-b761-0dd97505063a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/oursite/main/templates/main/team_list_temp.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oursite/main/templates/post/board.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oursite/main/templates/post/comment_edit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oursite/main/templates/post/debate.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oursite/main/templates/post/file.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oursite/main/templates/post/manage_subject.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oursite/main/templates/post/manage_subject_detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oursite/main/templates/post/manage_subject_new.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oursite/main/templates/post/notice.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oursite/main/templates/post/post.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oursite/main/templates/post/post_new.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oursite/main/templates/post/subject.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oursite/main/context_processors.py" beforeDir="false" afterPath="$PROJECT_DIR$/oursite/main/context_processors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oursite/main/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/oursite/main/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/oursite/main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/oursite/main/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/oursite/main/templates/main/team_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/oursite/main/templates/main/team_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/oursite/main/templates/main/team_evaluate.html" beforeDir="false" afterPath="$PROJECT_DIR$/oursite/main/templates/main/team_evaluate.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oursite/main/templates/main/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/oursite/main/templates/main/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oursite/main/templates/main/base2.html" beforeDir="false" afterPath="$PROJECT_DIR$/oursite/main/templates/temp/base2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oursite/main/templates/main/find_team.html" beforeDir="false" afterPath="$PROJECT_DIR$/oursite/main/templates/main/find_team.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oursite/main/templates/main/lab.html" beforeDir="false" afterPath="$PROJECT_DIR$/oursite/main/templates/temp/lab.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oursite/main/templates/main/mypage.html" beforeDir="false" afterPath="$PROJECT_DIR$/oursite/main/templates/main/mypage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oursite/main/templates/main/mypage_tmp.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oursite/main/templates/main/notice.html" beforeDir="false" afterPath="$PROJECT_DIR$/oursite/main/templates/main/notice.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oursite/main/templates/main/subject_edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/oursite/main/templates/main/subject_edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oursite/main/templates/main/team.html" beforeDir="false" afterPath="$PROJECT_DIR$/oursite/main/templates/main/team.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oursite/main/templates/main/team_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/oursite/main/templates/main/team_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oursite/main/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/oursite/main/templates/registration/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oursite/main/templates/temp/mypage_tmp.html" beforeDir="false" afterPath="$PROJECT_DIR$/oursite/main/templates/temp/mypage_tmp.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oursite/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/oursite/main/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/oursite/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/oursite/main/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/oursite/oursite/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/oursite/oursite/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oursite/oursite/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/oursite/oursite/settings.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,13 +43,103 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/oursite/main/models.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/oursite/main/templates/main/team_detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="43" column="36" lean-forward="true" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
+            <state relative-caret-position="19">
+              <caret line="1" column="19" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/oursite/main/templates/main/meeting_list.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="817">
+              <caret line="43" column="177" selection-start-line="43" selection-start-column="177" selection-end-line="43" selection-end-column="177" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/oursite/main/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="152" column="22" selection-start-line="152" selection-start-column="22" selection-end-line="152" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/oursite/main/templates/main/subject_assign_remove.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="20" column="21" lean-forward="true" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/oursite/main/evaluate.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="665">
+              <caret line="40" column="49" selection-start-line="40" selection-start-column="49" selection-end-line="40" selection-end-column="49" />
               <folding>
-                <element signature="e#0#43#0" expanded="true" />
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/oursite/main/templates/main/find_team.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="494">
+              <caret line="26" column="45" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/oursite/main/templates/main/meeting_edit.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="988">
+              <caret line="52" selection-start-line="52" selection-end-line="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/oursite/main/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="494">
+              <caret line="28" column="19" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/oursite/main/templates/main/team_edit.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1235">
+              <caret line="65" column="63" selection-start-line="65" selection-start-column="63" selection-end-line="65" selection-end-column="63" />
+              <folding>
+                <element signature="n#style#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/oursite/main/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="28" column="43" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
+              <folding>
+                <element signature="e#0#37#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -34,51 +151,78 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>떠납</find>
-      <find>User</find>
-      <find>fetch_messages</find>
       <find>Subject_Assign</find>
       <find>consumers</find>
       <find>last_10_messages</find>
       <find>subject_list</find>
       <find>room</find>
       <find>localhost</find>
-      <find>detail</find>
       <find>template_dir</find>
+      <find>base2</find>
+      <find>find_team</find>
+      <find>team_list</find>
+      <find>hash</find>
+      <find>subject.ob</find>
+      <find>detail</find>
+      <find>find_meeting</find>
+      <find>find</find>
+      <find>team_edot</find>
+      <find>edit</find>
+      <find>;ost</find>
+      <find>join</find>
+      <find>team_new</find>
+      <find>'board' subject_pk=subject.subject_pk.num</find>
+      <find>board' subject_pk=subject.subject_pk.num</find>
+      <find>subject_num</find>
+      <find>subject.subject_pk</find>
+      <find>meeting_edit</find>
+      <find>meeting_new</find>
+      <find>id_title</find>
+      <find>Meeting</find>
+      <find>id_hash</find>
+      <find>team_detail</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/venv/pyvenv.cfg" />
         <option value="$PROJECT_DIR$/oursite/main/consumers.py" />
-        <option value="$PROJECT_DIR$/oursite/main/templates/main/find_team.html" />
-        <option value="$PROJECT_DIR$/oursite/main/templates/main/team_edit.html" />
-        <option value="$PROJECT_DIR$/oursite/main/templates/main/team_list.html" />
-        <option value="$PROJECT_DIR$/oursite/main/forms.py" />
-        <option value="$PROJECT_DIR$/oursite/main/evaluate.py" />
-        <option value="$PROJECT_DIR$/oursite/main/urls.py" />
         <option value="$PROJECT_DIR$/oursite/main/templates/main/team_detail.html" />
         <option value="$PROJECT_DIR$/oursite/main/templates/main/team_evaluate.html" />
-        <option value="$PROJECT_DIR$/oursite/main/views.py" />
         <option value="$PROJECT_DIR$/oursite/oursite/urls.py" />
+        <option value="$PROJECT_DIR$/oursite/main/templates/temp/team_list_temp.html" />
         <option value="$PROJECT_DIR$/oursite/main/models.py" />
+        <option value="$PROJECT_DIR$/oursite/main/templates/main/team_edit.html" />
+        <option value="$PROJECT_DIR$/oursite/main/templates/main/base.html" />
+        <option value="$PROJECT_DIR$/oursite/main/templates/main/base2.html" />
+        <option value="$PROJECT_DIR$/oursite/main/templates/main/subject_list.html" />
+        <option value="$PROJECT_DIR$/oursite/main/templates/main/team_list.html" />
+        <option value="$PROJECT_DIR$/oursite/main/forms.py" />
+        <option value="$PROJECT_DIR$/oursite/main/templates/main/meeting_edit.html" />
+        <option value="$PROJECT_DIR$/oursite/main/urls.py" />
+        <option value="$PROJECT_DIR$/oursite/main/templates/main/meeting_list.html" />
+        <option value="$PROJECT_DIR$/oursite/main/templates/main/find_team.html" />
+        <option value="$PROJECT_DIR$/oursite/main/evaluate.py" />
+        <option value="$PROJECT_DIR$/oursite/main/views.py" />
+        <option value="$PROJECT_DIR$/oursite/main/templates/main/subject_assign_remove.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1912" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="94" />
+    <option name="y" value="-17" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -111,7 +255,22 @@
               <item name="main_project_master" type="462c0819:PsiDirectoryNode" />
               <item name="oursite" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="migrations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="main_project_master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="main_project_master" type="462c0819:PsiDirectoryNode" />
+              <item name="oursite" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="main_project_master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="main_project_master" type="462c0819:PsiDirectoryNode" />
+              <item name="oursite" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="main_project_master" type="b2602c69:ProjectViewProjectNode" />
@@ -144,6 +303,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -180,18 +340,17 @@
       <workItem from="1557900868976" duration="11508000" />
       <workItem from="1557943939619" duration="2534000" />
       <workItem from="1558361568021" duration="3568000" />
-      <workItem from="1558415319896" duration="7148000" />
+      <workItem from="1558415319896" duration="39638000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32133000" />
+    <option name="totallyTimeSpent" value="64623000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26865673" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26860118" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -205,7 +364,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.329718" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3295082" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -233,13 +392,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
           <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oursite/main/templates/main/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2603">
-          <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -314,54 +466,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/oursite/main/templates/main/find_team.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="49" column="40" lean-forward="true" selection-start-line="49" selection-start-column="40" selection-end-line="49" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oursite/main/templates/main/team_edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="71" column="29" lean-forward="true" selection-start-line="71" selection-start-column="29" selection-end-line="71" selection-end-column="29" />
-          <folding>
-            <element signature="n#style#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oursite/main/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="7" column="76" selection-start-line="7" selection-start-column="76" selection-end-line="7" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oursite/main/templates/main/team_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="158" column="22" lean-forward="true" selection-start-line="158" selection-start-column="22" selection-end-line="158" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oursite/main/evaluate.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="817">
-          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oursite/main/templates/main/team_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="21" selection-start-column="21" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/oursite/main/templates/main/team_evaluate.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
@@ -387,16 +491,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/oursite/main/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="33" lean-forward="true" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/oursite/oursite/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-38">
@@ -404,13 +498,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/oursite/main/views.py">
+    <entry file="file://$PROJECT_DIR$/oursite/main/templates/temp/team_list_temp.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-          <folding>
-            <element signature="e#0#67#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="285">
+          <caret line="15" column="69" selection-start-line="15" selection-start-column="69" selection-end-line="15" selection-end-column="69" />
         </state>
       </provider>
     </entry>
@@ -424,13 +515,138 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/forms/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="265" selection-start-line="265" selection-end-line="265" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oursite/main/templates/main/subject_edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="42" column="55" selection-start-line="42" selection-start-column="55" selection-end-line="42" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oursite/main/templates/main/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="129" column="275" selection-start-line="129" selection-start-column="275" selection-end-line="129" selection-end-column="275" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oursite/main/templates/main/base2.html" />
+    <entry file="file://$PROJECT_DIR$/oursite/main/templates/main/subject_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="40" column="40" lean-forward="true" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oursite/main/templates/main/board.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="21" lean-forward="true" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oursite/main/templates/main/team_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4463">
+          <caret line="261" column="10" selection-start-line="261" selection-start-column="10" selection-end-line="261" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/oursite/main/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="43" column="36" lean-forward="true" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
+        <state relative-caret-position="228">
+          <caret line="33" column="12" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="12" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oursite/main/templates/main/team_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="19" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oursite/main/templates/main/meeting_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="817">
+          <caret line="43" column="177" selection-start-line="43" selection-start-column="177" selection-end-line="43" selection-end-column="177" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oursite/main/evaluate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="665">
+          <caret line="40" column="49" selection-start-line="40" selection-start-column="49" selection-end-line="40" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oursite/main/templates/main/find_team.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="26" column="45" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oursite/main/templates/main/meeting_edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="988">
+          <caret line="52" selection-start-line="52" selection-end-line="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oursite/main/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="28" column="19" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oursite/main/templates/main/team_edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1235">
+          <caret line="65" column="63" selection-start-line="65" selection-start-column="63" selection-end-line="65" selection-end-column="63" />
+          <folding>
+            <element signature="n#style#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oursite/main/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="28" column="43" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oursite/main/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="152" column="22" selection-start-line="152" selection-start-column="22" selection-end-line="152" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oursite/main/templates/main/subject_assign_remove.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="20" column="21" lean-forward="true" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
         </state>
       </provider>
     </entry>

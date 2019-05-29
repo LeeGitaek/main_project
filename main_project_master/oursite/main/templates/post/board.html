@@ -1,0 +1,94 @@
+{% extends "main/base.html" %}
+{% block content %}
+
+<div class="container-fluid">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title m-b-0">{{ subject.name }} 공지 게시판</h4>
+                    </div>
+
+                    <div class="btn-group" style="padding-left:20px">
+                    <a href="{% url 'post_new' subject.pk post_type.pk %}" class="btn btn-info">글쓰기</a>
+                    </div>
+
+                    <p></p>
+
+                    <table id="zero_config">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="profile">프로필</th>
+                            <th scope="col" class="title">제목</th>
+                            <th scope="col" class="author">작성자</th>
+                            <th scope="col" class="created_date">등록일</th>
+                            <th scope="col" class="views">조회수</th>
+                        </tr>
+                        </thead>
+                        <div class="comment-widgets scrollable">
+                            <tbody>
+                            {% for post in post %}
+                            {% if post.post_type.pk == 1 %}
+                            {% if post.subject.pk == subject.pk %}
+                            <tr>
+                                <td><div class="p-2"><img src="/static/assets/images/users/1.jpg" alt="user" width="20" class="rounded-circle"></div></td>
+                                <td><span class="m-b-15 d-block" style="font-size:1.2em;"><a href="{% url 'post' pk=post.pk %}">{{ post.title }}</a></span></a></td>
+                                <td><span class="m-b-15 d-block" style="font-size:1em;">{{ post.author }}</span></td>
+                                <td><span class="m-b-15 d-block" style="font-size:1em;">{{ post.created_date }}</span></td>
+                                <td><span class="m-b-15 d-block" style="font-size:1em;">{{ post.visit }}</span></td>
+                            </tr>
+                            {% endif %}
+                            {% endif %}
+                            {% endfor %}
+                            </tbody>
+                        </div>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer text-center">
+    All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+</footer>
+{% endblock %}
+
+
+<style>
+.profile{
+    width: 30px;
+}
+
+.title{
+width: 400px;
+margin-left:-20em;
+}
+
+.author{
+    width: 30px;
+}
+
+.created_date{
+    width: 100px;
+}
+
+.views{
+    width: 50px;
+}
+
+.recommendation{
+    width: 50px;
+}
+
+th{
+border-top: 2px solid #444444;
+border-bottom: 2px solid #444444;
+    border-collapse: collapse;
+}
+
+td{
+    border-bottom: 1px solid #808080
+}
+</style>

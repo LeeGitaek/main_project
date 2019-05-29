@@ -1,20 +1,10 @@
 <!--팀 생성  템플릿-->
 {% extends "main/base.html" %}
 {% block content %}
-<div class="page-wrapper">
-    <div class="page-breadcrumb">
-        <div class="row">
-            <div class="col-12 d-flex no-block align-items-center">
-                <div class="ml-auto text-right">
-                    <nav aria-label="breadcrumb">
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6" style="margin:0 auto;">
                 <div class="card">
                     <div class="card-body">
                         <h2 class="card-title">팀 등록하기</h2>
@@ -56,7 +46,7 @@
             </div>
         </div>
     </div>
-</div>
+
 
 <script>
     function getExampleRef() {
@@ -75,7 +65,4 @@
     window.onload = getExampleRef;
 </script>
 
-<footer class="footer text-center">
-    All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
-</footer>
 {% endblock %}

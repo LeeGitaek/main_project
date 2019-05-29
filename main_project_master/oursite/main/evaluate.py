@@ -41,3 +41,5 @@ class Evaluate():
         response = client.analyze_sentiment(document)
         sentiment = response.document_sentiment
         eva_sentiment = sentiment.score
+
+        # Meeting_Evaluate.objects.creat(team_num=team_pk, meeting_num=meeting_num, user_from=user_pk, )

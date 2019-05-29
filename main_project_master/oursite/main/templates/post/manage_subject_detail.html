@@ -1,0 +1,117 @@
+<!--팀 생성  템플릿-->
+{% extends "main/base.html" %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">과목 할당</h4>
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Library</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title">{{ user.username }}님에게 과목을 할당해주세요</h2>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>할당하고자 하는 과목 번호를 입력하세요.</h3>
+                            <form method="POST">
+                                {% csrf_token %}
+
+                                <input type="hidden"  name="user_num" maxlength="200" required id="id_title" class="form-control" value="{{ user.id }}">
+
+                                <h4><p>과목 번호 목록</p></h4>
+
+                                {% for subject in subjects %}
+                                <span style="font-size: large;">{{ subject.pk }}번 {{ subject.subject_name }} - {{ subject.prof }} 교수님 </span>
+                                <br>
+                                {% endfor %}
+
+                                <hr>
+
+                                <div class="form-group row">
+                                    <label for="id_project_title" class="col-sm-2 control-label col-form-label" >과목번호</label>
+                                    <div class="row-mb-3">
+                                        <div class="col-lg-9">
+                                            <input type="text" name="subject_num" maxlength="200" required id="id_project_title" class="form-control" placeholder="과목번호를 입력하세요.">
+                                        </div>
+                                        <div class="col-lg-1">
+                                            <button type="submit" class="btn btn-primary">할당</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">할당 해제</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">{{ user.username }}님이 수강 완료한 과목을 선택하세요</h3>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="card">
+                <div class="card-body">
+                    <h3>할당 해제할 과목 번호를 입력하세요.</h3>
+                    <input type="hidden"  name="user_num" maxlength="200" required id="id_title" class="form-control" value="{{ user.id }}">
+
+                    <h4><p>과목 번호 목록</p></h4>
+
+                    {% for subject in subjects_ %}
+                    <span style="font-size: small;">{{ subject.subject_num.pk }}번 {{ subject.subject_num.subject_name }} - {{ subject.subject_num.prof }} 교수님 </span>
+                    <a href="{% url 'subject_assign_delete' subject.subject_num.pk %}" class="btn btn-danger btn-sm">삭제</a>
+                    <br><br>
+                    {% endfor %}
+                    <br>
+                    <br>
+                    <div class="form-group">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
